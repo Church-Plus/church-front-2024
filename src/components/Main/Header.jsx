@@ -9,7 +9,7 @@ import searchIcons from "../../assets/Icons/search.svg";
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  width: 100vw;
 
   border: 1px solid #281a47;
 `;

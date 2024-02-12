@@ -26,15 +26,21 @@ const Box = styled.div`
   background-color: #e8e8ef;
 `;
 
+const FolderContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  justify-content: center;
+`;
+
 const AddBtn = styled.button`
   height: 80px;
   background-color: #c0bed3;
   border: none;
-  height: 200px;
+  height: 190px;
   width: 290px;
   border-radius: 30px;
 
-  margin-left: 60px;
+  margin-left: 50px;
   margin-top: 100px;
   cursor: pointer;
 
@@ -43,15 +49,62 @@ const AddBtn = styled.button`
   }
 `;
 
+const FolderTop = styled.div`
+  background-color: #afacc7;
+  border: none;
+  height: 20px;
+  width: 100px;
+  border-radius: 28px 28px 0px 0px;
+
+  margin-left: 50px;
+  margin-top: 80px;
+  cursor: pointer;
+`;
+
+const FolderBox = styled.div`
+  background-color: #a4a1bf;
+  border: none;
+  height: 190px;
+  width: 290px;
+  border-radius: 0px 30px 30px 30px;
+
+  margin-left: 50px;
+  cursor: pointer;
+`;
+
+const Input = styled.div`
+  padding-top: 20px;
+  font-size: 18px;
+  text-align: center;
+`;
+
 function Main() {
   return (
     <Wrapper>
       <Smallbox></Smallbox>
       <Box>
-        <AddBtn type="submit">
-          {" "}
-          <img src={addIcon} alt="사진추가 아이콘" />
-        </AddBtn>
+        <FolderContainer>
+          <AddBtn type="submit">
+            {" "}
+            <img src={addIcon} alt="사진추가 아이콘" />
+          </AddBtn>
+          <div>
+            <FolderTop />
+            <FolderBox />
+            <Input>2024년|02월|12일|총5곡</Input>
+          </div>
+          {/* 폴더 자동정렬 확인용 */}
+          <div>
+            <FolderTop />
+            <FolderBox />
+            <Input>2024년|02월|11일|총3곡</Input>
+          </div>
+          <div>
+            <FolderTop />
+            <FolderBox />
+            <Input>2024년|01월|06일|총8곡</Input>
+          </div>
+        </FolderContainer>
       </Box>
     </Wrapper>
   );
