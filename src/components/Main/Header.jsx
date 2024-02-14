@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Logo from "../../assets/Logos/Church + Logo 1.svg";
+import Logo from "../../assets/Logos/C+_Logo.svg";
 import userIcons from "../../assets/Icons/user.svg";
 import bellIcons from "../../assets/Icons/bell.svg";
 import heartIcons from "../../assets/Icons/heart.svg";
