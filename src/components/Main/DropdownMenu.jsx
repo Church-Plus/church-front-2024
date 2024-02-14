@@ -1,25 +1,118 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import DropdownMUI from "./DropdownMUI";
+import archiveIcons from "../../assets/Icons/archive.svg";
+import vectorIcons from "../../assets/Icons/Vector.svg";
 
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
   border: 1px solid #281a47;
+  border-top: none;
+  border-bottom: none;
   width: 350px;
   height: 100vh;
-  padding-top: 20px;
-  font-size: 15px;
+  font-size: 25px;
+`;
+
+const Dropdown = styled.div`
+  width: 90%;
+`;
+
+const DropdownBtn = styled.div`
+  border-top: 1px solid black;
+  border-bottom: ${(props) => (props.$isActive ? "none" : "1px solid black")};
+  padding-top: 1.3rem;
+  padding-left: 0.7rem;
+  height: ${(props) => (props.$isActive ? "2rem" : "3rem")};
+  cursor: pointer;
+
+  img {
+    padding-top: 0.5rem;
+    padding-right: 0.5rem;
+    float: right;
+  }
+`;
+
+const DropdownItem = styled.div`
+  padding-top: 1rem;
+  padding-left: 1.5rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid black;
+  div {
+    cursor: pointer;
+    padding-bottom: 0.8rem;
+
+    img {
+      padding-right: 0.5rem;
+      vertical-align: bottom;
+    }
+  }
 `;
 
 function DropdownMenu() {
+  const [selectedYear, setSelectedYear] = useState(null); // 선택된 년도 상태
+  const [selectedMonths, setSelectedMonths] = useState({}); // 선택된 월 상태
+  const options = [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "11",
+    "12",
+  ];
+  const year = ["2024", "2025", "2026"];
+
+  const toggleDropdown = (year) => {
+    if (selectedYear === year) {
+      setSelectedYear(null); // 같은 년도를 두 번 클릭하면 닫히도록 설정
+    } else {
+      setSelectedYear(year); // 다른 년도를 클릭하면 해당 년도의 드롭다운을 열도록 설정
+    }
+  };
+
+  const toggleMonth = (yearItem, month) => {
+    setSelectedMonths({
+      ...selectedMonths,
+      [yearItem]: month === selectedMonths[yearItem] ? "" : month, // 같은 월을 두 번 클릭하면 월 선택 해제
+    });
+    setSelectedYear(null); // 월을 선택하면 해당 년도의 드롭다운을 닫음
+  };
+
   return (
     <Wrapper>
-      dropdown mui 맛보기만
-      <DropdownMUI />
-      <DropdownMUI />
-      <DropdownMUI />
+      {year.map((yearItem, index) => (
+        <Dropdown key={yearItem}>
+          <DropdownBtn
+            $isActive={selectedYear === yearItem} // 선택된 년도인 경우에만 활성화
+            onClick={() => toggleDropdown(yearItem)}
+            style={{ borderTop: index === 0 ? "1px solid black" : "none" }} // 첫 번째 버튼은 상단 테두리가 있고, 나머지는 없음
+          >
+            {yearItem}년{" "}
+            {selectedMonths[yearItem] ? selectedMonths[yearItem] + "월" : ""}
+            {/* 선택된 월이 있을 경우만 표시 */}
+            <span>
+              <img src={vectorIcons} alt="벡터 아이콘" />
+            </span>
+          </DropdownBtn>
+          {selectedYear === yearItem && ( // 선택된 년도의 드롭다운이 열린 경우에만 보여줌
+            <DropdownItem>
+              {options.map((option) => (
+                <div key={option} onClick={() => toggleMonth(yearItem, option)}>
+                  <img src={archiveIcons} alt="월별 폴더 아이콘" />
+                  {option + "월"}
+                </div>
+              ))}
+            </DropdownItem>
+          )}
+        </Dropdown>
+      ))}
     </Wrapper>
   );
 }
