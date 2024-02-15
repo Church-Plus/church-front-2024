@@ -7,10 +7,11 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: 100%;
 `;
 
 const Smallbox = styled.div`
-  margin-top: 65px;
+  margin-top: 20px;
   margin-left: 21px;
   background-color: #e8e8ef;
   height: 40px;
