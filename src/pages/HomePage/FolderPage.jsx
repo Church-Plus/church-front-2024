@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Header from "../../components/Main/Header";
 import Menu from "../../components/Main/Menu";
 import DropdownMenu from "../../components/Main/DropdownMenu";
@@ -7,13 +7,9 @@ import {
   Smallbox,
   Box,
   FolderContainer,
-  AddBtn,
-  FolderTop,
-  FolderBox,
-  Input,
 } from "../../components/Common/Common";
-import addIcon from "../../assets/Icons/add.svg";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import UploadModal from "./ModalPage";
 
 function FolderPage() {
   const params = useParams();
@@ -30,10 +26,7 @@ function FolderPage() {
           <Smallbox>{folderName}</Smallbox>
           <Box>
             <FolderContainer>
-              <AddBtn type="submit">
-                {" "}
-                <img src={addIcon} alt="사진추가 아이콘" />
-              </AddBtn>
+              <UploadModal />
             </FolderContainer>
           </Box>
         </Wrapper>
