@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import archiveIcons from "../../assets/Icons/archive.svg";
 import vectorIcons from "../../assets/Icons/Vector.svg";
+import { Link } from "react-router-dom";
 
 const Wrapper = styled.div`
   display: flex;
@@ -104,10 +105,15 @@ function DropdownMenu() {
           {selectedYear === yearItem && ( // 선택된 년도의 드롭다운이 열린 경우에만 보여줌
             <DropdownItem>
               {options.map((option) => (
-                <div key={option} onClick={() => toggleMonth(yearItem, option)}>
-                  <img src={archiveIcons} alt="월별 폴더 아이콘" />
-                  {option + "월"}
-                </div>
+                <Link key={option} to={`/MonthPage/${option}`}>
+                  <div
+                    key={option}
+                    onClick={() => toggleMonth(yearItem, option)}
+                  >
+                    <img src={archiveIcons} alt="월별 폴더 아이콘" />
+                    {option + "월"}
+                  </div>
+                </Link>
               ))}
             </DropdownItem>
           )}

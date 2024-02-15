@@ -1,12 +1,15 @@
 import "./App.css";
-import MainPage from "./pages/HomePage/MainPage";
+import MonthPage from "./pages/HomePage/MonthPage";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <>
-      {/* <h1>ChurchPlus Project 2024</h1> */}
-      <MainPage />
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/MonthPage" element={<MonthPage />}></Route>
+        <Route path="/MonthPage/:month" element={<MonthPage />}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
