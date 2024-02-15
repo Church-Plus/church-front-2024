@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../../components/Main/Header";
 import Menu from "../../components/Main/Menu";
 import DropdownMenu from "../../components/Main/DropdownMenu";
@@ -13,16 +13,25 @@ import {
   Input,
 } from "../../components/Common/Common";
 import addIcon from "../../assets/Icons/add.svg";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 
 function MonthPage() {
   const params = useParams();
   const navigate = useNavigate();
   const month = Number(params.month);
+  const [folders, setFolders] = useState([]);
 
   useEffect(() => {
     navigate(`/monthPage/${month}`);
   }, [month, navigate]);
+
+  const handleAddFolder = () => {
+    const newFolder = {
+      id: folders.length + 1, // 현재 폴더 개수에 1을 더한 값으로 id 설정
+      content: `새 폴더`, // 새로운 폴더 내용
+    };
+    setFolders([newFolder, ...folders]);
+  };
 
   return (
     <>
@@ -36,26 +45,23 @@ function MonthPage() {
           <Smallbox>{month}월</Smallbox>
           <Box>
             <FolderContainer>
-              <AddBtn type="submit">
+              <AddBtn type="submit" onClick={handleAddFolder}>
                 {" "}
                 <img src={addIcon} alt="사진추가 아이콘" />
               </AddBtn>
-              <div>
-                <FolderTop />
-                <FolderBox />
-                <Input>2024년|02월|12일|총5곡</Input>
-              </div>
-              {/* 폴더 자동정렬 확인용 */}
-              <div>
-                <FolderTop />
-                <FolderBox />
-                <Input>2024년|02월|11일|총3곡</Input>
-              </div>
-              <div>
-                <FolderTop />
-                <FolderBox />
-                <Input>2024년|01월|06일|총8곡</Input>
-              </div>
+
+              {folders.map((folder) => (
+                <Link
+                  key={folder.id}
+                  to={`/monthPage/${month}/${folder.content}`}
+                >
+                  <div>
+                    <FolderTop />
+                    <FolderBox />
+                    <Input>{folder.content}</Input>
+                  </div>
+                </Link>
+              ))}
             </FolderContainer>
           </Box>
         </Wrapper>
