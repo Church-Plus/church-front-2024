@@ -3,6 +3,8 @@ import React from "react";
 import Header from "../../components/Main/Header";
 import Menu from "../../components/Main/Menu";
 import DropdownMenu from "../../components/Main/DropdownMenu";
+import SelectDropdown from "../../components/Main/SelectDropdown";
+import FirstMain from "../../components/Main/FirstMain";
 
 function FirstMainPage() {
   return (
@@ -13,7 +15,10 @@ function FirstMainPage() {
           <Menu />
           <DropdownMenu />
         </div>
-        {/* <Main /> 새로 만들 예정~ */}
+        <div>
+          <SelectDropdown />
+          <FirstMain />
+        </div>
       </div>
     </>
   );
