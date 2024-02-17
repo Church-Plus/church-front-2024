@@ -2,16 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import Logo from "../../assets/Logos/C+_Logo.svg";
 import userIcons from "../../assets/Icons/user.svg";
-import bellIcons from "../../assets/Icons/bell.svg";
-import heartIcons from "../../assets/Icons/heart.svg";
+import addUserIcons from "../../assets/Icons/addUser.svg";
 import searchIcons from "../../assets/Icons/search.svg";
 import { useNavigate } from "react-router-dom";
 
 const Wrapper = styled.div`
   display: flex;
-  justify-content: space-between;
   width: 100vw;
-
+  height: 100px;
   border: 1px solid #281a47;
 `;
 
@@ -25,34 +23,34 @@ const HeaderItems = styled.div`
 const HeaderItem = styled.div`
   padding-top: 10px;
   padding-bottom: 10px;
-
-  &:not(:last-child) {
-    padding-right: 190px;
-  }
 `;
 
 const ChurchLogo = styled.div`
-  padding-left: 35px;
+  padding-left: 1rem;
   cursor: pointer;
   img {
     height: 55px;
+    margin-right: 15rem;
   }
 `;
 
 const SearchBar = styled.div`
   position: relative;
+  margin-right: 12.5rem;
 
   input {
-    width: 650px;
-    height: 45px;
-    border-radius: 40px;
+    width: 43rem;
+    height: 3rem;
+    border-radius: 3rem;
+    text-align: center;
+    font-size: 20px;
   }
 `;
 
 const SearchBtn = styled.button`
   position: absolute;
 
-  right: 10px;
+  right: 0.8rem;
   border: none;
   background: transparent;
   cursor: pointer;
@@ -60,7 +58,6 @@ const SearchBtn = styled.button`
 
 const Icons = styled.div`
   flex-direction: row;
-  width: 150px;
 
   img {
     height: 50px;
@@ -68,11 +65,8 @@ const Icons = styled.div`
 
   img:not(:last-child) {
     height: 28px;
-    padding-bottom: 8px;
-  }
-
-  img:not(:last-child) {
-    padding-right: 10px;
+    padding-bottom: 0.5rem;
+    padding-right: 1rem;
   }
 `;
 
@@ -99,9 +93,8 @@ function Header() {
         </HeaderItem>
         <HeaderItem>
           <Icons>
-            <img src={heartIcons} alt="하트 아이콘" />
-            <img src={bellIcons} alt="벨 아이콘" />
-            <img src={userIcons} alt="사람 아이콘" />
+            <img src={addUserIcons} alt="사용자 추가 아이콘" />
+            <img src={userIcons} alt="사용자 아이콘" />
           </Icons>
         </HeaderItem>
       </HeaderItems>
