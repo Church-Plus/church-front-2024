@@ -5,6 +5,7 @@ import userIcons from "../../assets/Icons/user.svg";
 import bellIcons from "../../assets/Icons/bell.svg";
 import heartIcons from "../../assets/Icons/heart.svg";
 import searchIcons from "../../assets/Icons/search.svg";
+import { useNavigate } from "react-router-dom";
 
 const Wrapper = styled.div`
   display: flex;
@@ -32,6 +33,7 @@ const HeaderItem = styled.div`
 
 const ChurchLogo = styled.div`
   padding-left: 35px;
+  cursor: pointer;
   img {
     height: 55px;
   }
@@ -75,11 +77,15 @@ const Icons = styled.div`
 `;
 
 function Header() {
+  const navigate = useNavigate();
+  const handleLogoClick = () => {
+    navigate("/");
+  };
   return (
     <Wrapper>
       <HeaderItems>
         <HeaderItem>
-          <ChurchLogo>
+          <ChurchLogo onClick={handleLogoClick}>
             <img src={Logo} alt="Church+ 아이콘" />
           </ChurchLogo>
         </HeaderItem>
