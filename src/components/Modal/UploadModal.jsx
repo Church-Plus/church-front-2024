@@ -5,6 +5,8 @@ import axios from "axios";
 import addIcon from "../../assets/Icons/add.svg";
 import { styled as materialStyled } from "@mui/material/styles";
 import { Box, Button, Input, Typography } from "@mui/material";
+import addMusicSheet from "../../assets/Icons/addMusicSheet.svg";
+import XButton from "../../assets/Icons/XButton.svg";
 
 const CustomButton = materialStyled("div")`
 display:flex;
@@ -18,7 +20,7 @@ height: 80px;
   border-radius: 30px;
 
   margin-left: 50px;
-  margin-top: 100px;
+  margin-top: 50px;
   cursor: pointer;
 
   img {
@@ -32,40 +34,43 @@ const ModalContent = materialStyled(Box)`
   flex-direction: column;
   align-items:center;
   position: absolute;
-  top: 52%;
+  top: 54%;
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 40px;
-  width: 1113px;
-  height: 860px;
+  width: 923px;
+  height: 710px;
   background-color: rgba(239, 239, 240, 1);
   box-shadow: ${(props) => props.theme.shadows[24]};
   padding: ${(props) => props.theme.spacing(4)};
 `;
 
-const ModalHeader = materialStyled(Input)`
+const ModalHeader = materialStyled(Typography)`
   margin-bottom: ${(props) => props.theme.spacing(4)};
-  padding-bottom: ${(props) => props.theme.spacing(2)};
+  padding-bottom: ${(props) => props.theme.spacing(1)};
   display:flex;
-  justify-content:center;
-  align-items: center;
-  width:611px;
-  font-size:40px;
-  border-bottom:1px solid #C1C1C1;
+  justify-content: flex-end;
+  width:850px;
+  img {
+    cursor: pointer; 
+  }
+
+  img:hover {
+    opacity: 0.8; 
+  }
 `;
 
 const ModalBody = materialStyled(Box)`
   
-  width:937px;
-  height:564px;
+  width:768px;
+  height:462px;
   display:flex;
   justify-content:space-between;
-  margin-top: ${(props) => props.theme.spacing(2)};
 `;
 
 const LeftBody = materialStyled(Typography)`
-width:412px;
-height:563px;
+width:338px;
+height:461px;
 border-radius:40px;
 background-color:rgba(99, 93, 144, 0.3);
 display:flex;
@@ -75,19 +80,18 @@ overflow: hidden;
 `;
 
 const RightBody = materialStyled(Typography)`
-width:452px;
-height:563px;
+width:370px;
+height:461px;
 border-radius:40px;
 `;
 const SmallInput = materialStyled(Input)`
 && {
-  font-size:28px;
-  
+  font-size:23px;
   padding-left:30px;
   margin-bottom: 20px;
   background-color: white;
-  width: 452px;
-  height: 59px;
+  width: 370px;
+  height: 48px;
   border: 1px solid #C1C1C1;
   border-radius: 40px;
   &.MuiInput-underline {
@@ -106,12 +110,12 @@ const SmallInput = materialStyled(Input)`
 `;
 const BigInput = materialStyled(Input)`
 && {
-  font-size:28px;
+  font-size:23px;
   padding-left:25px;
   margin-bottom: 20px;
   background-color: white;
-  width: 452px;
-  height: 248px;
+  width: 370px;
+  height: 203px;
   border: 1px solid #C1C1C1;
   border-radius: 40px;
   &.MuiInput-underline {
@@ -132,13 +136,10 @@ const BigInput = materialStyled(Input)`
 const SongTitle = ({ placeholder, ...props }) => {
   return <SmallInput placeholder={placeholder} {...props} />;
 };
+const SongCode = ({ placeholder, ...props }) => {
+  return <SmallInput placeholder={placeholder} {...props} />;
+};
 const VideoLink = ({ placeholder, ...props }) => {
-  return <SmallInput placeholder={placeholder} {...props} />;
-};
-const StartCode = ({ placeholder, ...props }) => {
-  return <SmallInput placeholder={placeholder} {...props} />;
-};
-const EndCode = ({ placeholder, ...props }) => {
   return <SmallInput placeholder={placeholder} {...props} />;
 };
 const Notice = ({ placeholder, ...props }) => {
@@ -241,7 +242,7 @@ const UploadModal = () => {
       >
         <ModalContent>
           <ModalHeader variant="h6" component="h2">
-            곡 제목
+            <img src={XButton} alt="엑스 버튼" onClick={handleClose}></img>
           </ModalHeader>
           <ModalBody>
             <LeftBody onClick={handleLeftBodyClick}>
@@ -252,11 +253,7 @@ const UploadModal = () => {
                   style={{ width: "100%", height: "100%", objectFit: "cover" }}
                 />
               ) : (
-                <img
-                  src="https://i.ibb.co/k99P1Dg/2024-02-08-165002.png"
-                  alt="2024-02-08-165002"
-                  border="0"
-                ></img>
+                <img src={addMusicSheet} alt="악보추가 이미지" border="0"></img>
               )}
               <input
                 type="file"
@@ -272,21 +269,16 @@ const UploadModal = () => {
                 placeholder={"곡 제목"}
                 onChange={handleInputChange}
               ></SongTitle>
+              <SongCode
+                name="SongCode"
+                placeholder={"시작 코드"}
+                onChange={handleInputChange}
+              ></SongCode>
               <VideoLink
                 name="videoLink"
                 placeholder={"영상 링크"}
                 onChange={handleInputChange}
               ></VideoLink>
-              <StartCode
-                name="startCode"
-                placeholder={"시작 코드"}
-                onChange={handleInputChange}
-              ></StartCode>
-              <EndCode
-                name="endCode"
-                placeholder={"끝 코드"}
-                onChange={handleInputChange}
-              ></EndCode>
               <Notice
                 name="notice"
                 placeholder={"전달사항"}
@@ -294,7 +286,7 @@ const UploadModal = () => {
               ></Notice>
             </RightBody>
           </ModalBody>
-          <SubmitButton onClick={handleSubmit}>확인</SubmitButton>
+          <SubmitButton onClick={handleClose}>확인</SubmitButton>
         </ModalContent>
       </Modal>
     </div>
