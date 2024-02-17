@@ -24,6 +24,8 @@ const KeyDropdown = styled.div`
   margin-bottom: 0.3rem;
   text-align: center;
 
+  cursor: pointer;
+
   img {
     height: 0.5rem;
     padding-top: 0.5rem;
@@ -49,6 +51,12 @@ const KeyItemTop = styled.div`
     border-radius: 0.5rem;
     padding: 0.1rem 0.5rem;
     margin-right: 0.5rem;
+
+    cursor: pointer;
+  }
+
+  Span:hover {
+    background-color: #dfdfdf;
   }
 `;
 
@@ -57,6 +65,12 @@ const KeyItemBottom = styled.div`
     border-radius: 0.5rem;
     padding: 0.1rem 0.7rem;
     margin-right: 0.5rem;
+
+    cursor: pointer;
+  }
+
+  Span:hover {
+    background-color: #dfdfdf;
   }
 `;
 
