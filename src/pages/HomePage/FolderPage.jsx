@@ -9,7 +9,7 @@ import {
   FolderContainer,
 } from "../../components/Common/Common";
 import { useParams } from "react-router-dom";
-import UploadModal from "./ModalPage";
+import UploadModal from "../../components/Modal/UploadModal";
 
 function FolderPage() {
   const params = useParams();

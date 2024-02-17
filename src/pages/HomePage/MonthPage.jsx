@@ -7,30 +7,33 @@ import {
   Smallbox,
   Box,
   FolderContainer,
-  AddBtn,
   FolderTop,
   FolderBox,
   Input,
 } from "../../components/Common/Common";
-import addIcon from "../../assets/Icons/add.svg";
 import { useNavigate, useParams, Link } from "react-router-dom";
+import CreateFolderModal from "../../components/Modal/CreateFolderModal";
 
 function MonthPage() {
   const params = useParams();
   const navigate = useNavigate();
   const month = Number(params.month);
   const [folders, setFolders] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [newFolderName, setNewFolderName] = useState("");
 
   useEffect(() => {
     navigate(`/monthPage/${month}`);
   }, [month, navigate]);
 
-  const handleAddFolder = () => {
+  const handleAddFolder = (folderName) => {
     const newFolder = {
       id: folders.length + 1, // 현재 폴더 개수에 1을 더한 값으로 id 설정
-      content: `새 폴더`, // 새로운 폴더 내용
+      content: folderName, // 새로운 폴더 내용
     };
     setFolders([newFolder, ...folders]);
+    setIsModalOpen(false);
+    setNewFolderName(folderName);
   };
 
   return (
@@ -45,11 +48,12 @@ function MonthPage() {
           <Smallbox>{month}월</Smallbox>
           <Box>
             <FolderContainer>
-              <AddBtn type="submit" onClick={handleAddFolder}>
+              {/* <AddBtn type="submit" onClick={handleAddFolder}>
                 {" "}
                 <img src={addIcon} alt="사진추가 아이콘" />
-              </AddBtn>
+              </AddBtn> */}
 
+              <CreateFolderModal handleAddFolder={handleAddFolder} />
               {folders.map((folder) => (
                 <Link
                   key={folder.id}
