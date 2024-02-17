@@ -34,13 +34,26 @@ const Slider = styled.span`
   border: ${({ $toggled }) =>
     $toggled ? "1px solid #595482" : "1px solid black"};
 
-  //가상 요소 before를 사용하여 슬라이더의 내부 원 정의
-  //내부 원의 위치와 색상은 $toggled prop의 값에 따라 동적으로 변경
+  //텍스트를 나타내는 가상요소
   &:before {
+    content: ${({ $toggled }) => ($toggled ? "'악보'" : "'폴더'")};
+    position: absolute;
+    top: 50%;
+    /* 글자 가로 위치 지정 */
+    left: ${({ $toggled }) => ($toggled ? "30px" : "55px")};
+    /* 글자 세로 정렬 가운데에 위치하도록 */
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    color: ${({ $toggled }) => ($toggled ? "#fff" : "#000")};
+  }
+
+  //가상 요소 after을 사용하여 슬라이더의 내부 원 정의
+  //내부 원의 위치와 색상은 $toggled prop의 값에 따라 동적으로 변경
+  &:after {
     content: "";
     position: absolute;
     top: 7px;
-    left: ${({ $toggled }) => ($toggled ? "53px" : "9px")};
+    left: ${({ $toggled }) => ($toggled ? "53px" : "6px")};
     width: 29px;
     height: 29px;
     border-radius: 50%;
