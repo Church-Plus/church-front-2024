@@ -80,6 +80,8 @@ const CancelButton = styled.button`
   height: 50px;
   border-radius: 40px;
   font-size: 20px;
+
+  cursor: pointer;
 `;
 const CreateButton = styled.button`
   width: 100px;
@@ -89,6 +91,8 @@ const CreateButton = styled.button`
   color: white;
   font-size: 20px;
   border: none;
+
+  cursor: pointer;
 `;
 
 export default function CreateFolderModal({ handleAddFolder }) {

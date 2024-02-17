@@ -58,6 +58,7 @@ function MonthPage() {
                 <Link
                   key={folder.id}
                   to={`/monthPage/${month}/${folder.content}`}
+                  style={{ textDecoration: "none", color: "black" }}
                 >
                   <div>
                     <FolderTop />

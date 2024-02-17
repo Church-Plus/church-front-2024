@@ -5,6 +5,7 @@ import Menu from "../../components/Main/Menu";
 import DropdownMenu from "../../components/Main/DropdownMenu";
 import SelectDropdown from "../../components/Main/SelectDropdown";
 import FirstMain from "../../components/Main/FirstMain";
+import SwitchToggle from "../../components/Common/SwitchToggle";
 
 function FirstMainPage() {
   return (
@@ -16,7 +17,10 @@ function FirstMainPage() {
           <DropdownMenu />
         </div>
         <div>
-          <SelectDropdown />
+          <div style={{ display: "flex" }}>
+            <SelectDropdown />
+            <SwitchToggle />
+          </div>
           <FirstMain />
         </div>
       </div>
