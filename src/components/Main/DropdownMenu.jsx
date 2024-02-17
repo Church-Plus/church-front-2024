@@ -105,7 +105,11 @@ function DropdownMenu() {
           {selectedYear === yearItem && ( // 선택된 년도의 드롭다운이 열린 경우에만 보여줌
             <DropdownItem>
               {options.map((option) => (
-                <Link key={option} to={`/MonthPage/${option}`}>
+                <Link
+                  key={option}
+                  to={`/MonthPage/${option}`}
+                  style={{ textDecoration: "none", color: "black" }}
+                >
                   <div
                     key={option}
                     onClick={() => toggleMonth(yearItem, option)}
