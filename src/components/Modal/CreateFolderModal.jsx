@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { AddBtn } from "../Common/Common";
 import addIcon from "../../assets/Icons/add.svg";
@@ -23,7 +23,7 @@ const Overlay = styled.div`
 `;
 const ModalContent = styled.div`
   position: absolute;
-  top: 58%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   height: 400px;
@@ -98,15 +98,19 @@ const CreateButton = styled.button`
 export default function CreateFolderModal({ handleAddFolder }) {
   const [createFolderModal, setCreateFolderModal] = useState(false);
   const [folderName, setFolderName] = useState("");
+  const [isNameEmpty, setIsNameEmpty] = useState(false);
+  const inputRef = useRef(null);
 
   const toggleCreateFolderModal = () => {
     setCreateFolderModal((prevState) => !prevState);
     setFolderName("");
+    setIsNameEmpty(false);
   };
 
   useEffect(() => {
     if (createFolderModal) {
       document.body.style.overflow = "hidden";
+      inputRef.current.focus();
     } else {
       document.body.style.overflow = "auto";
     }
@@ -114,10 +118,18 @@ export default function CreateFolderModal({ handleAddFolder }) {
 
   const handleInputChange = (e) => {
     setFolderName(e.target.value);
+    if (isNameEmpty && e.target.value !== "") {
+      setIsNameEmpty(false);
+    }
   };
 
   const handleSubmit = () => {
-    handleAddFolder(folderName);
+    const trimmedFolderName = folderName.trim();
+    if (!trimmedFolderName) {
+      setIsNameEmpty(true);
+      return;
+    }
+    handleAddFolder(trimmedFolderName);
     toggleCreateFolderModal();
   };
 
@@ -132,10 +144,12 @@ export default function CreateFolderModal({ handleAddFolder }) {
           <ModalContent>
             <div>
               <InputFolderName
+                ref={inputRef}
                 type="text"
                 placeholder="폴더 이름을 입력하세요"
                 value={folderName}
                 onChange={handleInputChange}
+                style={{ borderColor: isNameEmpty ? "red" : null }}
               />
             </div>
             <Smallbox />
