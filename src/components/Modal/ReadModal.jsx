@@ -18,6 +18,7 @@ const modalStyles = `
 
 const Modal = styled.div`
   ${modalStyles}
+  z-index: 3;
 `;
 
 const Overlay = styled.div`
@@ -114,13 +115,6 @@ export default function ReadModal({ toggleReadModal, selectedSong }) {
   const handleLinkClick = (link) => {
     window.open(link, "_blank");
   };
-
-  // 모달 열림 및 닫힘에 따라 body 스타일 변경
-  // if (ReadModal) {
-  //   document.body.style.overflow = "hidden";
-  // } else {
-  //   document.body.style.overflow = "auto";
-  // }
 
   return (
     <>
