@@ -13,6 +13,7 @@ import {
 } from "../../components/Common/Common";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import CreateFolderModal from "../../components/Modal/CreateFolderModal";
+import FolderEdit from "../../assets/Icons/FolderEdit.svg";
 
 function MonthPage() {
   const params = useParams();
@@ -62,7 +63,18 @@ function MonthPage() {
                 >
                   <div>
                     <FolderTop />
-                    <FolderBox />
+                    <FolderBox>
+                      <img
+                        src={FolderEdit}
+                        alt="폴더 수정"
+                        style={{
+                          width: "20px",
+                          height: "20px",
+                          paddingTop: "25px",
+                          paddingRight: "25px",
+                        }}
+                      />
+                    </FolderBox>
                     <Input>{folder.content}</Input>
                   </div>
                 </Link>

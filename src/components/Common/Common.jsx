@@ -70,8 +70,9 @@ export const FolderBox = styled.div`
   height: 190px;
   width: 290px;
   border-radius: 0px 30px 30px 30px;
-
   margin-left: 50px;
+  display: flex;
+  justify-content: flex-end;
   cursor: pointer;
 `;
 
