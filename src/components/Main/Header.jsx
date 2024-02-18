@@ -11,6 +11,12 @@ const Wrapper = styled.div`
   max-width: 100vw;
   height: 100px;
   border: 1px solid #281a47;
+
+  //헤더 고정
+  position: sticky;
+  top: 0px;
+  background-color: white;
+  z-index: 2;
 `;
 
 const HeaderItems = styled.div`
