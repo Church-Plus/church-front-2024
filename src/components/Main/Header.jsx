@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 const Wrapper = styled.div`
   display: flex;
-  width: 100vw;
+  max-width: 100vw;
   height: 100px;
   border: 1px solid #281a47;
 `;
