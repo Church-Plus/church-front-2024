@@ -7,6 +7,7 @@ import { styled as materialStyled } from "@mui/material/styles";
 import { Box, Button, Input, Typography } from "@mui/material";
 import addMusicSheet from "../../assets/Icons/addMusicSheet.svg";
 import XButton from "../../assets/Icons/XButton.svg";
+import UploadModalSelectDropdown from "./UploadModalSelectDropdown";
 
 const CustomButton = materialStyled("div")`
 display:flex;
@@ -269,11 +270,11 @@ const UploadModal = () => {
                 placeholder={"곡 제목"}
                 onChange={handleInputChange}
               ></SongTitle>
-              <SongCode
+              <UploadModalSelectDropdown
                 name="SongCode"
                 placeholder={"시작 코드"}
                 onChange={handleInputChange}
-              ></SongCode>
+              ></UploadModalSelectDropdown>
               <VideoLink
                 name="videoLink"
                 placeholder={"영상 링크"}
