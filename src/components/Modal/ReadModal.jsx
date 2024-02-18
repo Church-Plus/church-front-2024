@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import arrowIcons from "../../assets/Icons/arrow-left.svg";
 import multiplePagesIcons from "../../assets/Icons/multiplePages.svg";
@@ -23,6 +23,7 @@ const Modal = styled.div`
 const Overlay = styled.div`
   ${modalStyles}
   background: rgba(166, 166, 170, 0.8);
+  cursor: pointer;
 `;
 
 const ModalContent = styled.div`
@@ -107,41 +108,23 @@ const CloseModal = styled.div`
   }
 `;
 
-export default function ReadModal() {
-  // 버튼이 클릭되어야만 모달이 보이도록 초기상태 지정
-  const [readModal, setReadModal] = useState(false);
+export default function ReadModal({ toggleReadModal, selectedSong }) {
+  const { title, img, videoLink, description } = selectedSong;
 
-  // 버튼 클릭이벤트 발생시 초기상태 반전
-  const toggleReadModal = () => {
-    setReadModal((prevState) => !prevState);
-  };
-
-  // 악보관련 링크를 클릭했을 경우
   const handleLinkClick = (link) => {
     window.open(link, "_blank");
   };
 
-  // 모달창이 열렸을 경우, 화면 스크롤 방지
-  if (readModal) {
-    document.body.style.overflow = "hidden";
-  } else {
-    document.body.style.overflow = "auto";
-  }
-
-  //더미데이터
-  const songData = {
-    title: "주사랑 D Key",
-    photoUrl:
-      "https://mblogthumb-phinf.pstatic.net/20160524_274/lordship46_1464073042426hr2zD_JPEG/%C7%CF%B3%AA%B4%D4%C0%C7_%BC%BC%B0%E8%28%C2%FC_%BE%C6%B8%A7%B4%D9%BF%EE_%B0%F7%C0%CC%B6%F3%29-001-001.jpg?type=w800",
-    videoLink: "https://youtu.be/nUTvfKu7q3c?feature=shared",
-    description: "피아노는 솔로 준비 부탁합니다^^",
-  };
+  // 모달 열림 및 닫힘에 따라 body 스타일 변경
+  // if (ReadModal) {
+  //   document.body.style.overflow = "hidden";
+  // } else {
+  //   document.body.style.overflow = "auto";
+  // }
 
   return (
     <>
-      <button onClick={toggleReadModal}>Open</button>
-
-      {readModal && (
+      {ReadModal && (
         <Modal>
           <Overlay onClick={toggleReadModal} />
           <ModalContent>
@@ -153,7 +136,7 @@ export default function ReadModal() {
                   alt="뒤로가기"
                 />
               </CloseModal>
-              <Title>{songData.title}</Title>
+              <Title>{title}</Title>
               <Icons>
                 <img src={multiplePagesIcons} alt="다중페이지 아이콘" />
                 <img src={printngIcons} alt="프린트 아이콘" />
@@ -161,15 +144,15 @@ export default function ReadModal() {
               </Icons>
             </ModalTop>
             <ModalBody>
-              <Photo src={songData.photoUrl} alt="찬양악보"></Photo>
+              <Photo src={img} alt="찬양악보"></Photo>
               <div>
                 <Link>
                   <img src={videoLinkIcons} alt="영상링크 아이콘" />
-                  <div onClick={() => handleLinkClick(songData.videoLink)}>
-                    {songData.videoLink}
+                  <div onClick={() => handleLinkClick(videoLink)}>
+                    {videoLink}
                   </div>
                 </Link>
-                <Text>{songData.description}</Text>
+                <Text>{description}</Text>
               </div>
             </ModalBody>
           </ModalContent>

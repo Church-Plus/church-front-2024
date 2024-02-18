@@ -61,6 +61,7 @@ const Icons = styled.div`
 
   img {
     height: 50px;
+    cursor: pointer;
   }
 
   img:not(:last-child) {
