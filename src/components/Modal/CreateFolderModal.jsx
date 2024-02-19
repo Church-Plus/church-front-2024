@@ -15,7 +15,6 @@ const modalStyles = `
 
 const Modal = styled.div`
   ${modalStyles}
-  z-index: 3;
 `;
 
 const Overlay = styled.div`
@@ -99,13 +98,11 @@ const CreateButton = styled.button`
 export default function CreateFolderModal({ handleAddFolder }) {
   const [createFolderModal, setCreateFolderModal] = useState(false);
   const [folderName, setFolderName] = useState("");
-  const [isNameEmpty, setIsNameEmpty] = useState(false);
   const inputRef = useRef(null);
 
   const toggleCreateFolderModal = () => {
     setCreateFolderModal((prevState) => !prevState);
     setFolderName("");
-    setIsNameEmpty(false);
   };
 
   useEffect(() => {
@@ -119,18 +116,14 @@ export default function CreateFolderModal({ handleAddFolder }) {
 
   const handleInputChange = (e) => {
     setFolderName(e.target.value);
-    if (isNameEmpty && e.target.value !== "") {
-      setIsNameEmpty(false);
-    }
   };
 
   const handleSubmit = () => {
-    const trimmedFolderName = folderName.trim();
-    if (!trimmedFolderName) {
-      setIsNameEmpty(true);
+    if (!folderName.trim()) {
+      inputRef.current.focus();
       return;
     }
-    handleAddFolder(trimmedFolderName);
+    handleAddFolder(folderName);
     toggleCreateFolderModal();
   };
 
@@ -150,7 +143,6 @@ export default function CreateFolderModal({ handleAddFolder }) {
                 placeholder="폴더 이름을 입력하세요"
                 value={folderName}
                 onChange={handleInputChange}
-                style={{ borderColor: isNameEmpty ? "red" : null }}
               />
             </div>
             <Smallbox />

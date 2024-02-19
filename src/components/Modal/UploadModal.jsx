@@ -1,199 +1,210 @@
-//종현
-import React, { useState, useRef } from "react";
-import { Modal } from "@mui/material";
-import axios from "axios";
+import React, { useState, useEffect, useRef } from "react";
+import styled from "styled-components";
+import { AddBtn } from "../Common/Common";
 import addIcon from "../../assets/Icons/add.svg";
-import { styled as materialStyled } from "@mui/material/styles";
-import { Box, Button, Input, Typography } from "@mui/material";
-import addMusicSheet from "../../assets/Icons/addMusicSheet.svg";
 import XButton from "../../assets/Icons/XButton.svg";
+import addMusicSheet from "../../assets/Icons/addMusicSheet.svg";
 import UploadModalSelectDropdown from "./UploadModalSelectDropdown";
 
-const CustomButton = materialStyled("div")`
-display:flex;
-justify-content: center;
-align-items: center;
-height: 80px;
-  background-color: #c0bed3;
-  border: none;
-  height: 190px;
-  width: 290px;
-  border-radius: 30px;
-
-  margin-left: 50px;
-  margin-top: 50px;
-  cursor: pointer;
-
-  img {
-    height: 60px;
-  }
-
+const modalStyles = `
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
 `;
 
-const ModalContent = materialStyled(Box)`
-  display:flex;
-  flex-direction: column;
-  align-items:center;
+const Modal = styled.div`
+  ${modalStyles}
+`;
+
+const Overlay = styled.div`
+  ${modalStyles}
+  background: rgba(166, 166, 170, 0.8);
+`;
+const ModalContent = styled.div`
   position: absolute;
   top: 54%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border-radius: 40px;
   width: 923px;
   height: 710px;
-  background-color: rgba(239, 239, 240, 1);
-  box-shadow: ${(props) => props.theme.shadows[24]};
-  padding: ${(props) => props.theme.spacing(4)};
+  background-color: #e8e8ef;
+  border: none;
+  border-radius: 40px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
-const ModalHeader = materialStyled(Typography)`
-  margin-bottom: ${(props) => props.theme.spacing(4)};
-  padding-bottom: ${(props) => props.theme.spacing(1)};
-  display:flex;
+const ModalHeader = styled.div`
+  margin-bottom: 16px;
+  padding-bottom: 4px;
+  display: flex;
   justify-content: flex-end;
-  width:850px;
+  width: 880px;
+  margin-top: 30px;
   img {
-    cursor: pointer; 
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
   }
 
   img:hover {
-    opacity: 0.8; 
+    opacity: 0.8;
   }
 `;
 
-const ModalBody = materialStyled(Box)`
-  
-  width:768px;
-  height:462px;
-  display:flex;
-  justify-content:space-between;
+const ModalBody = styled.div`
+  width: 798px;
+  height: 462px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
 `;
 
-const LeftBody = materialStyled(Typography)`
-width:338px;
-height:461px;
-border-radius:40px;
-background-color:rgba(99, 93, 144, 0.3);
-display:flex;
-justify-content:center;
-align-items:center;
-overflow: hidden; 
-`;
-
-const RightBody = materialStyled(Typography)`
-width:370px;
-height:461px;
-border-radius:40px;
-`;
-const SmallInput = materialStyled(Input)`
-&& {
-  font-size:23px;
-  padding-left:30px;
-  margin-bottom: 20px;
-  background-color: white;
-  width: 370px;
-  height: 48px;
-  border: 1px solid #C1C1C1;
+const LeftBody = styled.div`
+  width: 348px;
+  height: 476px;
   border-radius: 40px;
-  &.MuiInput-underline {
-    &::before,
-    &::after {
-      border-bottom: none;
-    }
-    &:hover::before {
-      border-bottom: none;
-    }
-  }
-  &::placeholder {
-    color: black;
-  }
-}
-`;
-const BigInput = materialStyled(Input)`
-&& {
-  font-size:23px;
-  padding-left:25px;
-  margin-bottom: 20px;
-  background-color: white;
-  width: 370px;
-  height: 203px;
-  border: 1px solid #C1C1C1;
-  border-radius: 40px;
-  &.MuiInput-underline {
-    &::before,
-    &::after {
-      border-bottom: none;
-    }
-    &:hover::before {
-      border-bottom: none;
-    }
-  }
-  &::placeholder {
-    color: black;
-    
-  }
-}
-`;
-const SongTitle = ({ placeholder, ...props }) => {
-  return <SmallInput placeholder={placeholder} {...props} />;
-};
-const SongCode = ({ placeholder, ...props }) => {
-  return <SmallInput placeholder={placeholder} {...props} />;
-};
-const VideoLink = ({ placeholder, ...props }) => {
-  return <SmallInput placeholder={placeholder} {...props} />;
-};
-const Notice = ({ placeholder, ...props }) => {
-  return <BigInput placeholder={placeholder} {...props} />;
-};
-const SubmitButton = materialStyled(Button)`
-&& {
+  background-color: rgba(99, 93, 144, 0.3);
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: ${(props) => props.theme.spacing(7)};
-  border: 1px solid black;
-  border-radius: 40px;
-  width: 120px;
-  height: 60px;
-  font-size: 30px;
-  font-weight: 400;
-  color: black;
-}
-
-&.MuiButton-root {
-  .MuiButton-label {
-    transition: none;
-  }
-}
-
-&:hover {
-  background-color: rgba(99, 93, 144, 0.3);
-  color: white;
-  border:none;
-}
+  overflow: hidden;
+  cursor: pointer;
 `;
 
-const UploadModal = () => {
-  const [open, setOpen] = useState(false);
+const RightBody = styled.div`
+  width: 380px;
+  height: 440px;
+  border-radius: 33px;
+  /* border: 1px solid red; */
+`;
+const SongTitle = styled.input`
+  && {
+    font-size: 23px;
+    padding-left: 30px;
+    margin-bottom: 20px;
+    background-color: #efeff0;
+    width: 346px;
+    height: 45px;
+    border: 1px solid #c1c1c1;
+    border-radius: 16px;
+    &.MuiInput-underline {
+      &::before,
+      &::after {
+        border-bottom: none;
+      }
+      &:hover::before {
+        border-bottom: none;
+      }
+    }
+    &::placeholder {
+      color: #555555;
+      font-weight: 100;
+    }
+  }
+`;
+const VideoLink = styled.input`
+  && {
+    font-size: 23px;
+    padding-left: 30px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    background-color: #efeff0;
+    width: 346px;
+    height: 45px;
+    border: 1px solid #c1c1c1;
+    border-radius: 16px;
+    &.MuiInput-underline {
+      &::before,
+      &::after {
+        border-bottom: none;
+      }
+      &:hover::before {
+        border-bottom: none;
+      }
+    }
+    &::placeholder {
+      color: #555555;
+      font-weight: 100;
+    }
+  }
+`;
+const Notice = styled.input`
+  && {
+    font-size: 23px;
+    padding-left: 25px;
+    margin-bottom: 20px;
+    background-color: #efeff0;
+    width: 350px;
+    height: 190px;
+    border: 1px solid #c1c1c1;
+    border-radius: 16px;
+    &.MuiInput-underline {
+      &::before,
+      &::after {
+        border-bottom: none;
+      }
+      &:hover::before {
+        border-bottom: none;
+      }
+    }
+    &::placeholder {
+      color: #555555;
+      font-weight: 100;
+    }
+  }
+`;
+const SubmitButton = styled.button`
+  && {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 58px;
+    border: 1px solid #8248f2;
+    border-radius: 40px;
+    width: 98px;
+    height: 49px;
+    font-size: 25px;
+    font-weight: 400;
+    color: #8248f2;
+    background-color: #efeff0;
+    cursor: pointer;
+  }
+
+  &.MuiButton-root {
+    .MuiButton-label {
+      transition: none;
+    }
+  }
+
+  &:hover {
+    background-color: #8248f2;
+    color: white;
+    border: none;
+  }
+`;
+
+export default function UploadModal() {
+  const [uploadModal, setUploadModal] = useState(false);
   const [previewUrl, setPreviewUrl] = useState(null);
   const [formData, setFormData] = useState({
     title: "",
     videoLink: "",
-    startCode: "",
-    endCode: "",
+    songCode: "",
     notice: "",
-    uid: "",
   });
   const fileInputRef = useRef(null);
 
-  const handleOpen = () => {
-    console.log("모달이 열립니다.");
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
+  const toggleUploadModal = () => {
+    setUploadModal((prevState) => !prevState);
+    setFormData("");
   };
 
   const handleLeftBodyClick = () => {
@@ -209,89 +220,83 @@ const UploadModal = () => {
     reader.readAsDataURL(file);
   };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const handleSubmit = async () => {
-    try {
-      const response = await axios.post(
-        "https://ll-api.jungsub.com/ptrack/post/",
-        formData
-      );
-      console.log("Response:", response.data);
-    } catch (error) {
-      console.error("Error:", error);
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault(); // 기본 Enter 동작 방지
+      setFormData((prevState) => ({
+        ...prevState,
+        notice: prevState.notice + "\n", // 줄바꿈 추가
+      }));
     }
   };
 
+  const handleInputChange = (e) => {
+    setFormData(e.target.value);
+  };
+
+  const handleSubmit = () => {
+    toggleUploadModal();
+  };
+
   return (
-    <div>
-      <CustomButton onClick={handleOpen}>
-        {" "}
+    <>
+      <AddBtn onClick={toggleUploadModal}>
         <img src={addIcon} alt="사진추가 아이콘" />
-      </CustomButton>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <ModalContent>
-          <ModalHeader variant="h6" component="h2">
-            <img src={XButton} alt="엑스 버튼" onClick={handleClose}></img>
-          </ModalHeader>
-          <ModalBody>
-            <LeftBody onClick={handleLeftBodyClick}>
-              {previewUrl ? (
+      </AddBtn>
+      {uploadModal && (
+        <Modal>
+          <Overlay onClick={toggleUploadModal} />
+          <ModalContent>
+            <div>
+              <ModalHeader>
                 <img
-                  src={previewUrl}
-                  alt="Uploaded"
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  src={XButton}
+                  alt="엑스 버튼"
+                  onClick={toggleUploadModal}
+                ></img>
+              </ModalHeader>
+            </div>
+            <ModalBody>
+              <LeftBody onClick={handleLeftBodyClick}>
+                {previewUrl ? (
+                  <img
+                    src={previewUrl}
+                    alt="Uploaded"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+                ) : (
+                  <img
+                    src={addMusicSheet}
+                    alt="악보추가 이미지"
+                    border="0"
+                  ></img>
+                )}
+                <input
+                  type="file"
+                  style={{ display: "none" }}
+                  ref={fileInputRef}
+                  onChange={handleFileInputChange}
                 />
-              ) : (
-                <img src={addMusicSheet} alt="악보추가 이미지" border="0"></img>
-              )}
-              <input
-                type="file"
-                style={{ display: "none" }}
-                ref={fileInputRef}
-                onChange={handleFileInputChange}
-              />
-            </LeftBody>
+              </LeftBody>
+              <RightBody>
+                <SongTitle placeholder="곡제목" />
+                <UploadModalSelectDropdown
+                  placeholder={"시작 코드"}
+                  onChange={handleInputChange}
+                ></UploadModalSelectDropdown>
+                <VideoLink placeholder="영상링크" />
 
-            <RightBody>
-              <SongTitle
-                name="title"
-                placeholder={"곡 제목"}
-                onChange={handleInputChange}
-              ></SongTitle>
-              <UploadModalSelectDropdown
-                name="SongCode"
-                placeholder={"시작 코드"}
-                onChange={handleInputChange}
-              ></UploadModalSelectDropdown>
-              <VideoLink
-                name="videoLink"
-                placeholder={"영상 링크"}
-                onChange={handleInputChange}
-              ></VideoLink>
-              <Notice
-                name="notice"
-                placeholder={"전달사항"}
-                onChange={handleInputChange}
-              ></Notice>
-            </RightBody>
-          </ModalBody>
-          <SubmitButton onClick={handleClose}>확인</SubmitButton>
-        </ModalContent>
-      </Modal>
-    </div>
+                <Notice placeholder="메모"></Notice>
+              </RightBody>
+            </ModalBody>
+            <SubmitButton onClick={toggleUploadModal}>저장</SubmitButton>
+          </ModalContent>
+        </Modal>
+      )}
+    </>
   );
-};
-
-export default UploadModal;
+}
