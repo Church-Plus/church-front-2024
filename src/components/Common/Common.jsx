@@ -55,6 +55,10 @@ export const AddBtn = styled.button`
   img {
     height: 60px;
   }
+
+  &:hover {
+    background-color: #9f92bc;
+  }
 `;
 
 export const FolderTop = styled.div`
@@ -79,6 +83,10 @@ export const FolderBox = styled.div`
   display: flex;
   justify-content: flex-end;
   cursor: pointer;
+
+  &:hover {
+    background-color: #9f92bc;
+  }
 `;
 
 export const Input = styled.div`
