@@ -1,12 +1,25 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import ReadModal from "../Modal/ReadModal";
+import EditIcons from "../../assets/Icons/FolderEdit.svg";
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 800px;
   margin-top: 4rem;
+`;
+
+const ImageContainer = styled.div`
+  position: relative;
+  width: fit-content;
+`;
+
+const EditIcon = styled.img`
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  z-index: 0.1;
 `;
 
 const FolderContainer = styled.div`
@@ -95,7 +108,10 @@ function FirstMain() {
       <FolderContainer>
         {songData.map((song, index) => (
           <FolderItem key={index} onClick={() => toggleModal(index)}>
-            <FolderImage src={song.img} alt={song.title} />
+            <ImageContainer>
+              <FolderImage src={song.img} alt={song.title} />
+              <EditIcon src={EditIcons} alt="파일 수정" />
+            </ImageContainer>
             <Input>{song.title}</Input>
           </FolderItem>
         ))}
