@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const SwitchToggleBox = styled.div`
-  margin-left: 30rem;
   padding-top: 1.5rem;
 `;
 

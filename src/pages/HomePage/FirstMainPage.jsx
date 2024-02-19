@@ -20,7 +20,9 @@ function FirstMainPage() {
         <div>
           <div style={{ display: "flex" }}>
             <SelectDropdown />
-            <SwitchToggle />
+            <div style={{ marginLeft: "31rem" }}>
+              <SwitchToggle />
+            </div>
           </div>
           <FirstMain />
         </div>
