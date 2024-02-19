@@ -5,9 +5,6 @@ import ReadModal from "../Modal/ReadModal";
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-
-  align-items: center;
-  /* height: 100%; */
   width: 800px;
   margin-top: 4rem;
 `;
@@ -23,16 +20,17 @@ const FolderItem = styled.div`
   flex-direction: column;
   align-items: center;
   margin-bottom: 3rem;
+  padding-left: 5.4rem;
 `;
 
 const FolderImage = styled.img`
-  height: 190px;
-  width: 290px;
+  height: 200px;
+  width: 310px;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 30px;
   cursor: pointer;
 
-  filter: opacity(0.7) drop-shadow(0 0 0 #9b6cf5);
+  filter: opacity(0.7) drop-shadow(0 0 0 #2e0b70);
 `;
 
 const Input = styled.div`
