@@ -9,9 +9,16 @@ import background1 from "../../assets/bgImg/LoginBackground1.png";
 import background2 from "../../assets/bgImg/LoginBackground2.png";
 import background3 from "../../assets/bgImg/LoginBackground3.jpg";
 import background4 from "../../assets/bgImg/LoginBackground4.png";
+import background5 from "../../assets/bgImg/LoginBackground5.png";
 
-const backgroundArr = [background1, background2, background3, background4];
-const logoArr = [Logo1, Logo2, Logo3, Logo4];
+const backgroundArr = [
+  background1,
+  background2,
+  background3,
+  background4,
+  background5,
+];
+const logoArr = [Logo1, Logo2, Logo3, Logo4, Logo3];
 
 const Wrapper = styled.div`
   text-align: center;
