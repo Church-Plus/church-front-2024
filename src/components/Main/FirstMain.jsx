@@ -44,6 +44,10 @@ const FolderImage = styled.img`
   cursor: pointer;
 
   filter: opacity(0.7) drop-shadow(0 0 0 #2e0b70);
+
+  &:hover {
+    filter: opacity(0.8) drop-shadow(0 0 0 #2e0084);
+  }
 `;
 
 const Input = styled.div`
