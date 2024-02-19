@@ -7,6 +7,7 @@ import {
   Smallbox,
   Box,
   FolderContainer,
+  BackgroundWrapper,
 } from "../../components/Common/Common";
 import { useParams } from "react-router-dom";
 import UploadModal from "../../components/Modal/UploadModal";
@@ -17,20 +18,22 @@ function FolderPage() {
   return (
     <>
       <Header />
-      <div style={{ display: "flex" }}>
+      <BackgroundWrapper style={{ display: "flex" }}>
         <div>
           <Menu />
           <DropdownMenu />
         </div>
         <Wrapper>
-          <Smallbox>{folderName}</Smallbox>
+          <div style={{ marginTop: "4.2rem" }}>
+            <Smallbox>{folderName}</Smallbox>
+          </div>
           <Box>
             <FolderContainer>
               <UploadModal />
             </FolderContainer>
           </Box>
         </Wrapper>
-      </div>
+      </BackgroundWrapper>
     </>
   );
 }

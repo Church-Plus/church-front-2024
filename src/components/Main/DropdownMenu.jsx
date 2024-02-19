@@ -8,12 +8,12 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  border: 1px solid #281a47;
   border-top: none;
   border-bottom: none;
   width: 350px;
   height: 100vh;
   font-size: 25px;
+  border-right: 2px solid rgba(198, 196, 216, 0.1);
 `;
 
 const Dropdown = styled.div`

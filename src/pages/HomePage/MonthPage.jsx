@@ -10,10 +10,12 @@ import {
   FolderTop,
   FolderBox,
   Input,
+  BackgroundWrapper,
 } from "../../components/Common/Common";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import CreateFolderModal from "../../components/Modal/CreateFolderModal";
 import FolderEdit from "../../assets/Icons/FolderEdit.svg";
+import SwitchToggle from "../../components/Common/SwitchToggle";
 
 function MonthPage() {
   const params = useParams();
@@ -40,20 +42,18 @@ function MonthPage() {
   return (
     <>
       <Header />
-      <div style={{ display: "flex" }}>
+      <BackgroundWrapper style={{ display: "flex" }}>
         <div>
           <Menu />
           <DropdownMenu />
         </div>
         <Wrapper>
+          <div style={{ marginLeft: "57.8rem" }}>
+            <SwitchToggle />
+          </div>
           <Smallbox>{month}월</Smallbox>
           <Box>
             <FolderContainer>
-              {/* <AddBtn type="submit" onClick={handleAddFolder}>
-                {" "}
-                <img src={addIcon} alt="사진추가 아이콘" />
-              </AddBtn> */}
-
               <CreateFolderModal handleAddFolder={handleAddFolder} />
               {folders.map((folder) => (
                 <Link
@@ -82,7 +82,7 @@ function MonthPage() {
             </FolderContainer>
           </Box>
         </Wrapper>
-      </div>
+      </BackgroundWrapper>
     </>
   );
 }

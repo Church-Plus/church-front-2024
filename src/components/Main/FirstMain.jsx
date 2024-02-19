@@ -1,17 +1,25 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import ReadModal from "../Modal/ReadModal";
+import EditIcons from "../../assets/Icons/FolderEdit.svg";
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-
-  align-items: center;
-  height: 100%;
   width: 800px;
   margin-top: 4rem;
-  //wrapper 영역 확인용
-  background-color: #ececfe;
+`;
+
+const ImageContainer = styled.div`
+  position: relative;
+  width: fit-content;
+`;
+
+const EditIcon = styled.img`
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  z-index: 0.1;
 `;
 
 const FolderContainer = styled.div`
@@ -25,16 +33,21 @@ const FolderItem = styled.div`
   flex-direction: column;
   align-items: center;
   margin-bottom: 3rem;
+  padding-left: 5.4rem;
 `;
 
 const FolderImage = styled.img`
-  height: 190px;
-  width: 290px;
+  height: 200px;
+  width: 310px;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 30px;
   cursor: pointer;
 
-  filter: opacity(0.7) drop-shadow(0 0 0 #9b6cf5);
+  filter: opacity(0.7) drop-shadow(0 0 0 #2e0b70);
+
+  &:hover {
+    filter: opacity(0.8) drop-shadow(0 0 0 #2e0084);
+  }
 `;
 
 const Input = styled.div`
@@ -86,6 +99,12 @@ function FirstMain() {
       videoLink: "https://youtu.be/nUTvfKu7q3c?feature=shared",
       description: "충분히 익혀오길 바랍니다.",
     },
+    {
+      title: "예수님만을 더욱 사랑 F Key",
+      img: "https://mblogthumb-phinf.pstatic.net/20160524_274/lordship46_1464073042426hr2zD_JPEG/%C7%CF%B3%AA%B4%D4%C0%C7_%BC%BC%B0%E8%28%C2%FC_%BE%C6%B8%A7%B4%D9%BF%EE_%B0%F7%C0%CC%B6%F3%29-001-001.jpg?type=w800",
+      videoLink: "https://youtu.be/nUTvfKu7q3c?feature=shared",
+      description: "충분히 익혀오길 바랍니다.",
+    },
   ];
 
   return (
@@ -93,7 +112,10 @@ function FirstMain() {
       <FolderContainer>
         {songData.map((song, index) => (
           <FolderItem key={index} onClick={() => toggleModal(index)}>
-            <FolderImage src={song.img} alt={song.title} />
+            <ImageContainer>
+              <FolderImage src={song.img} alt={song.title} />
+              <EditIcon src={EditIcons} alt="파일 수정" />
+            </ImageContainer>
             <Input>{song.title}</Input>
           </FolderItem>
         ))}
