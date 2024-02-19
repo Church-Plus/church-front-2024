@@ -7,11 +7,9 @@ const Wrapper = styled.div`
   flex-direction: column;
 
   align-items: center;
-  height: 100%;
+  /* height: 100%; */
   width: 800px;
   margin-top: 4rem;
-  //wrapper 영역 확인용
-  background-color: #ececfe;
 `;
 
 const FolderContainer = styled.div`
@@ -79,6 +77,12 @@ function FirstMain() {
       img: "https://mblogthumb-phinf.pstatic.net/20160524_274/lordship46_1464073042426hr2zD_JPEG/%C7%CF%B3%AA%B4%D4%C0%C7_%BC%BC%B0%E8%28%C2%FC_%BE%C6%B8%A7%B4%D9%BF%EE_%B0%F7%C0%CC%B6%F3%29-001-001.jpg?type=w800",
       videoLink: "https://youtu.be/nUTvfKu7q3c?feature=shared",
       description: "즐거운 주일 되세요",
+    },
+    {
+      title: "예수님만을 더욱 사랑 F Key",
+      img: "https://mblogthumb-phinf.pstatic.net/20160524_274/lordship46_1464073042426hr2zD_JPEG/%C7%CF%B3%AA%B4%D4%C0%C7_%BC%BC%B0%E8%28%C2%FC_%BE%C6%B8%A7%B4%D9%BF%EE_%B0%F7%C0%CC%B6%F3%29-001-001.jpg?type=w800",
+      videoLink: "https://youtu.be/nUTvfKu7q3c?feature=shared",
+      description: "충분히 익혀오길 바랍니다.",
     },
     {
       title: "예수님만을 더욱 사랑 F Key",

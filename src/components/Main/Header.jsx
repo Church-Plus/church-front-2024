@@ -10,7 +10,6 @@ const Wrapper = styled.div`
   display: flex;
   max-width: 100vw;
   height: 100px;
-  border: 1px solid #281a47;
 
   //헤더 고정
   position: sticky;

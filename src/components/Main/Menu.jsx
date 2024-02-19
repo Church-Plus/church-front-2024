@@ -5,9 +5,9 @@ import profileIcon from "../../assets/Icons/user.svg";
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  border: 1px solid #281a47;
   border-bottom: none;
   width: 350px;
+  border-right: 2px solid rgba(198, 196, 216, 0.1);
 `;
 
 const ProfileIcon = styled.div`

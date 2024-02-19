@@ -10,6 +10,7 @@ import {
   FolderTop,
   FolderBox,
   Input,
+  BackgroundWrapper,
 } from "../../components/Common/Common";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import CreateFolderModal from "../../components/Modal/CreateFolderModal";
@@ -40,7 +41,7 @@ function MonthPage() {
   return (
     <>
       <Header />
-      <div style={{ display: "flex" }}>
+      <BackgroundWrapper style={{ display: "flex" }}>
         <div>
           <Menu />
           <DropdownMenu />
@@ -82,7 +83,7 @@ function MonthPage() {
             </FolderContainer>
           </Box>
         </Wrapper>
-      </div>
+      </BackgroundWrapper>
     </>
   );
 }
