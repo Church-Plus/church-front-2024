@@ -10,6 +10,7 @@ import background2 from "../../assets/bgImg/LoginBackground2.png";
 import background3 from "../../assets/bgImg/LoginBackground3.jpg";
 import background4 from "../../assets/bgImg/LoginBackground4.png";
 import background5 from "../../assets/bgImg/LoginBackground5.png";
+//로그인 페이지 로고 폴더 경로 오류 수정
 
 const backgroundArr = [
   background1,
