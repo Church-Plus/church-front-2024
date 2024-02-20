@@ -20,9 +20,10 @@ const ImageContainer = styled.div`
 
 const EditIcon = styled.img`
   position: absolute;
-  padding: 1.2rem;
-  right: 0.8rem;
+  padding: 1.5rem;
+  right: 0.4rem;
   z-index: 0.1;
+  height: 1.2rem;
 
   cursor: pointer;
 `;
@@ -42,8 +43,8 @@ const FolderItem = styled.div`
 `;
 
 const FolderImage = styled.img`
-  height: 200px;
-  width: 310px;
+  height: 12.6rem;
+  width: 19.3rem;
   object-fit: cover;
   border-radius: 30px;
   cursor: pointer;
