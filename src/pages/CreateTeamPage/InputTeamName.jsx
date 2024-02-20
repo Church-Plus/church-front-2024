@@ -55,13 +55,14 @@ const Btn = styled.div`
 
   img {
     height: 59px;
+    cursor: pointer;
   }
 `;
 
 const AskTeam = styled.img`
   height: 20px;
   float: right;
-  padding-right: 8rem;
+  margin-right: 8rem;
   cursor: pointer;
 `;
 
