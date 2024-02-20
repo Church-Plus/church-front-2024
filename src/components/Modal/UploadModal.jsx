@@ -9,7 +9,7 @@ import UploadModalSelectDropdown from "./UploadModalSelectDropdown";
 const modalStyles = `
   width: 100vw;
   height: 100vh;
-  top: 0;
+  top: 0; 
   left: 0;
   right: 0;
   bottom: 0;
@@ -290,7 +290,7 @@ export default function UploadModal() {
                 ></UploadModalSelectDropdown>
                 <VideoLink placeholder="영상링크" />
 
-                <Notice placeholder="메모"></Notice>
+                <Notice type="textarea" placeholder="메모"></Notice>
               </RightBody>
             </ModalBody>
             <SubmitButton onClick={toggleUploadModal}>저장</SubmitButton>
