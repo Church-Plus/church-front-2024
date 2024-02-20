@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import { useNavigate } from "react-router-dom";
-import nextBtn from "../../assets/commonStyle/다음 버튼.svg";
-import askTeam from "../../assets/commonStyle/이미 팀이 있으신가요.svg";
+import nextBtn from "../../assets/commonStyle/NextButton.svg";
+import askTeam from "../../assets/commonStyle/AlreadyHaveTeam.svg";
 
 const Wrapper = styled.div``;
 

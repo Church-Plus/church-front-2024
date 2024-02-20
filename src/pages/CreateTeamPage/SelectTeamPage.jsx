@@ -1,12 +1,12 @@
 import React from "react";
 import SelectTeamPageImg from "../../assets/pages/SelectTeamPage.svg";
 import styled from "styled-components";
-import CreateTeam from "../../assets/Icons/CreateTeam.svg";
-import CreateTeamHover from "../../assets/Icons/CreateTeamHover.svg";
-import starting from "../../assets/Icons/Starting.svg";
-import startingHover from "../../assets/Icons/startingHover.svg";
-import alreadyHaveTeam from "../../assets/Icons/AlreadyHaveTeam.svg";
-import alreadyHaveTeamHover from "../../assets/Icons/AlreadyHaveTeamHover.svg";
+import CreateTeam from "../../assets/commonStyle/CreateTeam.svg";
+import CreateTeamHover from "../../assets/commonStyle/CreateTeamHover.svg";
+import starting from "../../assets/commonStyle/Starting.svg";
+import startingHover from "../../assets/commonStyle/startingHover.svg";
+import alreadyHaveTeam from "../../assets/commonStyle/AlreadyHaveTeam.svg";
+import alreadyHaveTeamHover from "../../assets/commonStyle/AlreadyHaveTeamHover.svg";
 
 import { Link } from "react-router-dom";
 
@@ -17,7 +17,6 @@ const TeamPageStyles = `
   left: 0;
   right: 0;
   bottom: 0;
-  position: fixed;
   background-image: url(${SelectTeamPageImg});
   background-size: cover;
 `;
