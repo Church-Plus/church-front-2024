@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
-import { NextStepBtn } from "../../components/Common/CreateTeamButton";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import nextBtn from "../../assets/commonStyle/다음 버튼.svg";
+import askTeam from "../../assets/commonStyle/이미 팀이 있으신가요.svg";
 
 const Wrapper = styled.div``;
 
@@ -27,47 +28,50 @@ const Bar = styled.div`
 
 const TextBox = styled.div`
   padding-left: 8.5rem;
-  padding-top: 8rem;
+  padding-top: 7rem;
 
   input {
-    margin-top: 2rem;
-    padding-left: 1rem;
-    height: 70px;
-    width: 1150px;
-    border-radius: 15px;
+    margin-top: 3rem;
+    padding-left: 2.4rem;
+    height: 100px;
+    width: 80vw;
+    border-radius: 24px;
     border: none;
     outline: none;
-    font-size: 30px;
+    font-size: 40px;
 
     background-color: #efeff0;
   }
 `;
 
 const Text = styled.div`
-  margin-top: 5rem;
+  margin-top: 6.5rem;
   font-size: 40px;
 `;
 
 const Btn = styled.div`
   margin-top: 10rem;
   text-align: center;
+
+  img {
+    height: 59px;
+  }
 `;
 
-const AskTeam = styled.div`
-  text-align: right;
-  font-size: 20px;
-  text-decoration: underline;
-  text-decoration-color: #555555;
-  text-decoration-thickness: 0.7px;
-  color: #555555;
-
-  margin-top: 4rem;
-  margin-right: 5rem;
+const AskTeam = styled.img`
+  height: 20px;
+  float: right;
+  padding-right: 8rem;
   cursor: pointer;
 `;
 
 function InputTeamName() {
   const [teamName, setTeamName] = useState("");
+  const navigate = useNavigate();
+
+  const handleNextBtnClick = () => {
+    navigate("/CreateName");
+  };
 
   return (
     <Wrapper>
@@ -86,16 +90,9 @@ function InputTeamName() {
         />
       </TextBox>
       <Btn>
-        <NextStepBtn>
-          <Link
-            to={"/CreateName"}
-            style={{ textDecoration: "none", color: "inherit" }}
-          >
-            다음
-          </Link>
-        </NextStepBtn>
+        <img onClick={handleNextBtnClick} src={nextBtn} alt="다음 버튼" />
       </Btn>
-      <AskTeam>이미 팀이 있으신가요?</AskTeam>
+      <AskTeam src={askTeam} alt="이미 팀이 있으신가요?" />
     </Wrapper>
   );
 }
