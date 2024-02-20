@@ -1,7 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { NextStepBtn } from "../../components/Common/CreateTeamButton";
 import styled, { css } from "styled-components";
+import completeBtn from "../../assets/commonStyle/완료 버튼.svg";
 
 import img1 from "../../assets/positionImg/1_리더.png";
 import img2 from "../../assets/positionImg/2_메인신디.png";
@@ -13,6 +12,7 @@ import img7 from "../../assets/positionImg/7_베이스기타.png"
 import img8 from "../../assets/positionImg/8_싱어.png";
 import img9 from "../../assets/positionImg/9_엔지니어.png";
 import img10 from "../../assets/positionImg/10_목사님.png";
+import { useNavigate } from "react-router-dom";
 
 const positionImages = [
   {
@@ -121,9 +121,20 @@ const Input = styled.div`
 const Btn = styled.div`
   margin-top: 0.5rem;
   text-align: center;
+
+  img {
+    height: 59px;
+    cursor: pointer;
+  }
 `;
 
 function SelectPosition() {
+  const navigate = useNavigate();
+
+  const handleCompleteBtnClick = () => {
+    navigate("/");
+  };
+
   return (
     <Wrapper>
       <TopNoticeBars>
@@ -144,11 +155,11 @@ function SelectPosition() {
       </PositionContainer>
 
       <Btn>
-        <NextStepBtn>
-          <Link to={"/"} style={{ textDecoration: "none", color: "inherit" }}>
-            완료
-          </Link>
-        </NextStepBtn>
+        <img
+          onClick={handleCompleteBtnClick}
+          src={completeBtn}
+          alt="완료 버튼"
+        />
       </Btn>
     </Wrapper>
   );
