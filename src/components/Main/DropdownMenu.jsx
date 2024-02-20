@@ -17,7 +17,7 @@ const Wrapper = styled.div`
 `;
 
 const Dropdown = styled.div`
-  width: 90%;
+  width: 18.8rem;
 `;
 
 const DropdownBtn = styled.div`
@@ -32,6 +32,7 @@ const DropdownBtn = styled.div`
     padding-top: 0.5rem;
     padding-right: 0.5rem;
     float: right;
+    width: 1rem;
   }
 `;
 
@@ -45,6 +46,7 @@ const DropdownItem = styled.div`
     padding-bottom: 0.8rem;
 
     img {
+      height: 1.8rem;
       padding-right: 0.5rem;
       vertical-align: bottom;
     }

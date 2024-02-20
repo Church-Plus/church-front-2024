@@ -48,9 +48,6 @@ function MonthPage() {
           <DropdownMenu />
         </div>
         <Wrapper>
-          <div style={{ marginLeft: "57.8rem" }}>
-            <SwitchToggle />
-          </div>
           <Smallbox>{month}월</Smallbox>
           <Box>
             <FolderContainer>
@@ -82,6 +79,9 @@ function MonthPage() {
             </FolderContainer>
           </Box>
         </Wrapper>
+        <div style={{ paddingRight: "2.5rem" }}>
+          <SwitchToggle />
+        </div>
       </BackgroundWrapper>
     </>
   );

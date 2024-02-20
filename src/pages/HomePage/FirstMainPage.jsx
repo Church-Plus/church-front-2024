@@ -7,6 +7,14 @@ import SelectDropdown from "../../components/Main/SelectDropdown";
 import FirstMain from "../../components/Main/FirstMain";
 import SwitchToggle from "../../components/Common/SwitchToggle";
 import { BackgroundWrapper } from "../../components/Common/Common";
+import styled from "styled-components";
+
+const ToggleLocation = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: right;
+  padding-right: 2.5rem;
+`;
 
 function FirstMainPage() {
   return (
@@ -18,14 +26,12 @@ function FirstMainPage() {
           <DropdownMenu />
         </div>
         <div>
-          <div style={{ display: "flex" }}>
-            <SelectDropdown />
-            <div style={{ marginLeft: "31rem" }}>
-              <SwitchToggle />
-            </div>
-          </div>
+          <SelectDropdown />
           <FirstMain />
         </div>
+        <ToggleLocation>
+          <SwitchToggle />
+        </ToggleLocation>
       </BackgroundWrapper>
     </>
   );
