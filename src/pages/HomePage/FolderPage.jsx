@@ -24,7 +24,7 @@ function FolderPage() {
           <DropdownMenu />
         </div>
         <Wrapper>
-          <div style={{ marginTop: "4.2rem" }}>
+          <div>
             <Smallbox>{folderName}</Smallbox>
           </div>
           <Box>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const SwitchToggleBox = styled.div`
-  padding-top: 1.5rem;
+  padding-top: 1.7rem;
 `;
 
 //label: 클릭을 감지하고 배경 변경할 수 있음

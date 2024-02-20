@@ -16,6 +16,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Smallbox = styled.div`
+  margin-top: 4.2rem;
   margin-left: 21px;
   background-color: #e8e8ef;
   height: 40px;

@@ -10,7 +10,6 @@ const Wrapper = styled.div`
   margin-left: 5rem;
   width: 350px;
   height: 10vh;
-  font-size: 20px;
 
   position: relative;
   z-index: 1;
@@ -18,26 +17,31 @@ const Wrapper = styled.div`
 
 const KeyDropdown = styled.div`
   border: 1px solid #281a47;
-  width: 5.5rem;
-  padding: 0.5rem;
+  width: 6rem;
+  height: 2.2rem;
+  padding-top: 0.5rem;
   border-radius: 2rem;
   margin-bottom: 0.3rem;
   text-align: center;
+  text-shadow: 2px 2px 2px #c1c1c1;
+  font-size: 21px;
 
   cursor: pointer;
 
   img {
-    height: 0.5rem;
-    padding-top: 0.5rem;
-    padding-right: 0.4rem;
+    height: 0.4rem;
+    padding-top: 0.6rem;
+    padding-right: 0.7rem;
     float: right;
   }
 `;
 
 const KeyItems = styled.div`
   border: 1px solid #281a47;
-  padding: 2rem 1rem;
-  border-radius: 2rem;
+  font-size: 18px;
+  width: 17.5rem;
+  height: 6.8rem;
+  border-radius: 1.4rem;
   background-color: white;
 
   display: ${({ isActive }) =>
@@ -45,12 +49,14 @@ const KeyItems = styled.div`
 `;
 
 const KeyItemTop = styled.div`
-  padding-bottom: 1rem;
-  text-align: center;
+  padding-left: 1.8rem;
+  padding-top: 1.4rem;
+  padding-bottom: 1.2rem;
+
   Span {
     border-radius: 0.5rem;
-    padding: 0.1rem 0.5rem;
-    margin-right: 0.5rem;
+    padding: 0.2rem 0.5rem;
+    margin-right: 0.4rem;
 
     cursor: pointer;
   }
@@ -61,10 +67,11 @@ const KeyItemTop = styled.div`
 `;
 
 const KeyItemBottom = styled.div`
+  padding-left: 1.3rem;
   Span {
     border-radius: 0.5rem;
-    padding: 0.1rem 0.7rem;
-    margin-right: 0.5rem;
+    padding: 0.2rem 0.5rem;
+    margin-right: 0.4rem;
 
     cursor: pointer;
   }

@@ -16,12 +16,16 @@ const ProfileIcon = styled.div`
 
   padding-top: 60px;
   padding-bottom: 12px;
+
+  img {
+    height: 7.5rem;
+  }
 `;
 
 const Profile = styled.div`
   display: flex;
   justify-content: center;
-  font-size: 28px;
+  font-size: 30px;
   padding-bottom: 28px;
 `;
 
