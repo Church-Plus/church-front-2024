@@ -49,11 +49,11 @@ function SelectUpdateDelete() {
           <DropdownWrapper>
             <Option>
               <img src={EditPencilIcons} alt="수정 아이콘" />
-              <div onClick={toggleDropdown}>수정하기</div>
+              <div>수정하기</div>
             </Option>
             <Option>
               <img src={BinIcons} alt="휴지통 아이콘" />
-              <div onClick={toggleDropdown}>삭제하기</div>
+              <div>삭제하기</div>
             </Option>
           </DropdownWrapper>
         )}
