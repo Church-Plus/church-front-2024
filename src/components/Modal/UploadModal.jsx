@@ -27,7 +27,7 @@ const Overlay = styled.div`
 `;
 const ModalContent = styled.div`
   position: absolute;
-  top: 54%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 923px;
@@ -202,6 +202,14 @@ export default function UploadModal() {
     notice: "",
   });
   const fileInputRef = useRef(null);
+
+  useEffect(() => {
+    if (uploadModal) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [uploadModal]);
 
   const toggleUploadModal = () => {
     setUploadModal((prevState) => !prevState);

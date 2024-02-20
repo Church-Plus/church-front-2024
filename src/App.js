@@ -11,6 +11,7 @@ import MonthPage from "./pages/HomePage/MonthPage";
 
 import FirstMainPage from "./pages/HomePage/FirstMainPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import SelectTeamPage from "./pages/CreateTeamPage/SelectTeamPage";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/login" element={<GoogleLogin />}></Route>
         <Route path="/loading" element={<Loading />}></Route>
 
+        <Route path="/SelectTeam" element={<SelectTeamPage />}></Route>
         <Route path="/CreateTeam" element={<InputTeamName />}></Route>
         <Route path="/CreateName" element={<InputName />}></Route>
         <Route path="/CreatePosition" element={<SelectPosition />}></Route>

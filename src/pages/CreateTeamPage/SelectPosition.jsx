@@ -1,17 +1,17 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import completeBtn from "../../assets/commonStyle/완료 버튼.svg";
+import completeBtn from "../../assets/commonStyle/CompleteButton.svg";
 
-import img1 from "../../assets/positionImg/1_리더.png";
-import img2 from "../../assets/positionImg/2_메인신디.png";
-import img3 from "../../assets/positionImg/3_세컨신디.png";
-import img4 from "../../assets/positionImg/4_드럼.png";
-import img5 from "../../assets/positionImg/5_어쿠스틱기타.png";
-import img6 from "../../assets/positionImg/6_일렉기타.png";
-import img7 from "../../assets/positionImg/7_베이스기타.png";
-import img8 from "../../assets/positionImg/8_싱어.png";
-import img9 from "../../assets/positionImg/9_엔지니어.png";
-import img10 from "../../assets/positionImg/10_목사님.png";
+import img1 from "../../assets/positionImg/1_Leader.png";
+import img2 from "../../assets/positionImg/2_MainCindy.png";
+import img3 from "../../assets/positionImg/3_SecondCindy.png";
+import img4 from "../../assets/positionImg/4_Drum.png";
+import img5 from "../../assets/positionImg/5_Aucoustic Guitar.png";
+import img6 from "../../assets/positionImg/6_Electric Guitar.png";
+import img7 from "../../assets/positionImg/7_Base Guitar.png";
+import img8 from "../../assets/positionImg/8_Singer.png";
+import img9 from "../../assets/positionImg/9_Engineer.png";
+import img10 from "../../assets/positionImg/10_Pastor.png";
 import { useNavigate } from "react-router-dom";
 
 const positionImages = [
