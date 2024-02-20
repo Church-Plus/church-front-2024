@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 const Wrapper = styled.div`
   display: flex;
   max-width: 100vw;
-  height: 100px;
+  height: 5rem;
 
   //헤더 고정
   position: sticky;
@@ -21,31 +21,33 @@ const Wrapper = styled.div`
 const HeaderItems = styled.div`
   display: flex;
   align-items: center;
+  width: 100vw;
 
-  padding: 14px;
+  padding: 1rem;
 `;
 
+//검색창 더 오른쪽에 위치하도록
 const HeaderItem = styled.div`
   padding-top: 10px;
   padding-bottom: 10px;
+  width: 100%;
 `;
 
 const ChurchLogo = styled.div`
-  padding-left: 1rem;
+  padding-left: 1.7rem;
   cursor: pointer;
   img {
-    height: 55px;
-    margin-right: 15rem;
+    height: 3.5rem;
   }
 `;
 
 const SearchBar = styled.div`
   position: relative;
-  margin-right: 12.5rem;
 
   input {
     width: 43rem;
     height: 3rem;
+    border: 0.9px solid black;
     border-radius: 3rem;
     text-align: center;
     font-size: 20px;
@@ -55,22 +57,28 @@ const SearchBar = styled.div`
 const SearchBtn = styled.button`
   position: absolute;
 
-  right: 0.8rem;
+  right: 0.7rem;
   border: none;
   background: transparent;
   cursor: pointer;
+
+  img {
+    padding-top: 0.3rem;
+    height: 2.5rem;
+  }
 `;
 
 const Icons = styled.div`
-  flex-direction: row;
+  float: right;
+  padding-right: 2.3rem;
 
   img {
-    height: 50px;
+    height: 2.8rem;
     cursor: pointer;
   }
 
   img:not(:last-child) {
-    height: 28px;
+    height: 1.5rem;
     padding-bottom: 0.5rem;
     padding-right: 1rem;
   }
