@@ -70,8 +70,12 @@ function InputTeamName() {
   const [teamName, setTeamName] = useState("");
   const navigate = useNavigate();
 
-  const handleNextBtnClick = () => {
-    navigate("/CreateName");
+  const handleNextBtnClick = async () => {
+    if (teamName.trim() !== "") {
+      navigate("/CreateName", { state: { teamName } });
+    } else {
+      alert("팀 이름을 입력하세요.");
+    }
   };
 
   return (

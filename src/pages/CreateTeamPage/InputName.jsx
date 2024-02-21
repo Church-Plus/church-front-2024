@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled, { css } from "styled-components";
 import nextBtn from "../../assets/commonStyle/NextButton.svg";
 
@@ -60,11 +60,18 @@ const Btn = styled.div`
 
 function InputName() {
   const [userName, setUserName] = useState("");
+  const location = useLocation();
 
   const navigate = useNavigate();
 
-  const handleNextBtnClick = () => {
-    navigate("/CreatePosition");
+  const handleNextBtnClick = async () => {
+    if (userName.trim() !== "") {
+      navigate("/CreatePosition", {
+        state: { userName, teamName: location.state.teamName },
+      });
+    } else {
+      alert("유저 이름을 입력하세요.");
+    }
   };
 
   return (
