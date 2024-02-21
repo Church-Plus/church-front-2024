@@ -8,9 +8,9 @@ const Wrapper = styled.div`
   flex-direction: column;
   /* margin-top: 2rem;
   margin-left: 5rem; */
-  width: 350px;
+  /* width: 280px; */
   /* height: 10vh; */
-  font-size: 25px;
+  font-size: 20px;
   color: #555555;
   font-weight: 200;
   position: relative;
@@ -19,9 +19,9 @@ const Wrapper = styled.div`
 
 const KeyDropdown = styled.div`
   border: 1px solid #c1c1c1;
-  width: 340px;
-  padding: 0.5rem;
-  padding-top: 0.6rem;
+  width: 270px;
+  padding: 0.2rem;
+  padding-top: 0.3rem;
   padding-bottom: 0.6rem;
   padding-left: 30px;
   border-radius: 16px;
@@ -44,21 +44,24 @@ const KeyDropdown = styled.div`
 
 const KeyItems = styled.div`
   border: 1px solid #281a47;
-  padding: 1rem 0.5rem;
-  border-radius: 2rem;
+  padding: 12px;
+  border-radius: 20px;
   background-color: white;
-
+  color: black;
+  width: 220px;
+  font-weight: 400;
   display: ${({ isActive }) =>
     isActive ? "block" : "none"}; /* isActive 상태에 따라 표시 여부 결정 */
 `;
 
 const KeyItemTop = styled.div`
-  padding-bottom: 1rem;
+  padding-bottom: 8px;
   text-align: center;
   Span {
-    border-radius: 0.5rem;
+    border-radius: 7px;
     padding: 0.1rem 0.3rem;
-    margin-right: 0.5rem;
+    margin-right: 5px;
+    font-size: 18px;
 
     cursor: pointer;
   }
@@ -69,10 +72,13 @@ const KeyItemTop = styled.div`
 `;
 
 const KeyItemBottom = styled.div`
+  text-align: center;
+
   Span {
-    border-radius: 0.5rem;
-    padding: 0.1rem 0.7rem;
-    margin-right: 0.5rem;
+    border-radius: 7px;
+    padding: 1px 7px;
+    margin-right: 5px;
+    font-size: 18px;
 
     cursor: pointer;
   }
