@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import completeBtn from "../../assets/commonStyle/CompleteButton.svg";
+import completeBtnHover from "../../assets/commonStyle/CompleteButtonHover.svg";
 
 import img1 from "../../assets/positionImg/1_Leader.svg";
 import img2 from "../../assets/positionImg/2_MainCindy.svg";
@@ -62,12 +63,13 @@ const Wrapper = styled.div``;
 
 const TopNoticeBars = styled.div`
   display: flex;
+  width: 100%;
   justify-content: center;
   margin-top: 4.5rem;
 `;
 
 const Bar = styled.div`
-  width: 380px;
+  width: 27%;
   height: 5px;
   background-color: #efeff0;
   margin-right: 1rem;
@@ -81,17 +83,16 @@ const Bar = styled.div`
 `;
 
 const Text = styled.div`
-  margin-top: 4rem;
-  padding-left: 8rem;
-
   font-size: 40px;
+  padding-left: 8.5%;
+  padding-top: 4%;
 `;
 
 const PositionContainer = styled.div`
   margin: 2rem auto 0rem auto;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  width: 1200px;
+  width: 85%;
 `;
 
 const PositionItem = styled.div`
@@ -127,6 +128,10 @@ const Btn = styled.div`
     height: 59px;
     cursor: pointer;
   }
+
+  img:hover {
+    content: url(${completeBtnHover});
+  }
 `;
 
 function SelectPosition() {
@@ -135,7 +140,6 @@ function SelectPosition() {
   const [position, setPosition] = useState(null);
 
   const handlePositionSelect = (position) => {
-    console.log(position.description);
     setPosition(position.description);
   };
 
