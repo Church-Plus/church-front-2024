@@ -27,15 +27,15 @@ const Overlay = styled.div`
 `;
 const ModalContent = styled.div`
   position: absolute;
-  top: 50%;
+  top: 54%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 923px;
-  height: 710px;
+  width: 738px;
+  height: 568px;
   background-color: #e8e8ef;
   border: none;
   border-radius: 40px;
-  padding: 20px;
+  padding: 16px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
@@ -43,16 +43,16 @@ const ModalContent = styled.div`
 `;
 
 const ModalHeader = styled.div`
-  margin-bottom: 16px;
-  padding-bottom: 4px;
+  margin-bottom: 13px;
+  padding-bottom: 3px;
   display: flex;
   justify-content: flex-end;
-  width: 880px;
-  margin-top: 30px;
+  width: 704px;
+  margin-top: 24px;
   img {
     cursor: pointer;
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
   }
 
   img:hover {
@@ -61,16 +61,16 @@ const ModalHeader = styled.div`
 `;
 
 const ModalBody = styled.div`
-  width: 798px;
-  height: 462px;
+  width: 639px;
+  height: 370px;
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
+  margin-top: 16px;
 `;
 
 const LeftBody = styled.div`
-  width: 348px;
-  height: 476px;
+  width: 278px;
+  height: 381px;
   border-radius: 40px;
   background-color: rgba(99, 93, 144, 0.3);
   display: flex;
@@ -81,19 +81,19 @@ const LeftBody = styled.div`
 `;
 
 const RightBody = styled.div`
-  width: 380px;
-  height: 440px;
+  width: 305px;
+  height: 352px;
   border-radius: 33px;
   /* border: 1px solid red; */
 `;
 const SongTitle = styled.input`
   && {
-    font-size: 23px;
-    padding-left: 30px;
-    margin-bottom: 20px;
+    font-size: 18px;
+    padding-left: 24px;
+    margin-bottom: 16px;
     background-color: #efeff0;
-    width: 346px;
-    height: 45px;
+    width: 277px;
+    height: 36px;
     border: 1px solid #c1c1c1;
     border-radius: 16px;
     &.MuiInput-underline {
@@ -113,13 +113,13 @@ const SongTitle = styled.input`
 `;
 const VideoLink = styled.input`
   && {
-    font-size: 23px;
-    padding-left: 30px;
-    margin-top: 10px;
-    margin-bottom: 20px;
+    font-size: 18px;
+    padding-left: 24px;
+    margin-top: 8px;
+    margin-bottom: 16px;
     background-color: #efeff0;
-    width: 346px;
-    height: 45px;
+    width: 277px;
+    height: 36px;
     border: 1px solid #c1c1c1;
     border-radius: 16px;
     &.MuiInput-underline {
@@ -139,12 +139,12 @@ const VideoLink = styled.input`
 `;
 const Notice = styled.input`
   && {
-    font-size: 23px;
-    padding-left: 25px;
-    margin-bottom: 20px;
+    font-size: 18px;
+    padding-left: 20px;
+    margin-bottom: 16px;
     background-color: #efeff0;
-    width: 350px;
-    height: 190px;
+    width: 280px;
+    height: 152px;
     border: 1px solid #c1c1c1;
     border-radius: 16px;
     &.MuiInput-underline {
@@ -167,13 +167,13 @@ const SubmitButton = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 58px;
+    margin-top: 46px;
     border: 1px solid #8248f2;
     border-radius: 40px;
-    width: 98px;
-    height: 49px;
-    font-size: 25px;
-    font-weight: 400;
+    width: 78px;
+    height: 39px;
+    font-size: 20px;
+    font-weight: 320px;
     color: #8248f2;
     background-color: #efeff0;
     cursor: pointer;
