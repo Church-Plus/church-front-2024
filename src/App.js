@@ -17,7 +17,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<FirstMainPage />}></Route>
+        <Route path="/main" element={<FirstMainPage />}></Route>
         <Route path="/MonthPage" element={<MonthPage />}></Route>
         <Route path="/MonthPage/:month" element={<MonthPage />}></Route>
         <Route
@@ -25,7 +25,7 @@ function App() {
           element={<FolderPage />}
         ></Route>
 
-        <Route path="/login" element={<GoogleLogin />}></Route>
+        <Route path="/" element={<GoogleLogin />}></Route>
         <Route path="/loading" element={<Loading />}></Route>
 
         <Route path="/SelectTeam" element={<SelectTeamPage />}></Route>
