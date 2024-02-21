@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import completeBtn from "../../assets/commonStyle/CompleteButton.svg";
 
@@ -12,7 +12,8 @@ import img7 from "../../assets/positionImg/7_Base Guitar.svg";
 import img8 from "../../assets/positionImg/8_Singer.svg";
 import img9 from "../../assets/positionImg/9_Enginner.svg";
 import img10 from "../../assets/positionImg/10_Pastor.svg";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import createGroup from "../../apis/createGroup";
 
 const positionImages = [
   {
@@ -130,9 +131,27 @@ const Btn = styled.div`
 
 function SelectPosition() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [position, setPosition] = useState(null);
 
-  const handleCompleteBtnClick = () => {
-    navigate("/");
+  const handlePositionSelect = (position) => {
+    console.log(position.description);
+    setPosition(position.description);
+  };
+
+  const handleCompleteBtnClick = async () => {
+    // 여기서 선택된 포지션을 활용하여 작업 수행
+    const groupName = location.state.teamName;
+    const nickname = location.state.userName;
+
+    const memberId = localStorage.getItem("memberId");
+
+    try {
+      await createGroup(groupName, memberId, position, nickname);
+      navigate("/");
+    } catch (error) {
+      console.error("그룹 추가 실패:", error);
+    }
   };
 
   return (
@@ -147,7 +166,10 @@ function SelectPosition() {
 
       <PositionContainer>
         {positionImages.map((position, index) => (
-          <PositionItem key={index}>
+          <PositionItem
+            key={index}
+            onClick={() => handlePositionSelect(position)}
+          >
             <PositionImage src={position.image} alt={position.description} />
             <Input>{position.description}</Input>
           </PositionItem>
