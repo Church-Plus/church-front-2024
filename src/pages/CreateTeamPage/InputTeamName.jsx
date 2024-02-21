@@ -91,6 +91,12 @@ function InputTeamName() {
     }
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleNextBtnClick();
+    }
+  };
+
   return (
     <Wrapper>
       <TopNoticeBars>
@@ -105,6 +111,7 @@ function InputTeamName() {
           autoFocus
           value={teamName}
           onChange={(e) => setTeamName(e.target.value)}
+          onKeyDown={handleKeyDown}
         />
       </TextBox>
       <Btn>

@@ -87,6 +87,12 @@ function InputName() {
     }
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleNextBtnClick();
+    }
+  };
+
   return (
     <Wrapper>
       <TopNoticeBars>
@@ -101,6 +107,7 @@ function InputName() {
           autoFocus
           value={userName}
           onChange={(e) => setUserName(e.target.value)}
+          onKeyDown={handleKeyDown}
         />
       </TextBox>
       <Btn>

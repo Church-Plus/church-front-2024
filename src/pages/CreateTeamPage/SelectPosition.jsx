@@ -141,9 +141,15 @@ function SelectPosition() {
 
   const handlePositionSelect = (position) => {
     setPosition(position.description);
+    alert(`${position.description} 포지션을 선택하셨습니다.`);
   };
 
   const handleCompleteBtnClick = async () => {
+    if (!position) {
+      alert("포지션을 선택해주세요.");
+      return; // 포지션이 선택되지 않았을 때 함수 종료
+    }
+
     // 여기서 선택된 포지션을 활용하여 작업 수행
     const groupName = location.state.teamName;
     const nickname = location.state.userName;
@@ -152,6 +158,7 @@ function SelectPosition() {
 
     try {
       await createGroup(groupName, memberId, position, nickname);
+      // alert(`그룹이 정상적으로 추가되었습니다.`);
       navigate("/main");
     } catch (error) {
       console.error("그룹 추가 실패:", error);
