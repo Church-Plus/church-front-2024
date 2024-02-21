@@ -2,17 +2,19 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled, { css } from "styled-components";
 import nextBtn from "../../assets/commonStyle/NextButton.svg";
+import nextBtnHover from "../../assets/commonStyle/NextButtonHover.svg";
 
 const Wrapper = styled.div``;
 
 const TopNoticeBars = styled.div`
   display: flex;
+  width: 100%;
   justify-content: center;
   margin-top: 4.5rem;
 `;
 
 const Bar = styled.div`
-  width: 380px;
+  width: 27%;
   height: 5px;
   background-color: #efeff0;
   margin-right: 1rem;
@@ -26,35 +28,46 @@ const Bar = styled.div`
 `;
 
 const TextBox = styled.div`
-  padding-left: 8.5rem;
-  padding-top: 7rem;
+  display: flex;
+  justify-content: center;
 
   input {
     margin-top: 3rem;
     padding-left: 2.4rem;
     height: 100px;
-    width: 80vw;
+    width: 81%;
     border-radius: 24px;
     border: none;
     outline: none;
     font-size: 40px;
+    caret-color: blue;
 
     background-color: #efeff0;
+
+    &:focus {
+      background-color: white;
+      border: 1px solid black;
+    }
   }
 `;
 
 const Text = styled.div`
-  margin-top: 6.5rem;
+  padding-left: 8.5%;
+  padding-top: 15%;
   font-size: 40px;
 `;
 
 const Btn = styled.div`
-  margin-top: 10rem;
+  margin-top: 11%;
   text-align: center;
 
   img {
     height: 59px;
     cursor: pointer;
+  }
+
+  img:hover {
+    content: url(${nextBtnHover});
   }
 `;
 
@@ -81,8 +94,8 @@ function InputName() {
         <Bar $now />
         <Bar />
       </TopNoticeBars>
+      <Text>이름을 입력해주세요.</Text>
       <TextBox>
-        <Text>이름을 입력해주세요.</Text>
         <input
           type="text"
           autoFocus
