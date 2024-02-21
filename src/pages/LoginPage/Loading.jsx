@@ -1,14 +1,35 @@
-import React from "react";
+import React, { useEffect } from "react";
+import sendAccessTokenToBackend from "../../apis/sendAccessTokenToBackend";
+import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+
+const LoginLoding = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  margin-top: 70%;
+`;
 
 const Loading = () => {
-  // 현재 url에서 code 부분 추출
-  const parsedHash = new URLSearchParams(window.location.hash.substring(1));
-  const accessToken = parsedHash.get("access_token");
-  console.log(accessToken);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // accessToken 추출
+    const parsedHash = new URLSearchParams(window.location.hash.substring(1));
+    const accessToken = parsedHash.get("access_token");
+
+    // accessToken이 존재하면 백엔드로 전송하고 페이지 이동
+    if (accessToken) {
+      sendAccessTokenToBackend(accessToken).then(() => {
+        navigate("/SelectTeam"); // 로그인 후 팀생성 페이지 이동
+      });
+    }
+  }, [navigate]);
 
   return (
     <div>
-      <div>로그인, 토큰 추출중입니다...</div>
+      <LoginLoding>로그인 중입니다...</LoginLoding>
     </div>
   );
 };
