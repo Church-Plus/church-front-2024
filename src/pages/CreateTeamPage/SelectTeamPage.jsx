@@ -7,22 +7,33 @@ import starting from "../../assets/commonStyle/Starting.svg";
 import startingHover from "../../assets/commonStyle/startingHover.svg";
 import alreadyHaveTeam from "../../assets/commonStyle/AlreadyHaveTeam.svg";
 import alreadyHaveTeamHover from "../../assets/commonStyle/AlreadyHaveTeamHover.svg";
+import SelectTeamCLogo from "../../assets/Logos/SelectTeamC+_Logo.svg";
+import ChoseYourTeam from "../../assets/Logos/ChoseYourTeam..svg";
 
 import { Link } from "react-router-dom";
-
-const TeamPageStyles = `
-  width: 100vw;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: url(${SelectTeamPageImg});
-  background-size: cover;
-`;
+import { width } from "@mui/system";
 
 const TeamPageContainer = styled.div`
-  ${TeamPageStyles}
+  display: flex;
+  flex-direction: column;
+`;
+
+const LogoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const CLogo = styled.img`
+  width: 304px;
+  height: 122px;
+  margin-top: 76px;
+`;
+
+const ChoseTeam = styled.img`
+  width: 623px;
+  height: 70px;
+  margin-top: 27px;
 `;
 
 const SelectTeamContainer = styled.div`
@@ -30,7 +41,7 @@ const SelectTeamContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 400px;
+  margin-top: 80px;
 `;
 
 const CreateTeamIcon = styled.img`
@@ -55,7 +66,7 @@ const Buttons = styled.div`
 const Starting = styled.img`
   width: 165px;
   height: 58px;
-  padding-top: 70px;
+  margin-top: 70px;
   margin-left: 730px;
   &:hover {
     content: url(${startingHover});
@@ -75,6 +86,10 @@ const AlreadyHaveTeam = styled.img`
 function SelectTeamPage() {
   return (
     <TeamPageContainer>
+      <LogoContainer>
+        <CLogo src={SelectTeamCLogo} alt="팀 로고" />
+        <ChoseTeam src={ChoseYourTeam} alt="팀을 선택하세요." />
+      </LogoContainer>
       <SelectTeamContainer>
         <div>
           <Link to={"/CreateTeam"}>
