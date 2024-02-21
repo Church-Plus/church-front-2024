@@ -148,7 +148,7 @@ function SelectPosition() {
 
     try {
       await createGroup(groupName, memberId, position, nickname);
-      navigate("/");
+      navigate("/main");
     } catch (error) {
       console.error("그룹 추가 실패:", error);
     }

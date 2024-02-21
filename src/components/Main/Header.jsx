@@ -87,7 +87,7 @@ const Icons = styled.div`
 function Header() {
   const navigate = useNavigate();
   const handleLogoClick = () => {
-    navigate("/");
+    navigate("/main");
   };
   return (
     <Wrapper>
