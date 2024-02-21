@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import ReadModal from "../Modal/ReadModal";
 import EditIcons from "../../assets/Icons/FolderEdit.svg";
@@ -62,19 +62,14 @@ const Input = styled.div`
   text-align: center;
 `;
 
-//수정, 삭제 드롭다운
 const DropdownWrapper = styled.div`
-  //수정아이콘 클릭시 바로 밑에 드롭다운 뜨도록
   position: absolute;
   top: 55px;
   left: 250px;
-  //악보와 드롭다운이 겹치도록
   z-index: 1;
-
-  display: flex;
+  display: ${({ show }) => (show ? "flex" : "none")};
   flex-direction: column;
   width: 200px;
-
   box-shadow: 2px 2px 2px 2px grey;
 `;
 
@@ -118,41 +113,45 @@ function FirstMain() {
     },
   ];
 
-  const [readModal, setReadModal] = useState(false); // readModal 초기상태 설정
-  const [selectedSongIndex, setSelectedSongIndex] = useState(null); // 선택된 곡의 인덱스
+  const [readModal, setReadModal] = useState(false);
+  const [selectedSongIndex, setSelectedSongIndex] = useState(null);
   const [showDropdown, setShowDropdown] = useState(
     Array(songData.length).fill(false)
-  ); // 각 악보 항목의 드롭다운 초기상태 배열
+  );
+  const dropdownRef = useRef(null);
 
-  // 악보 정보를 띄우는 모달
-  const toggleReadModal = () => {
-    // 모달 열고 닫는 함수
-    if (selectedSongIndex !== null) {
-      //readModal 상태반전
-      const newState = !readModal;
-      setReadModal(newState);
-      // 모달 열림 및 닫힘에 따라 body 스타일 변경
-      document.body.style.overflow = newState ? "hidden" : "auto";
-    }
+  const toggleReadModal = (index) => {
+    setSelectedSongIndex(index);
+    setReadModal(!readModal);
+    document.body.style.overflow = readModal ? "auto" : "hidden";
   };
 
-  const toggleModal = (index) => {
-    setSelectedSongIndex(index); // 선택된 곡의 인덱스 설정
-    toggleReadModal(); // 모달 열기
-  };
-
-  // 수정, 삭제 드롭다운 토글 함수
   const toggleDropdown = (index) => {
-    //특정 인덱스의 드롭다운 상태를 토글 (상태반전)
     const updatedDropdownStates = showDropdown.map((state, i) =>
       i === index ? !state : false
     );
     setShowDropdown(updatedDropdownStates);
   };
 
-  // 수정, 삭제 드롭다운 닫기 함수
   const closeDropdown = () => {
-    setShowDropdown(Array(songData.length).fill(false)); // 모든 드롭다운을 닫음
+    setShowDropdown(Array(songData.length).fill(false));
+  };
+
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      closeDropdown();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const handleOptionClick = () => {
+    closeDropdown();
   };
 
   return (
@@ -160,27 +159,25 @@ function FirstMain() {
       <FolderContainer>
         {songData.map((song, index) => (
           <FolderItem key={index}>
-            <ImageContainer onClick={() => toggleModal(index)}>
+            <ImageContainer onClick={() => toggleReadModal(index)}>
               <FolderImage src={song.img} alt={song.title} />
               <EditIcon
                 onClick={(e) => {
-                  e.stopPropagation(); // 이미지 클릭 이벤트가 상위 요소로 전파되지 않도록 중지
+                  e.stopPropagation();
                   toggleDropdown(index);
                 }}
                 src={EditIcons}
                 alt="파일 수정"
               />
-              {/* 수정, 삭제 드롭다운 부분 */}
               {showDropdown[index] && (
-                <DropdownWrapper>
-                  {/* 현재는 Option을 클릭하면 ReadModal이 열리는데 각각의 div에 onClick으로 새로운 모달 오픈 함수를 호출하면 해결할 수 있을 것 같음 */}
-                  <Option>
+                <DropdownWrapper show={showDropdown[index]} ref={dropdownRef}>
+                  <Option onClick={handleOptionClick}>
                     <img src={EditPencilIcons} alt="수정 아이콘" />
-                    <div onClick={() => closeDropdown()}>수정하기</div>
+                    <div>수정하기</div>
                   </Option>
-                  <Option>
+                  <Option onClick={handleOptionClick}>
                     <img src={BinIcons} alt="휴지통 아이콘" />
-                    <div onClick={() => closeDropdown()}>삭제하기</div>
+                    <div>삭제하기</div>
                   </Option>
                 </DropdownWrapper>
               )}
@@ -191,8 +188,8 @@ function FirstMain() {
       </FolderContainer>
       {readModal && (
         <ReadModal
-          toggleReadModal={() => toggleReadModal(null)} // 모달 닫기
-          selectedSong={songData[selectedSongIndex]} // 선택된 곡의 데이터를 props로 전달
+          toggleReadModal={() => toggleReadModal(null)}
+          selectedSong={songData[selectedSongIndex]}
         />
       )}
     </Wrapper>
