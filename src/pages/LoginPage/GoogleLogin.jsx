@@ -16,6 +16,9 @@ const backgroundArr = [
 ];
 
 const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: end;
   text-align: center;
   height: 100vh;
   background-size: cover;
@@ -23,7 +26,7 @@ const Wrapper = styled.div`
 `;
 
 const GoogleBtn = styled.img`
-  margin-top: 38rem;
+  margin-bottom: 135px;
   width: 393px;
   cursor: pointer;
 `;

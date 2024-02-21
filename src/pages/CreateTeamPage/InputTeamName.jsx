@@ -2,18 +2,20 @@ import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import { useNavigate } from "react-router-dom";
 import nextBtn from "../../assets/commonStyle/NextButton.svg";
+import nextBtnHover from "../../assets/commonStyle/NextButtonHover.svg";
 import askTeam from "../../assets/commonStyle/AlreadyHaveTeam.svg";
 
 const Wrapper = styled.div``;
 
 const TopNoticeBars = styled.div`
   display: flex;
+  width: 100%;
   justify-content: center;
   margin-top: 4.5rem;
 `;
 
 const Bar = styled.div`
-  width: 380px;
+  width: 27%;
   height: 5px;
   background-color: #efeff0;
   margin-right: 1rem;
@@ -27,42 +29,53 @@ const Bar = styled.div`
 `;
 
 const TextBox = styled.div`
-  padding-left: 8.5rem;
-  padding-top: 7rem;
+  display: flex;
+  justify-content: center;
 
   input {
     margin-top: 3rem;
     padding-left: 2.4rem;
     height: 100px;
-    width: 80vw;
+    width: 81%;
     border-radius: 24px;
     border: none;
     outline: none;
     font-size: 40px;
+    caret-color: blue;
 
     background-color: #efeff0;
+
+    &:focus {
+      background-color: white;
+      border: 1px solid black;
+    }
   }
 `;
 
 const Text = styled.div`
-  margin-top: 6.5rem;
+  padding-left: 8.5%;
+  padding-top: 15%;
   font-size: 40px;
 `;
 
 const Btn = styled.div`
-  margin-top: 10rem;
+  margin-top: 11%;
   text-align: center;
 
   img {
     height: 59px;
     cursor: pointer;
   }
+
+  img:hover {
+    content: url(${nextBtnHover});
+  }
 `;
 
 const AskTeam = styled.img`
   height: 20px;
   float: right;
-  margin-right: 8rem;
+  margin-right: 10%;
   cursor: pointer;
 `;
 
@@ -78,6 +91,12 @@ function InputTeamName() {
     }
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleNextBtnClick();
+    }
+  };
+
   return (
     <Wrapper>
       <TopNoticeBars>
@@ -85,13 +104,14 @@ function InputTeamName() {
         <Bar />
         <Bar />
       </TopNoticeBars>
+      <Text>팀명을 입력해주세요.</Text>
       <TextBox>
-        <Text>팀명을 입력해주세요.</Text>
         <input
           type="text"
           autoFocus
           value={teamName}
           onChange={(e) => setTeamName(e.target.value)}
+          onKeyDown={handleKeyDown}
         />
       </TextBox>
       <Btn>
