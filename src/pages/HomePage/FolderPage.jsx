@@ -14,6 +14,7 @@ import UploadModal from "../../components/Modal/UploadModal";
 import SwitchToggle from "../../components/Common/SwitchToggle";
 import styled from "styled-components";
 import axios from "axios";
+import ReadModal from "../../components/Modal/ReadModal";
 
 const FolderItem = styled.div`
   display: flex;
@@ -44,12 +45,13 @@ const ImageContainer = styled.div`
 
 function FolderPage() {
   const params = useParams();
-  const { month } = useParams();
-  const { content } = useParams();
+  const { month, content } = params;
+  const folderName = content;
   const navigate = useNavigate();
-  const folderName = params.content;
   const [songData, setSongData] = useState([]);
   const [reloadPage, setReloadPage] = useState(false);
+  const [selectedSong, setSelectedSong] = useState(null);
+  const [showReadModal, setShowReadModal] = useState(false);
 
   const groupId = localStorage.getItem("groupId");
   const path = `${month}-${content}`;
@@ -79,6 +81,15 @@ function FolderPage() {
     }
   };
 
+  const handleSongClick = (selectedSong) => {
+    setSelectedSong(selectedSong);
+    setShowReadModal(true);
+  };
+
+  const toggleReadModal = () => {
+    setShowReadModal(!showReadModal);
+  };
+
   return (
     <>
       <Header />
@@ -102,15 +113,18 @@ function FolderPage() {
           <Box>
             <FolderContainer>
               <UploadModal />
-              {songData.map((musics) => (
-                <FolderItem key={musics.musicId}>
+              {songData.map((music) => (
+                <FolderItem
+                  key={music.musicId}
+                  onClick={() => handleSongClick(music)}
+                >
                   <ImageContainer>
                     <FolderImage
-                      src={musics.musicImageUrl}
+                      src={music.musicImageUrl}
                       alt={"악보 이미지"}
                     />
                   </ImageContainer>
-                  <p>{musics.musicName}</p>
+                  <p>{music.musicName}</p>
                 </FolderItem>
               ))}
             </FolderContainer>
@@ -120,6 +134,12 @@ function FolderPage() {
           <SwitchToggle />
         </div>
       </BackgroundWrapper>
+      {showReadModal && (
+        <ReadModal
+          toggleReadModal={toggleReadModal}
+          selectedSong={selectedSong}
+        />
+      )}
     </>
   );
 }

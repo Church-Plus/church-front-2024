@@ -69,10 +69,17 @@ const ModalBody = styled.div`
   display: flex;
 `;
 
-const Photo = styled.img`
+const Photo = styled.div`
+  margin-right: 2rem;
   width: 36rem;
   height: 35.5rem;
-  margin-right: 2rem;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 `;
 
 const Link = styled.div`
@@ -110,7 +117,7 @@ const CloseModal = styled.div`
 `;
 
 export default function ReadModal({ toggleReadModal, selectedSong }) {
-  const { title, img, videoLink, description } = selectedSong;
+  const { musicName, musicImageUrl, link, description, code } = selectedSong;
 
   const handleLinkClick = (link) => {
     window.open(link, "_blank");
@@ -130,7 +137,9 @@ export default function ReadModal({ toggleReadModal, selectedSong }) {
                   alt="뒤로가기"
                 />
               </CloseModal>
-              <Title>{title}</Title>
+              <Title>
+                {musicName} {code} Key
+              </Title>
               <Icons>
                 <img src={multiplePagesIcons} alt="다중페이지 아이콘" />
                 <img src={printngIcons} alt="프린트 아이콘" />
@@ -138,13 +147,13 @@ export default function ReadModal({ toggleReadModal, selectedSong }) {
               </Icons>
             </ModalTop>
             <ModalBody>
-              <Photo src={img} alt="찬양악보"></Photo>
+              <Photo>
+                <img src={musicImageUrl} alt="찬양악보" />
+              </Photo>
               <div>
                 <Link>
                   <img src={videoLinkIcons} alt="영상링크 아이콘" />
-                  <div onClick={() => handleLinkClick(videoLink)}>
-                    {videoLink}
-                  </div>
+                  <div onClick={() => handleLinkClick(link)}>{link}</div>
                 </Link>
                 <Text>{description}</Text>
               </div>
