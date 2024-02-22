@@ -17,7 +17,7 @@ export const Wrapper = styled.div`
 
 export const Smallbox = styled.div`
   margin-top: 4.2rem;
-  margin-left: 21px;
+  /* margin-left: 10.5px; */
   background-color: #e8e8ef;
   height: 40px;
   width: 190px;
@@ -28,7 +28,7 @@ export const Smallbox = styled.div`
 `;
 
 export const Box = styled.div`
-  margin-left: 21px;
+  /* margin-left: 21px; */
   height: 100%;
   width: 800px;
   border-radius: 0px 40px 0px 0px;

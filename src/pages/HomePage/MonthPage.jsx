@@ -47,8 +47,18 @@ function MonthPage() {
           <Menu />
           <DropdownMenu />
         </div>
-        <Wrapper>
-          <Smallbox>{month}월</Smallbox>
+        <Wrapper
+          style={{
+            alignItems: "center",
+          }}
+        >
+          <div
+            style={{
+              width: "800px",
+            }}
+          >
+            <Smallbox>{month}월</Smallbox>
+          </div>
           <Box>
             <FolderContainer>
               <CreateFolderModal handleAddFolder={handleAddFolder} />
@@ -79,6 +89,7 @@ function MonthPage() {
             </FolderContainer>
           </Box>
         </Wrapper>
+
         <div style={{ paddingRight: "2.5rem" }}>
           <SwitchToggle />
         </div>
