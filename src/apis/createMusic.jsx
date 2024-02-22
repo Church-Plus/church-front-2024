@@ -12,7 +12,6 @@ const createMusic = async (formDataToSend) => {
         },
       }
     );
-    //https://api.zionhann.shop/app/churchplus/church+/music
 
     // 서버로부터의 응답 처리
     console.log("악보가 정상적으로 추가되었음", serverResponse);

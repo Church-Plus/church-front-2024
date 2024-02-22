@@ -215,7 +215,6 @@ export default function UploadModal() {
     }
   }, [uploadModal]);
 
-  // 코드가 입력되지 않고 있음.
   const toggleUploadModal = () => {
     setUploadModal((prevState) => !prevState);
     setFormData({
@@ -259,9 +258,9 @@ export default function UploadModal() {
     console.log(formData);
     try {
       const { musicName, code, link, description } = formData;
+      //만일 사용자가 폴더 이름에 -를 사용할 경우 에러 발생할 수 있음
       const path = `${month}/${content}`;
       const formattedPath = path.replace("/", "-");
-      // console.log("Formatted path:", formattedPath);
       const groupId = localStorage.getItem("groupId");
 
       const formDataToSend = new FormData();
