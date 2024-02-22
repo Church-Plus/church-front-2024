@@ -9,7 +9,7 @@ import {
   FolderContainer,
   BackgroundWrapper,
 } from "../../components/Common/Common";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import UploadModal from "../../components/Modal/UploadModal";
 import SwitchToggle from "../../components/Common/SwitchToggle";
 import styled from "styled-components";
@@ -46,28 +46,38 @@ function FolderPage() {
   const params = useParams();
   const { month } = useParams();
   const { content } = useParams();
+  const navigate = useNavigate();
   const folderName = params.content;
   const [songData, setSongData] = useState([]);
+  const [reloadPage, setReloadPage] = useState(false);
 
   const groupId = localStorage.getItem("groupId");
   const path = `${month}-${content}`;
 
   useEffect(() => {
-    // 주어진 그룹 아이디와 경로를 기반으로 서버에서 데이터를 가져오는 역할
-    const fetchData = async () => {
-      try {
-        const serverResponse = await axios.get(
-          `https://api.zionhann.shop/app/churchplus/church+/music/list/${groupId}/${path}`
-        );
-        setSongData(serverResponse.data.musics);
-      } catch (error) {
-        console.error("악보 불러오기 실패:", error);
-        setSongData([]);
-      }
-    };
-    // fetchData 함수 호출
+    navigate(`/monthPage/${month}/${content}`);
     fetchData();
   }, [groupId, path]);
+
+  useEffect(() => {
+    if (reloadPage) {
+      fetchData();
+      setReloadPage(false);
+    }
+  }, [reloadPage]);
+
+  const fetchData = async () => {
+    try {
+      const serverResponse = await axios.get(
+        `https://api.zionhann.shop/app/churchplus/church+/music/list/${groupId}/${path}`
+      );
+      setSongData(serverResponse.data.musics);
+      console.log("악보 불러오기 성공");
+    } catch (error) {
+      console.error("악보 불러오기 실패:", error);
+      setSongData([]);
+    }
+  };
 
   return (
     <>
