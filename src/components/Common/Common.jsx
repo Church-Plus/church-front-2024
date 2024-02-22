@@ -50,7 +50,7 @@ export const AddBtn = styled.button`
   border-radius: 30px;
 
   margin-left: 50px;
-  margin-top: 100px;
+  /* margin-top: 100px; */
   cursor: pointer;
 
   img {

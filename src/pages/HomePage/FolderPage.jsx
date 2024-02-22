@@ -21,7 +21,6 @@ const FolderItem = styled.div`
   flex-direction: column;
   align-items: center;
   margin-bottom: 3rem;
-  padding-left: 5.4rem;
 `;
 
 const FolderImage = styled.img`
@@ -111,7 +110,7 @@ function FolderPage() {
             <Smallbox>{folderName}</Smallbox>
           </div>
           <Box>
-            <FolderContainer>
+            <FolderContainer style={{ paddingTop: "100px" }}>
               <UploadModal />
               {songData.map((music) => (
                 <FolderItem
