@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { AddBtn } from "../Common/Common";
 import addIcon from "../../assets/Icons/add.svg";
+import { useParams } from "react-router";
+import createFolder from "../../apis/createFolder";
 
 const modalStyles = `
   width: 100vw;
@@ -99,6 +101,7 @@ const CreateButton = styled.button`
 export default function CreateFolderModal({ handleAddFolder }) {
   const [createFolderModal, setCreateFolderModal] = useState(false);
   const [folderName, setFolderName] = useState("");
+  const { month } = useParams();
   const inputRef = useRef(null);
 
   const toggleCreateFolderModal = () => {
@@ -119,13 +122,23 @@ export default function CreateFolderModal({ handleAddFolder }) {
     setFolderName(e.target.value);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    const path = month;
+    const memberId = localStorage.getItem("memberId");
+    const groupId = localStorage.getItem("groupId");
+    console.log(path);
     if (!folderName.trim()) {
       inputRef.current.focus();
       return;
     }
-    handleAddFolder(folderName);
-    toggleCreateFolderModal();
+
+    try {
+      await createFolder(folderName, path, memberId, groupId);
+      handleAddFolder(folderName);
+      toggleCreateFolderModal();
+    } catch (error) {
+      console.error("Error creating group:", error);
+    }
   };
 
   return (
