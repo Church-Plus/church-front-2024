@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import profileIcon from "../../assets/Icons/user.svg";
+import axios from "axios";
 
 const Wrapper = styled.div`
   display: flex;
@@ -30,12 +31,36 @@ const Profile = styled.div`
 `;
 
 function Menu() {
+  const [userData, setUserData] = useState([]);
+
+  const groupId = localStorage.getItem("groupId");
+  const memberId = localStorage.getItem("memberId");
+
+  useEffect(() => {
+    fetchData();
+  }, [groupId, memberId]);
+
+  const fetchData = async () => {
+    try {
+      const serverResponse = await axios.get(
+        `https://api.zionhann.shop/app/churchplus/church+/group/${groupId}/${memberId}`
+      );
+      setUserData(serverResponse.data);
+      console.log("유저 정보 불러오기 성공");
+    } catch (error) {
+      console.error("유저 정보 불러오기 실패:", error);
+      setUserData([]);
+    }
+  };
+
   return (
     <Wrapper>
       <ProfileIcon>
         <img src={profileIcon} alt="프로파일 아이콘" />
       </ProfileIcon>
-      <Profile>김교회 | 인도자</Profile>
+      <Profile>
+        {userData.nickname}|{userData.position}
+      </Profile>
     </Wrapper>
   );
 }

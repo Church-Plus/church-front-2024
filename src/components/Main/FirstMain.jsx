@@ -14,8 +14,10 @@ const Wrapper = styled.div`
 `;
 
 const ImageContainer = styled.div`
-  position: relative;
-  width: fit-content;
+  height: 12.6rem;
+  width: 19.3rem;
+  border-radius: 30px;
+  overflow: hidden;
 `;
 
 const EditIcon = styled.img`
@@ -43,10 +45,10 @@ const FolderItem = styled.div`
 `;
 
 const FolderImage = styled.img`
-  height: 12.6rem;
-  width: 19.3rem;
-  object-fit: cover;
-  border-radius: 30px;
+  width: 100%;
+  height: auto; /* 너비에 맞게 자동으로 높이 조절 */
+  object-fit: contain; /* 이미지가 완전히 보이도록 설정 */
+  background-position: top; /* 이미지의 상단부터 보이도록 설정 */
   cursor: pointer;
 
   filter: opacity(0.7) drop-shadow(0 0 0 #2e0b70);
@@ -94,22 +96,44 @@ const Option = styled.div`
 function FirstMain() {
   const songData = [
     {
-      title: "하나님의 세계 D Key",
-      img: "https://mblogthumb-phinf.pstatic.net/20160524_274/lordship46_1464073042426hr2zD_JPEG/%C7%CF%B3%AA%B4%D4%C0%C7_%BC%BC%B0%E8%28%C2%FC_%BE%C6%B8%A7%B4%D9%BF%EE_%B0%F7%C0%CC%B6%F3%29-001-001.jpg?type=w800",
-      videoLink: "https://youtu.be/nUTvfKu7q3c?feature=shared",
+      musicName: "하나님의 세계",
+      musicImageUrl:
+        "https://mblogthumb-phinf.pstatic.net/20160524_274/lordship46_1464073042426hr2zD_JPEG/%C7%CF%B3%AA%B4%D4%C0%C7_%BC%BC%B0%E8%28%C2%FC_%BE%C6%B8%A7%B4%D9%BF%EE_%B0%F7%C0%CC%B6%F3%29-001-001.jpg?type=w800",
+      link: "https://youtu.be/nUTvfKu7q3c?feature=shared",
       description: "피아노는 솔로 준비 부탁합니다^^",
+      code: "G",
     },
     {
-      title: "주님의 정원 G Key",
-      img: "https://mblogthumb-phinf.pstatic.net/20160524_274/lordship46_1464073042426hr2zD_JPEG/%C7%CF%B3%AA%B4%D4%C0%C7_%BC%BC%B0%E8%28%C2%FC_%BE%C6%B8%A7%B4%D9%BF%EE_%B0%F7%C0%CC%B6%F3%29-001-001.jpg?type=w800",
-      videoLink: "https://youtu.be/nUTvfKu7q3c?feature=shared",
-      description: "5번정도 반복할게요",
+      musicName: "주님의 정원",
+      musicImageUrl:
+        "https://mblogthumb-phinf.pstatic.net/20160524_274/lordship46_1464073042426hr2zD_JPEG/%C7%CF%B3%AA%B4%D4%C0%C7_%BC%BC%B0%E8%28%C2%FC_%BE%C6%B8%A7%B4%D9%BF%EE_%B0%F7%C0%CC%B6%F3%29-001-001.jpg?type=w800",
+      link: "https://youtu.be/nUTvfKu7q3c?feature=shared",
+      description: "네에에",
+      code: "G",
     },
     {
-      title: "주는 존귀하신 분 A Key",
-      img: "https://mblogthumb-phinf.pstatic.net/20160524_274/lordship46_1464073042426hr2zD_JPEG/%C7%CF%B3%AA%B4%D4%C0%C7_%BC%BC%B0%E8%28%C2%FC_%BE%C6%B8%A7%B4%D9%BF%EE_%B0%F7%C0%CC%B6%F3%29-001-001.jpg?type=w800",
-      videoLink: "https://youtu.be/nUTvfKu7q3c?feature=shared",
-      description: "즐거운 주일 되세요",
+      musicName: "주는 존귀하신 분",
+      musicImageUrl:
+        "https://mblogthumb-phinf.pstatic.net/20160524_274/lordship46_1464073042426hr2zD_JPEG/%C7%CF%B3%AA%B4%D4%C0%C7_%BC%BC%B0%E8%28%C2%FC_%BE%C6%B8%A7%B4%D9%BF%EE_%B0%F7%C0%CC%B6%F3%29-001-001.jpg?type=w800",
+      link: "https://youtu.be/nUTvfKu7q3c?feature=shared",
+      description: "하하",
+      code: "G",
+    },
+    {
+      musicName: "주는 존귀하신 분",
+      musicImageUrl:
+        "https://mblogthumb-phinf.pstatic.net/20160524_274/lordship46_1464073042426hr2zD_JPEG/%C7%CF%B3%AA%B4%D4%C0%C7_%BC%BC%B0%E8%28%C2%FC_%BE%C6%B8%A7%B4%D9%BF%EE_%B0%F7%C0%CC%B6%F3%29-001-001.jpg?type=w800",
+      link: "https://youtu.be/nUTvfKu7q3c?feature=shared",
+      description: "하하",
+      code: "G",
+    },
+    {
+      musicName: "주는 존귀하신 분",
+      musicImageUrl:
+        "https://mblogthumb-phinf.pstatic.net/20160524_274/lordship46_1464073042426hr2zD_JPEG/%C7%CF%B3%AA%B4%D4%C0%C7_%BC%BC%B0%E8%28%C2%FC_%BE%C6%B8%A7%B4%D9%BF%EE_%B0%F7%C0%CC%B6%F3%29-001-001.jpg?type=w800",
+      link: "https://youtu.be/nUTvfKu7q3c?feature=shared",
+      description: "하하",
+      code: "G",
     },
   ];
 
@@ -160,7 +184,7 @@ function FirstMain() {
         {songData.map((song, index) => (
           <FolderItem key={index}>
             <ImageContainer onClick={() => toggleReadModal(index)}>
-              <FolderImage src={song.img} alt={song.title} />
+              <FolderImage src={song.musicImageUrl} alt={song.musicName} />
               <EditIcon
                 onClick={(e) => {
                   e.stopPropagation();
@@ -182,7 +206,9 @@ function FirstMain() {
                 </DropdownWrapper>
               )}
             </ImageContainer>
-            <Input>{song.title}</Input>
+            <Input>
+              {song.musicName} {song.code} Key
+            </Input>
           </FolderItem>
         ))}
       </FolderContainer>
