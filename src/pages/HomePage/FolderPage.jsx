@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../components/Main/Header";
 import Menu from "../../components/Main/Menu";
 import DropdownMenu from "../../components/Main/DropdownMenu";
@@ -13,6 +13,7 @@ import { useParams } from "react-router-dom";
 import UploadModal from "../../components/Modal/UploadModal";
 import SwitchToggle from "../../components/Common/SwitchToggle";
 import styled from "styled-components";
+import axios from "axios";
 
 const FolderItem = styled.div`
   display: flex;
@@ -43,14 +44,30 @@ const ImageContainer = styled.div`
 
 function FolderPage() {
   const params = useParams();
+  const { month } = useParams();
+  const { content } = useParams();
   const folderName = params.content;
+  const [songData, setSongData] = useState([]);
 
-  const songData = [
-    {
-      title: "Song 1",
-      img: "https://mblogthumb-phinf.pstatic.net/20160524_274/lordship46_1464073042426hr2zD_JPEG/%C7%CF%B3%AA%B4%D4%C0%C7_%BC%BC%B0%E8%28%C2%FC_%BE%C6%B8%A7%B4%D9%BF%EE_%B0%F7%C0%CC%B6%F3%29-001-001.jpg?type=w800",
-    },
-  ];
+  const groupId = localStorage.getItem("groupId");
+  const path = `${month}-${content}`;
+
+  useEffect(() => {
+    // 주어진 그룹 아이디와 경로를 기반으로 서버에서 데이터를 가져오는 역할
+    const fetchData = async () => {
+      try {
+        const serverResponse = await axios.get(
+          `https://api.zionhann.shop/app/churchplus/church+/music/list/${groupId}/${path}`
+        );
+        setSongData(serverResponse.data.musics);
+      } catch (error) {
+        console.error("악보 불러오기 실패:", error);
+        setSongData([]);
+      }
+    };
+    // fetchData 함수 호출
+    fetchData();
+  }, [groupId, path]);
 
   return (
     <>
@@ -75,12 +92,15 @@ function FolderPage() {
           <Box>
             <FolderContainer>
               <UploadModal />
-              {songData.map((song, index) => (
-                <FolderItem key={index}>
+              {songData.map((musics) => (
+                <FolderItem key={musics.musicId}>
                   <ImageContainer>
-                    <FolderImage src={song.img} alt={song.title} />
+                    <FolderImage
+                      src={musics.musicImageUrl}
+                      alt={"악보 이미지"}
+                    />
                   </ImageContainer>
-                  <p>{song.title}</p>
+                  <p>{musics.musicName}</p>
                 </FolderItem>
               ))}
             </FolderContainer>
