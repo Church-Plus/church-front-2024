@@ -143,7 +143,7 @@ export default function CreateFolderModal({ handleAddFolder }) {
 
   return (
     <>
-      <AddBtn onClick={toggleCreateFolderModal}>
+      <AddBtn style={{ marginTop: "100px" }} onClick={toggleCreateFolderModal}>
         <img src={addIcon} alt="사진추가 아이콘" />
       </AddBtn>
       {createFolderModal && (
