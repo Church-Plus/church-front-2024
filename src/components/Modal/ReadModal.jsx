@@ -71,14 +71,17 @@ const ModalBody = styled.div`
 
 const Photo = styled.div`
   margin-right: 2rem;
-  width: 36rem;
+  width: 495px;
   height: 35.5rem;
-  overflow: hidden;
+
+  //이미지 영역 확인용
+  border: 1px solid #c5bd;
 
   img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    background-position: top; /* 이미지의 상단부터 보이도록 설정 */
   }
 `;
 

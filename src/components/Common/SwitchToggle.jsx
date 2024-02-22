@@ -31,7 +31,7 @@ const Slider = styled.span`
 
   //$toggled prop의 값에 따라 보더 색상 변경
   border: ${({ $toggled }) =>
-    $toggled ? "1px solid #595482" : "1px solid black"};
+    $toggled ? "1px solid #595482" : "1px solid #595482"};
 
   //텍스트를 나타내는 가상요소
   &:before {
@@ -43,7 +43,7 @@ const Slider = styled.span`
     /* 글자 세로 정렬 가운데에 위치하도록 */
     transform: translate(-50%, -50%);
     font-size: 20px;
-    color: ${({ $toggled }) => ($toggled ? "#fff" : "#000")};
+    color: ${({ $toggled }) => ($toggled ? "#fff" : "#595482")};
   }
 
   //가상 요소 after을 사용하여 슬라이더의 내부 원 정의
@@ -56,15 +56,15 @@ const Slider = styled.span`
     width: 29px;
     height: 29px;
     border-radius: 50%;
-    background: ${({ $toggled }) => ($toggled ? "#fff" : "#000")};
+    background: ${({ $toggled }) => ($toggled ? "#fff" : "#595482")};
     transition: left 0.2s, background-color 0.3s;
     box-shadow: 0 2px 4px 0 rgba(0, 35, 11, 0.2);
   }
 `;
 
-const SwitchToggle = () => {
+const SwitchToggle = ({ initialToggled = false }) => {
   //토글의 초기값은 폴더로 지정
-  const [toggled, setToggled] = useState(false);
+  const [toggled, setToggled] = useState(initialToggled);
 
   //토글 상태 반전
   const handleClick = () => {

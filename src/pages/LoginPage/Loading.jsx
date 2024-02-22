@@ -8,7 +8,7 @@ const LoginLoding = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 30px;
-  margin-top: 70%;
+  margin-top: 100px;
 `;
 
 const Loading = () => {

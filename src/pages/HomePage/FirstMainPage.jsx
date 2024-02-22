@@ -30,7 +30,7 @@ function FirstMainPage() {
           <FirstMain />
         </div>
         <ToggleLocation>
-          <SwitchToggle />
+          <SwitchToggle initialToggled={true} />
         </ToggleLocation>
       </BackgroundWrapper>
     </>
