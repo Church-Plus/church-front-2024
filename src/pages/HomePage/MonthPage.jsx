@@ -16,8 +16,8 @@ import { useNavigate, useParams, Link } from "react-router-dom";
 import CreateFolderModal from "../../components/Modal/CreateFolderModal";
 import FolderEdit from "../../assets/Icons/FolderEdit.svg";
 import SwitchToggle from "../../components/Common/SwitchToggle";
-// import getFolder from "../../apis/getFolder";
 import axios from "axios";
+import SelectUpdateDelete from "../../components/Common/SelectUpdateDelete";
 
 function MonthPage() {
   const params = useParams();
@@ -26,34 +26,37 @@ function MonthPage() {
   const [folders, setFolders] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newFolderName, setNewFolderName] = useState("");
+  const [reloadPage, setReloadPage] = useState(false); // 상태 추가
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const serverResponse = await axios.get(
-          `https://api.zionhann.shop/app/churchplus/church+/folder/list/${month}`
-        );
-
-        console.log("폴더가 정상적으로 불러와짐", serverResponse);
-
-        setFolders(serverResponse.data.folders);
-      } catch (error) {
-        console.error("폴더 불러오기 실패:", error);
-      }
-    };
-
+    navigate(`/monthPage/${month}`);
     fetchData();
-  }, []);
+  }, [month, navigate]);
+
+  useEffect(() => {
+    if (reloadPage) {
+      fetchData();
+      setReloadPage(false);
+    }
+  }, [reloadPage]);
+
+  const fetchData = async () => {
+    try {
+      const serverResponse = await axios.get(
+        `https://api.zionhann.shop/app/churchplus/church+/folder/list/${month}`
+      );
+      setFolders(serverResponse.data.folders);
+      console.log("month:", month);
+    } catch (error) {
+      console.error("폴더 불러오기 실패:", error);
+      setFolders([]);
+    }
+  };
 
   const handleAddFolder = (folders) => {
-    const newFolder = {
-      id: folders.folderId, // 현재 폴더 개수에 1을 더한 값으로 id 설정
-      content: folders.folderName, // 새로운 폴더 내용
-    };
-    console.log(folders);
-    setFolders([newFolder, ...folders]);
     setIsModalOpen(false);
     setNewFolderName(folders.folderName);
+    setReloadPage(true);
   };
 
   return (
@@ -95,30 +98,35 @@ function MonthPage() {
                 </FolderBox>
                 <Input>폴더 이름</Input>
               </div>
-              {folders.map((folder) => (
-                <Link
-                  key={folder.folderId}
-                  to={`/monthPage/${month}/${folder.folderName}`}
-                  style={{ textDecoration: "none", color: "black" }}
-                >
+              {folders.length > 0 ? (
+                folders.map((folder) => (
                   <div>
                     <FolderTop />
-                    <FolderBox>
-                      <img
-                        src={FolderEdit}
-                        alt="폴더 수정"
-                        style={{
-                          width: "20px",
-                          height: "20px",
-                          paddingTop: "25px",
-                          paddingRight: "25px",
-                        }}
-                      />
-                    </FolderBox>
+                    <Link
+                      key={folder.folderId}
+                      to={`/monthPage/${month}/${folder.folderName}`}
+                      style={{ textDecoration: "none", color: "black" }}
+                    >
+                      <FolderBox>
+                        <SelectUpdateDelete onclick={console.log("click")} />
+                        {/* <img
+                          src={FolderEdit}
+                          alt="폴더 수정"
+                          style={{
+                            width: "20px",
+                            height: "20px",
+                            paddingTop: "25px",
+                            paddingRight: "25px",
+                          }}
+                        /> */}
+                      </FolderBox>
+                    </Link>
                     <Input key={folder.folderId}>{folder.folderName}</Input>
                   </div>
-                </Link>
-              ))}
+                ))
+              ) : (
+                <div>폴더가 없습니다.</div>
+              )}
             </FolderContainer>
           </Box>
         </Wrapper>
