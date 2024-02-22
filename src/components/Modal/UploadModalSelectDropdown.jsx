@@ -6,10 +6,6 @@ const Wrapper = styled.div`
   display: flex;
   align-items: left;
   flex-direction: column;
-  /* margin-top: 2rem;
-  margin-left: 5rem; */
-  /* width: 280px; */
-  /* height: 10vh; */
   font-size: 20px;
   color: #555555;
   font-weight: 200;
@@ -28,17 +24,12 @@ const KeyDropdown = styled.div`
   background-color: #efeff0;
   margin-bottom: 10px;
 
-  /* margin-bottom: 0.3rem; */
-  /* text-align: center; */
-
   cursor: pointer;
 
   img {
     height: 0.5rem;
     padding-top: 0.5rem;
     padding-left: 0.5rem;
-
-    /* float: right; */
   }
 `;
 
@@ -92,7 +83,7 @@ const Span = styled.span`
   border: 1px solid #281a47;
 `;
 
-function UploadModalSelectDropdown() {
+function UploadModalSelectDropdown({ value, onChange, name }) {
   const [isActive, setIsActive] = useState(false);
   const [selected, setSelected] = useState({ label: "", value: "" });
   const keyOptions1 = [
@@ -113,10 +104,16 @@ function UploadModalSelectDropdown() {
     { label: "B", value: 12 },
   ];
 
+  const handleItemClick = (keyOption) => {
+    setSelected(keyOption);
+    setIsActive(false);
+    onChange({ target: { name, value: keyOption.label } });
+  };
+
   return (
     <Wrapper>
       <div>
-        <KeyDropdown onClick={(e) => setIsActive(!isActive)}>
+        <KeyDropdown onClick={() => setIsActive(!isActive)}>
           {selected.label !== "" ? selected.label : ""} 곡 Key
           <span>
             <img src={vectorIcons} alt="벡터 아이콘" />
@@ -124,39 +121,31 @@ function UploadModalSelectDropdown() {
         </KeyDropdown>
         <KeyItems style={{ display: isActive ? "block" : "none" }}>
           {isActive && (
-            <KeyItemTop>
-              {keyOptions1.map((keyOption) => (
-                <Span
-                  key={keyOption.value} // key 속성은 고유해야 함.
-                  onClick={(e) => {
-                    setSelected(keyOption);
-                    setIsActive(false);
-                  }}
-                >
-                  {keyOption.label}
-                </Span>
-              ))}
-            </KeyItemTop>
-          )}
-          {isActive && (
-            <KeyItemBottom>
-              {keyOptions2.map((keyOption) => (
-                <Span
-                  key={keyOption.value} // key 속성은 고유해야 하므로 keyOption.value로 변경
-                  onClick={(e) => {
-                    setSelected(keyOption);
-                    setIsActive(false);
-                  }}
-                >
-                  {keyOption.label}
-                </Span>
-              ))}
-            </KeyItemBottom>
+            <>
+              <KeyItemTop>
+                {keyOptions1.map((keyOption) => (
+                  <Span
+                    key={keyOption.value}
+                    onClick={() => handleItemClick(keyOption)}
+                  >
+                    {keyOption.label}
+                  </Span>
+                ))}
+              </KeyItemTop>
+              <KeyItemBottom>
+                {keyOptions2.map((keyOption) => (
+                  <Span
+                    key={keyOption.value}
+                    onClick={() => handleItemClick(keyOption)}
+                  >
+                    {keyOption.label}
+                  </Span>
+                ))}
+              </KeyItemBottom>
+            </>
           )}
         </KeyItems>
       </div>
-      {/* 선택된 keyOption의 value 표시 */}
-      {/* <div>{selected.label && <p>Selected value: {selected.value}</p>}</div> */}
     </Wrapper>
   );
 }
