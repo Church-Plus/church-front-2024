@@ -62,9 +62,9 @@ const Slider = styled.span`
   }
 `;
 
-const SwitchToggle = () => {
+const SwitchToggle = ({ initialToggled = false }) => {
   //토글의 초기값은 폴더로 지정
-  const [toggled, setToggled] = useState(false);
+  const [toggled, setToggled] = useState(initialToggled);
 
   //토글 상태 반전
   const handleClick = () => {
