@@ -11,6 +11,7 @@ import {
 } from "../../components/Common/Common";
 import { useParams } from "react-router-dom";
 import UploadModal from "../../components/Modal/UploadModal";
+import SwitchToggle from "../../components/Common/SwitchToggle";
 
 function FolderPage() {
   const params = useParams();
@@ -23,8 +24,16 @@ function FolderPage() {
           <Menu />
           <DropdownMenu />
         </div>
-        <Wrapper>
-          <div>
+        <Wrapper
+          style={{
+            alignItems: "center",
+          }}
+        >
+          <div
+            style={{
+              width: "800px",
+            }}
+          >
             <Smallbox>{folderName}</Smallbox>
           </div>
           <Box>
@@ -33,6 +42,9 @@ function FolderPage() {
             </FolderContainer>
           </Box>
         </Wrapper>
+        <div style={{ paddingRight: "2.5rem", visibility: "hidden" }}>
+          <SwitchToggle />
+        </div>
       </BackgroundWrapper>
     </>
   );
