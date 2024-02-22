@@ -104,17 +104,24 @@ function FirstMain() {
       code: "G",
     },
     {
-      musicName: "주님의 정원",
+      musicName: "온 맘 다해",
       musicImageUrl:
-        "https://mblogthumb-phinf.pstatic.net/20160524_274/lordship46_1464073042426hr2zD_JPEG/%C7%CF%B3%AA%B4%D4%C0%C7_%BC%BC%B0%E8%28%C2%FC_%BE%C6%B8%A7%B4%D9%BF%EE_%B0%F7%C0%CC%B6%F3%29-001-001.jpg?type=w800",
+        "https://mblogthumb-phinf.pstatic.net/MjAyMjA1MDNfMTMg/MDAxNjUxNTgzMzg5OTA0.eNV7yEOlI8uZEtj4_9ubRvcqr_ukcAa-sHhevD0fkLEg.FlCPv_9Axi97w1QbxHxMMWo0XnAsbKZ_IcItez3SLkEg.PNG.joseph1040/%EC%98%A8%EB%A7%98%EB%8B%A4%ED%95%B4.png?type=w800",
       link: "https://youtu.be/nUTvfKu7q3c?feature=shared",
       description: "네에에",
       code: "G",
     },
     {
-      musicName: "주는 존귀하신 분",
+      musicName: "사망의 그늘에 앉아",
+      musicImageUrl: "https://t1.daumcdn.net/cfile/tistory/99713A485FDFE5A90E",
+      link: "https://youtu.be/nUTvfKu7q3c?feature=shared",
+      description: "하하",
+      code: "G",
+    },
+    {
+      musicName: "당신은 영광의 왕",
       musicImageUrl:
-        "https://mblogthumb-phinf.pstatic.net/20160524_274/lordship46_1464073042426hr2zD_JPEG/%C7%CF%B3%AA%B4%D4%C0%C7_%BC%BC%B0%E8%28%C2%FC_%BE%C6%B8%A7%B4%D9%BF%EE_%B0%F7%C0%CC%B6%F3%29-001-001.jpg?type=w800",
+        "https://blog.kakaocdn.net/dn/kzqmh/btqzPmnYW2J/1dk0cT0dJtHii5Cez2p3GK/img.gif",
       link: "https://youtu.be/nUTvfKu7q3c?feature=shared",
       description: "하하",
       code: "G",
@@ -122,15 +129,7 @@ function FirstMain() {
     {
       musicName: "주는 존귀하신 분",
       musicImageUrl:
-        "https://mblogthumb-phinf.pstatic.net/20160524_274/lordship46_1464073042426hr2zD_JPEG/%C7%CF%B3%AA%B4%D4%C0%C7_%BC%BC%B0%E8%28%C2%FC_%BE%C6%B8%A7%B4%D9%BF%EE_%B0%F7%C0%CC%B6%F3%29-001-001.jpg?type=w800",
-      link: "https://youtu.be/nUTvfKu7q3c?feature=shared",
-      description: "하하",
-      code: "G",
-    },
-    {
-      musicName: "주는 존귀하신 분",
-      musicImageUrl:
-        "https://mblogthumb-phinf.pstatic.net/20160524_274/lordship46_1464073042426hr2zD_JPEG/%C7%CF%B3%AA%B4%D4%C0%C7_%BC%BC%B0%E8%28%C2%FC_%BE%C6%B8%A7%B4%D9%BF%EE_%B0%F7%C0%CC%B6%F3%29-001-001.jpg?type=w800",
+        "https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FPmxLv%2FbtscQmw9dI3%2F1Y2JOBuQctYgBowrmi10Z0%2Fimg.jpg",
       link: "https://youtu.be/nUTvfKu7q3c?feature=shared",
       description: "하하",
       code: "G",
