@@ -5,6 +5,8 @@ import addIcon from "../../assets/Icons/add.svg";
 import XButton from "../../assets/Icons/XButton.svg";
 import addMusicSheet from "../../assets/Icons/addMusicSheet.svg";
 import UploadModalSelectDropdown from "./UploadModalSelectDropdown";
+import createMusic from "../../apis/createMusic";
+import { useParams } from "react-router-dom";
 
 const modalStyles = `
   width: 100vw;
@@ -193,13 +195,15 @@ const SubmitButton = styled.button`
 `;
 
 export default function UploadModal() {
+  const { month } = useParams();
+  const { content } = useParams();
   const [uploadModal, setUploadModal] = useState(false);
   const [previewUrl, setPreviewUrl] = useState(null);
   const [formData, setFormData] = useState({
-    title: "",
-    videoLink: "",
-    songCode: "",
-    notice: "",
+    musicName: "",
+    code: "",
+    link: "",
+    description: "",
   });
   const fileInputRef = useRef(null);
 
@@ -213,7 +217,16 @@ export default function UploadModal() {
 
   const toggleUploadModal = () => {
     setUploadModal((prevState) => !prevState);
-    setFormData("");
+    setFormData({
+      musicName: "",
+      code: "",
+      link: "",
+      description: "",
+    });
+    setPreviewUrl(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = null; // Clear file input
+    }
   };
 
   const handleLeftBodyClick = () => {
@@ -225,27 +238,54 @@ export default function UploadModal() {
     const reader = new FileReader();
     reader.onload = () => {
       setPreviewUrl(reader.result);
+      //사용자가 업로드한 이미지 확인
+      console.log("Uploaded image:", reader.result);
     };
     reader.readAsDataURL(file);
   };
 
-  const handleKeyPress = (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault(); // 기본 Enter 동작 방지
-      setFormData((prevState) => ({
-        ...prevState,
-        notice: prevState.notice + "\n", // 줄바꿈 추가
-      }));
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+
+    console.log(`${name}: ${value}`);
+  };
+
+  const handleSubmit = async () => {
+    console.log(formData);
+    try {
+      const { musicName, code, link, description } = formData;
+      //만일 사용자가 폴더 이름에 -를 사용할 경우 에러 발생할 수 있음
+      const path = `${month}/${content}`;
+      const formattedPath = path.replace("/", "-");
+      const groupId = localStorage.getItem("groupId");
+
+      const formDataToSend = new FormData();
+      formDataToSend.append("musicName", musicName);
+      formDataToSend.append("code", code);
+      formDataToSend.append("link", link);
+      formDataToSend.append("description", description);
+      formDataToSend.append("groupId", groupId);
+      formDataToSend.append("path", formattedPath);
+      if (fileInputRef.current.files.length > 0) {
+        formDataToSend.append("image", fileInputRef.current.files[0]);
+      }
+
+      // createMusic 함수 호출
+      await createMusic(formDataToSend);
+
+      toggleUploadModal();
+    } catch (error) {
+      // 에러 처리
+      console.error("악보 추가 실패:", error);
+      // 에러 상태에 따라 사용자에게 알림을 제공하는 등의 추가 작업 수행 가능
     }
   };
 
-  const handleInputChange = (e) => {
-    setFormData(e.target.value);
-  };
-
-  const handleSubmit = () => {
-    toggleUploadModal();
-  };
+  console.log(formData);
 
   return (
     <>
@@ -287,22 +327,39 @@ export default function UploadModal() {
                 <input
                   type="file"
                   style={{ display: "none" }}
-                  ref={fileInputRef}
                   onChange={handleFileInputChange}
+                  ref={fileInputRef}
                 />
               </LeftBody>
               <RightBody>
-                <SongTitle placeholder="곡제목" />
+                <SongTitle
+                  placeholder="곡제목"
+                  value={formData.musicName}
+                  onChange={handleInputChange}
+                  name="musicName"
+                />
                 <UploadModalSelectDropdown
                   placeholder={"시작 코드"}
+                  value={formData.code}
                   onChange={handleInputChange}
-                ></UploadModalSelectDropdown>
-                <VideoLink placeholder="영상링크" />
-
-                <Notice type="textarea" placeholder="메모"></Notice>
+                  name="code"
+                />
+                <VideoLink
+                  placeholder="영상링크"
+                  value={formData.link}
+                  onChange={handleInputChange}
+                  name="link"
+                />
+                <Notice
+                  type="textarea"
+                  placeholder="메모"
+                  value={formData.description}
+                  onChange={handleInputChange}
+                  name="description"
+                />
               </RightBody>
             </ModalBody>
-            <SubmitButton onClick={toggleUploadModal}>저장</SubmitButton>
+            <SubmitButton onClick={handleSubmit}>저장</SubmitButton>
           </ModalContent>
         </Modal>
       )}
