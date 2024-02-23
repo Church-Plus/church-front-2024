@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // 새로운 그룹을 생성하는 API
-const createFolder = async (folderName, path, memberId, groupId) => {
+const createFolder = async (folderName, path, groupId) => {
   try {
     const serverResponse = await axios.post(
       // "https://api.zionhann.shop/app/churchplus/church+/folder/create",
@@ -10,7 +10,6 @@ const createFolder = async (folderName, path, memberId, groupId) => {
       {
         folderName,
         path,
-        memberId,
         groupId,
       }
     );
