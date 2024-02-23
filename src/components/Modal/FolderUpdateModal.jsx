@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import XButton from "../../assets/Icons/XButton.svg";
-import BinIcons from "../../assets/Icons/bin.svg";
+import EditPencilIcons from "../../assets/Icons/editpencil.svg";
 import axios from "axios";
 
 const modalStyles = `
@@ -60,7 +60,7 @@ const ModalContent = styled.div`
   overflow: hidden;
 `;
 
-const InputFolderName = styled.div`
+const InputFolderName = styled.input`
   margin-top: 23px;
   width: 500px;
   border: none;
@@ -71,7 +71,7 @@ const InputFolderName = styled.div`
   font-weight: 600;
   display: flex;
   justify-content: center;
-  margin-left: 97px;
+  /* margin-left: 97px; */
   img {
     margin-left: 71px;
     margin-bottom: 10px;
@@ -123,8 +123,9 @@ const CreateButton = styled.button`
   cursor: pointer;
 `;
 
-export default function DeleteFileModal({ musicId }) {
+export default function FolderUpdateModal({ folderId, folderName }) {
   const [createFolderModal, setCreateFolderModal] = useState(false);
+  const [inputValue, setInputValue] = useState(folderName);
 
   const toggleCreateFolderModal = () => {
     setCreateFolderModal((prevState) => !prevState);
@@ -138,38 +139,48 @@ export default function DeleteFileModal({ musicId }) {
     }
   }, [createFolderModal]);
 
+  const handleChange = (event) => {
+    setInputValue(event.target.value); // 입력값을 상태에 업데이트
+  };
+
   const handleSubmit = async () => {
     try {
-      await axios.delete(
-        `${process.env.REACT_APP_HOST_URL}/church+/music/${musicId}`
+      await axios.patch(
+        `${process.env.REACT_APP_HOST_URL}/church+/folder/${folderId}`,
+        {
+          folderName: inputValue, // 수정된 폴더 이름을 사용
+        }
       );
-      console.log("파일이 성공적으로 삭제되었습니다.");
+      console.log("폴더가 성공적으로 수정되었습니다.");
       toggleCreateFolderModal();
       window.location.reload();
     } catch (error) {
-      console.error("파일 삭제에 실패했습니다:", error);
-      console.log("musicId:", musicId);
+      console.error("폴더 수정에 실패했습니다.:", error);
+      console.log("folderName:", inputValue); // 수정된 폴더 이름 출력
     }
   };
 
   return (
     <>
       <ModalOpen onClick={toggleCreateFolderModal}>
-        <img src={BinIcons} alt="" />
-        <div>삭제하기</div>
+        <img src={EditPencilIcons} alt="" />
+        <div>수정하기</div>
       </ModalOpen>
       {createFolderModal && (
         <Modal>
           <Overlay onClick={toggleCreateFolderModal} />
           <ModalContent>
             <div>
-              <InputFolderName>
-                파일을 삭제하시겠습니까?
-                <img
+              <InputFolderName
+                type="text"
+                value={inputValue}
+                onChange={handleChange}
+              >
+                {/* <img
                   src={XButton}
                   alt="엑스 버튼"
                   onClick={toggleCreateFolderModal}
-                />
+                /> */}
               </InputFolderName>
             </div>
             <Smallbox />
@@ -178,7 +189,7 @@ export default function DeleteFileModal({ musicId }) {
               <CancelButton onClick={toggleCreateFolderModal}>
                 취소
               </CancelButton>
-              <CreateButton onClick={handleSubmit}>확인</CreateButton>
+              <CreateButton onClick={handleSubmit}>수정</CreateButton>
             </ButtonContainer>
           </ModalContent>
         </Modal>

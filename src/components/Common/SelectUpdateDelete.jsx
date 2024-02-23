@@ -4,6 +4,7 @@ import EditPencilIcons from "../../assets/Icons/editpencil.svg";
 import BinIcons from "../../assets/Icons/bin.svg";
 import XButton from "../../assets/Icons/XButton.svg";
 import axios from "axios";
+import FolderUpdateModal from "../Modal/FolderUpdateModal";
 
 const DropdownWrapper = styled.div`
   position: absolute;
@@ -12,24 +13,6 @@ const DropdownWrapper = styled.div`
   width: 200px;
   box-shadow: 2px 2px 2px 2px grey;
   z-index: 3;
-`;
-
-const Option = styled.div`
-  display: flex;
-  align-items: center;
-  height: 40px;
-  text-align: left;
-  cursor: pointer;
-  border: none;
-  background-color: white;
-
-  &:hover {
-    background-color: #dfdfdf;
-  }
-
-  img {
-    padding: 10px;
-  }
 `;
 
 const modalStyles = `
@@ -168,7 +151,9 @@ function FolderDeleteModal({ folderId }) {
 
   const handleSubmit = async () => {
     try {
-      await axios.delete(`http://localhost:8080/church+/folder/${folderId}`);
+      await axios.delete(
+        `${process.env.REACT_APP_HOST_URL}/church+/folder/${folderId}`
+      );
       console.log("폴더가 성공적으로 삭제되었습니다.");
       toggleCreateFolderModal();
       window.location.reload();
@@ -204,7 +189,7 @@ function FolderDeleteModal({ folderId }) {
               <CancelButton onClick={toggleCreateFolderModal}>
                 취소
               </CancelButton>
-              <CreateButton onClick={handleSubmit}>생성</CreateButton>
+              <CreateButton onClick={handleSubmit}>확인</CreateButton>
             </ButtonContainer>
           </ModalContent>
         </Modal>
@@ -213,7 +198,7 @@ function FolderDeleteModal({ folderId }) {
   );
 }
 
-function SelectUpdateDelete({ folderId }) {
+function SelectUpdateDelete({ folderId, folderName }) {
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -252,11 +237,8 @@ function SelectUpdateDelete({ folderId }) {
 
         {showDropdown && (
           <DropdownWrapper ref={dropdownRef}>
+            <FolderUpdateModal folderId={folderId} folderName={folderName} />
             <FolderDeleteModal onClick={handleModalClick} folderId={folderId} />
-            <Option onClick={handleDropdownItemClick}>
-              <img src={BinIcons} alt="휴지통 아이콘" />
-              <div>삭제하기</div>
-            </Option>
           </DropdownWrapper>
         )}
       </div>

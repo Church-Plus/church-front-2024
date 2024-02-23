@@ -15,6 +15,7 @@ import SwitchToggle from "../../components/Common/SwitchToggle";
 import styled from "styled-components";
 import axios from "axios";
 import ReadModal from "../../components/Modal/ReadModal";
+import FileEditDropdown from "../../components/Common/FileEditDropdown";
 
 const FolderItem = styled.div`
   display: flex;
@@ -40,6 +41,11 @@ const FolderImage = styled.img`
 const ImageContainer = styled.div`
   position: relative;
   width: fit-content;
+`;
+
+const FileNameEditButton = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 
 function FolderPage() {
@@ -70,11 +76,12 @@ function FolderPage() {
   const fetchData = async () => {
     try {
       const serverResponse = await axios.get(
-        // `https://api.zionhann.shop/app/churchplus/church+/music/list/${groupId}/${path}`
-        `http://localhost:8080/church+/music/list/${groupId}/${path}`
+        // `${process.env.REACT_APP_HOST_URL}/church+/music/list/${groupId}/${path}`
+        `${process.env.REACT_APP_HOST_URL}/church+/music/list/${groupId}/${path}`
       );
       setSongData(serverResponse.data.musics);
       console.log("악보 불러오기 성공");
+      console.log("songData:", songData);
     } catch (error) {
       console.error("악보 불러오기 실패:", error);
       setSongData([]);
@@ -114,18 +121,26 @@ function FolderPage() {
             <FolderContainer style={{ paddingTop: "100px" }}>
               <UploadModal />
               {songData.map((music) => (
-                <FolderItem
-                  key={music.musicId}
-                  onClick={() => handleSongClick(music)}
-                >
-                  <ImageContainer>
-                    <FolderImage
-                      src={music.musicImageUrl}
-                      alt={"악보 이미지"}
+                <div>
+                  <FolderItem
+                    key={music.musicId}
+                    onClick={() => handleSongClick(music)}
+                  >
+                    <ImageContainer>
+                      <FolderImage
+                        src={music.musicImageUrl}
+                        alt={"악보 이미지"}
+                      />
+                    </ImageContainer>
+                  </FolderItem>
+                  <FileNameEditButton>
+                    {music.musicName}
+                    <FileEditDropdown
+                      musicId={music.musicId}
+                      musicName={music.musicName}
                     />
-                  </ImageContainer>
-                  <p>{music.musicName}</p>
-                </FolderItem>
+                  </FileNameEditButton>
+                </div>
               ))}
             </FolderContainer>
           </Box>

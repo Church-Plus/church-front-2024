@@ -124,7 +124,6 @@ export default function CreateFolderModal({ handleAddFolder }) {
 
   const handleSubmit = async () => {
     const path = month;
-    const memberId = localStorage.getItem("memberId");
     const groupId = localStorage.getItem("groupId");
     console.log(path);
     if (!folderName.trim()) {
