@@ -31,10 +31,10 @@ const FolderImage = styled.img`
   border-radius: 30px;
   cursor: pointer;
 
-  filter: opacity(0.7) drop-shadow(0 0 0 #2e0b70);
+  filter: opacity(0.7) drop-shadow(0 0 0 #2c0770ce);
 
   &:hover {
-    filter: opacity(0.8) drop-shadow(0 0 0 #2e0084);
+    filter: opacity(0.8) drop-shadow(0 0 0 #37215f);
   }
 `;
 
