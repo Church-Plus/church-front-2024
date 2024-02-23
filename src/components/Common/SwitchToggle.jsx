@@ -28,6 +28,7 @@ const Slider = styled.span`
   //요소의 위치를 상대적으로 지정
   position: relative;
   transition: background-color 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 
   //$toggled prop의 값에 따라 보더 색상 변경
   border: ${({ $toggled }) =>
@@ -43,6 +44,7 @@ const Slider = styled.span`
     /* 글자 세로 정렬 가운데에 위치하도록 */
     transform: translate(-50%, -50%);
     font-size: 20px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
     color: ${({ $toggled }) => ($toggled ? "#fff" : "#595482")};
   }
 
@@ -52,13 +54,13 @@ const Slider = styled.span`
     content: "";
     position: absolute;
     top: 7px;
-    left: ${({ $toggled }) => ($toggled ? "53px" : "6px")};
+    left: ${({ $toggled }) => ($toggled ? "53px" : "7px")};
     width: 29px;
     height: 29px;
     border-radius: 50%;
     background: ${({ $toggled }) => ($toggled ? "#fff" : "#595482")};
     transition: left 0.2s, background-color 0.3s;
-    box-shadow: 0 2px 4px 0 rgba(0, 35, 11, 0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
   }
 `;
 
