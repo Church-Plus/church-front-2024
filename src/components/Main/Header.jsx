@@ -16,6 +16,7 @@ const Wrapper = styled.div`
   top: 0px;
   background-color: white;
   z-index: 2;
+  box-shadow: 8px 8px 8px rgba(232, 232, 239, 0.2);
 `;
 
 const HeaderItems = styled.div`

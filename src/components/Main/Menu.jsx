@@ -7,7 +7,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   border-bottom: none;
-  width: 350px;
+  width: 326px;
   border-right: 2px solid rgba(198, 196, 216, 0.1);
 `;
 
@@ -19,7 +19,7 @@ const ProfileIcon = styled.div`
   padding-bottom: 12px;
 
   img {
-    height: 7.5rem;
+    height: 119px;
   }
 `;
 
@@ -60,7 +60,7 @@ function Menu() {
         <img src={profileIcon} alt="프로파일 아이콘" />
       </ProfileIcon>
       <Profile>
-        {userData.nickname}|{userData.position}
+        {userData.nickname} | {userData.position}
       </Profile>
     </Wrapper>
   );
