@@ -109,7 +109,7 @@ function MonthPage() {
                       <FolderTop />
                     </Link>
                     <FolderBox>
-                      <SelectUpdateDelete />
+                      <SelectUpdateDelete folderId={folder.folderId} />
                     </FolderBox>
 
                     <Input>{folder.folderName}</Input>
