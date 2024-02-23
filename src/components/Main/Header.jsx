@@ -44,6 +44,7 @@ const ChurchLogo = styled.div`
 
 const SearchBar = styled.div`
   position: relative;
+  padding-left: 75px;
 
   input {
     width: 43rem;
@@ -108,17 +109,19 @@ function Header({ setSearch }) {
           </ChurchLogo>
         </HeaderItem>
         <HeaderItem>
-          <SearchBar>
-            <input
-              type="text"
-              name="searchMusicName"
-              value={searchInput}
-              onChange={handleInputChange}
-            />
-            <SearchBtn type="submit">
-              <img src={searchIcons} alt="검색 아이콘" />
-            </SearchBtn>
-          </SearchBar>
+          <div style={{ width: "770px" }}>
+            <SearchBar>
+              <input
+                type="text"
+                name="searchMusicName"
+                value={searchInput}
+                onChange={handleInputChange}
+              />
+              <SearchBtn type="submit">
+                <img src={searchIcons} alt="검색 아이콘" />
+              </SearchBtn>
+            </SearchBar>
+          </div>
         </HeaderItem>
         <HeaderItem>
           <Icons>
