@@ -18,6 +18,12 @@ const ToggleLocation = styled.div`
 
 function FirstMainPage() {
   const [searchMusicName, setSearchMusicName] = useState("");
+  const [selectedKeyCode, setSelectedKeyCode] = useState(null); // 선택된 키 코드 상태
+
+  // const handleSetSelectedKeyCode = (keyCode) => {
+  //   setSelectedKeyCode(keyCode);
+  //   console.log("Selected Key Code:", keyCode); // 선택된 키 코드를 콘솔 출력, 키 레이블 잘 가져와짐
+  // };
 
   return (
     <>
@@ -28,8 +34,11 @@ function FirstMainPage() {
           <DropdownMenu />
         </div>
         <div>
-          <SelectDropdown />
-          <FirstMain searchMusicName={searchMusicName} />
+          <SelectDropdown setSelectedKey={setSelectedKeyCode} />
+          <FirstMain
+            searchMusicName={searchMusicName}
+            selectedKeyCode={selectedKeyCode}
+          />
         </div>
         <ToggleLocation>
           <SwitchToggle initialToggled={true} />

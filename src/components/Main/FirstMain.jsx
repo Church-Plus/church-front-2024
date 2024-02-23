@@ -94,14 +94,22 @@ const Option = styled.div`
   }
 `;
 
-function FirstMain({ searchMusicName }) {
+function FirstMain({ searchMusicName, selectedKeyCode }) {
   const groupId = localStorage.getItem("groupId");
   const [songData, setSongData] = useState([]);
   const [filteredSongData, setFilteredSongData] = useState([]);
 
   useEffect(() => {
+    console.log("Selected Key Code in FirstMain:", selectedKeyCode);
+  }, [selectedKeyCode]);
+
+  useEffect(() => {
     fetchData();
   }, [groupId]);
+
+  useEffect(() => {
+    console.log("selectedKeyCode:", selectedKeyCode);
+  }, [selectedKeyCode]);
 
   const fetchData = async () => {
     try {
@@ -119,21 +127,28 @@ function FirstMain({ searchMusicName }) {
   };
 
   useEffect(() => {
-    // 검색어가 입력되지 않은 경우에는 모든 악보 데이터를 보여줌
-    if (!searchMusicName) {
-      setFilteredSongData(songData);
-    } else {
-      // 검색어가 입력된 경우에는 검색어에 맞는 악보 데이터만 필터링하여 보여줌
-      const filteredData = songData.filter(
-        (music) =>
-          music.musicName
-            .toLowerCase()
-            .includes(searchMusicName.toLowerCase()) ||
-          music.code.toLowerCase().includes(searchMusicName.toLowerCase())
-      );
-      setFilteredSongData(filteredData);
-    }
-  }, [songData, searchMusicName]);
+    // 검색어 및 선택된 키 코드가 변경될 때마다 필터링
+    const filterData = () => {
+      if (!searchMusicName && !selectedKeyCode) {
+        setFilteredSongData(songData);
+      } else {
+        const filteredData = songData.filter((music) => {
+          const bySearch =
+            !searchMusicName ||
+            music.musicName
+              .toLowerCase()
+              .includes(searchMusicName.toLowerCase()) ||
+            music.code.toLowerCase().includes(searchMusicName.toLowerCase());
+          const byKey = !selectedKeyCode || music.code === selectedKeyCode;
+          return bySearch && byKey;
+        });
+        setFilteredSongData(filteredData);
+      }
+    };
+    filterData();
+  }, [songData, searchMusicName, selectedKeyCode]);
+
+  console.log("selectedKeyCode:", selectedKeyCode);
 
   const [readModal, setReadModal] = useState(false);
   const [selectedSongIndex, setSelectedSongIndex] = useState(null);
