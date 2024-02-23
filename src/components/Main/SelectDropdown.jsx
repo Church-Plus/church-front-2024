@@ -126,12 +126,16 @@ function SelectDropdown({ setSelectedKey }) {
   ];
 
   const handleSelect = (keyOption) => {
-    setSelected(keyOption);
-    // console.log(keyOption); 값은 잘 찍힘.
-    setSelectedKey(keyOption.label); // 선택된 키 코드를 상위 컴포넌트로 전달
+    if (selected.label === keyOption.label) {
+      // 이미 선택된 레이블을 다시 선택한 경우 선택을 해제
+      setSelected({ label: "", value: "" });
+      setSelectedKey(""); // 선택이 해제되었음을 상위 컴포넌트에 알림
+    } else {
+      setSelected(keyOption);
+      setSelectedKey(keyOption.label); // 선택한 키 레이블을 상위 컴포넌트로 전달
+    }
     setIsActive(false);
   };
-
   return (
     <Wrapper>
       <div ref={dropdownRef}>
