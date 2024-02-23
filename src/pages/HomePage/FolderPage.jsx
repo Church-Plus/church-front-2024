@@ -77,6 +77,14 @@ function FolderPage() {
   }, [reloadPage]);
 
   useEffect(() => {
+    if (showReadModal) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [showReadModal]);
+
+  useEffect(() => {
     // 검색어가 변경될 때마다 해당하는 폴더만 필터링하여 filteredSongData 상태 업데이트
     if (searchMusicName.trim() === "") {
       setFilteredSongData(songData); // 검색어가 비어있으면 모든 폴더를 보여줌

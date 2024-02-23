@@ -92,6 +92,11 @@ const Link = styled.div`
   margin-bottom: 0.8rem;
   justify-content: left;
   cursor: pointer;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    display: none; /* 크롬, 사파리, 오페라, 엣지 */
+  }
 
   div {
     color: #281a47;
@@ -110,6 +115,12 @@ const Text = styled.div`
   text-align: center;
   padding: 1rem;
   padding-top: 2rem;
+  white-space: pre-line; /* 엔터를 <br> 태그로 변환하여 줄 바꿈 처리 */
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    display: none; /* 크롬, 사파리, 오페라, 엣지 */
+  }
 `;
 
 const CloseModal = styled.div`
