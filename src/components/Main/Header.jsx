@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Logo from "../../assets/Logos/C+_Logo.svg";
 import userIcons from "../../assets/Icons/user.svg";
@@ -84,8 +84,17 @@ const Icons = styled.div`
   }
 `;
 
-function Header() {
+function Header({ setSearch }) {
   const navigate = useNavigate();
+  const [searchInput, setSearchInput] = useState("");
+
+  const handleInputChange = (e) => {
+    const inputValue = e.target.value;
+    setSearchInput(inputValue);
+    setSearch(inputValue);
+    // 사용자가 입력할 때마다 실시간으로 입력받기
+  };
+
   const handleLogoClick = () => {
     navigate("/main");
   };
@@ -99,7 +108,12 @@ function Header() {
         </HeaderItem>
         <HeaderItem>
           <SearchBar>
-            <input type="text" name="searchText" />
+            <input
+              type="text"
+              name="searchMusicName"
+              value={searchInput}
+              onChange={handleInputChange}
+            />
             <SearchBtn type="submit">
               <img src={searchIcons} alt="검색 아이콘" />
             </SearchBtn>

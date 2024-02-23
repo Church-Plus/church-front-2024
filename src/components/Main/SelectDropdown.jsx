@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import vectorIcons from "../../assets/Icons/Vector.svg";
 
@@ -85,9 +85,28 @@ const Span = styled.span`
   border: 1px solid #281a47;
 `;
 
-function SelectDropdown() {
+function SelectDropdown({ setSelectedKey }) {
   const [isActive, setIsActive] = useState(false);
   const [selected, setSelected] = useState({ label: "", value: "" });
+  const dropdownRef = useRef(null); // 드롭다운 요소에 대한 ref를 생성
+
+  useEffect(() => {
+    // document에 클릭 이벤트 리스너 추가
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      // 컴포넌트 언마운트시 이벤트 리스너 제거
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
+  const handleClickOutside = (event) => {
+    // 클릭한 요소가 드롭다운 외부에 있을 경우 드롭다운을 닫음
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setIsActive(false);
+    }
+  };
+
   const keyOptions1 = [
     { label: "Db", value: 1 },
     { label: "Eb", value: 2 },
@@ -106,9 +125,20 @@ function SelectDropdown() {
     { label: "B", value: 12 },
   ];
 
+  const handleSelect = (keyOption) => {
+    if (selected.label === keyOption.label) {
+      // 이미 선택된 레이블을 다시 선택한 경우 선택을 해제
+      setSelected({ label: "", value: "" });
+      setSelectedKey(""); // 선택이 해제되었음을 상위 컴포넌트에 알림
+    } else {
+      setSelected(keyOption);
+      setSelectedKey(keyOption.label); // 선택한 키 레이블을 상위 컴포넌트로 전달
+    }
+    setIsActive(false);
+  };
   return (
     <Wrapper>
-      <div>
+      <div ref={dropdownRef}>
         <KeyDropdown onClick={(e) => setIsActive(!isActive)}>
           {selected.label !== "" ? selected.label : ""} Key
           <span>
@@ -121,10 +151,7 @@ function SelectDropdown() {
               {keyOptions1.map((keyOption) => (
                 <Span
                   key={keyOption.value} // key 속성은 고유해야 함.
-                  onClick={(e) => {
-                    setSelected(keyOption);
-                    setIsActive(false);
-                  }}
+                  onClick={(e) => handleSelect(keyOption)}
                 >
                   {keyOption.label}
                 </Span>
@@ -136,10 +163,7 @@ function SelectDropdown() {
               {keyOptions2.map((keyOption) => (
                 <Span
                   key={keyOption.value} // key 속성은 고유해야 하므로 keyOption.value로 변경
-                  onClick={(e) => {
-                    setSelected(keyOption);
-                    setIsActive(false);
-                  }}
+                  onClick={(e) => handleSelect(keyOption)}
                 >
                   {keyOption.label}
                 </Span>
@@ -148,8 +172,6 @@ function SelectDropdown() {
           )}
         </KeyItems>
       </div>
-      {/* 선택된 keyOption의 value 표시 */}
-      {/* <div>{selected.label && <p>Selected value: {selected.value}</p>}</div> */}
     </Wrapper>
   );
 }
