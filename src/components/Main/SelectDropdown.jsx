@@ -85,7 +85,7 @@ const Span = styled.span`
   border: 1px solid #281a47;
 `;
 
-function SelectDropdown() {
+function SelectDropdown({ setSelectedKey }) {
   const [isActive, setIsActive] = useState(false);
   const [selected, setSelected] = useState({ label: "", value: "" });
   const keyOptions1 = [
@@ -106,6 +106,13 @@ function SelectDropdown() {
     { label: "B", value: 12 },
   ];
 
+  const handleSelect = (keyOption) => {
+    setSelected(keyOption);
+    // console.log(keyOption); 값은 잘 찍힘.
+    setSelectedKey(keyOption.label); // 선택된 키 코드를 상위 컴포넌트로 전달
+    setIsActive(false);
+  };
+
   return (
     <Wrapper>
       <div>
@@ -121,10 +128,7 @@ function SelectDropdown() {
               {keyOptions1.map((keyOption) => (
                 <Span
                   key={keyOption.value} // key 속성은 고유해야 함.
-                  onClick={(e) => {
-                    setSelected(keyOption);
-                    setIsActive(false);
-                  }}
+                  onClick={(e) => handleSelect(keyOption)}
                 >
                   {keyOption.label}
                 </Span>
@@ -136,10 +140,7 @@ function SelectDropdown() {
               {keyOptions2.map((keyOption) => (
                 <Span
                   key={keyOption.value} // key 속성은 고유해야 하므로 keyOption.value로 변경
-                  onClick={(e) => {
-                    setSelected(keyOption);
-                    setIsActive(false);
-                  }}
+                  onClick={(e) => handleSelect(keyOption)}
                 >
                   {keyOption.label}
                 </Span>
@@ -148,8 +149,6 @@ function SelectDropdown() {
           )}
         </KeyItems>
       </div>
-      {/* 선택된 keyOption의 value 표시 */}
-      {/* <div>{selected.label && <p>Selected value: {selected.value}</p>}</div> */}
     </Wrapper>
   );
 }
