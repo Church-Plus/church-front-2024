@@ -14,10 +14,11 @@ const Wrapper = styled.div`
 `;
 
 const KeyDropdown = styled.div`
+  margin-left: 38px;
   border: 1px solid #c1c1c1;
   width: 333px;
   height: 35px;
-  padding: 0.2rem;
+  padding: 0.3rem;
   padding-top: 0.5rem;
   padding-left: 25px;
   border-radius: 16px;
@@ -36,8 +37,10 @@ const KeyDropdown = styled.div`
 const KeyItems = styled.div`
   border: 1px solid #281a47;
   padding: 12px;
+  margin-left: 38px;
   border-radius: 20px;
   background-color: white;
+  box-shadow: 5px 5px 5px #bababf;
   color: black;
   width: 220px;
   font-weight: 400;
