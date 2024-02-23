@@ -46,7 +46,7 @@ function MonthPage() {
         `https://api.zionhann.shop/app/churchplus/church+/folder/list/${month}`
       );
       setFolders(serverResponse.data.folders);
-      console.log("month:", month);
+      console.log("serverResponse:", serverResponse);
     } catch (error) {
       console.error("폴더 불러오기 실패:", error);
       setFolders([]);
@@ -99,33 +99,23 @@ function MonthPage() {
                 <Input>폴더 이름</Input>
               </div>
               {folders.length > 0 ? (
-                folders.map((folder) => (
-                  <div>
-                    <FolderTop />
+                folders.map((folder, index) => (
+                  <div key={index}>
                     <Link
-                      key={folder.folderId}
                       to={`/monthPage/${month}/${folder.folderName}`}
                       style={{ textDecoration: "none", color: "black" }}
                     >
-                      <FolderBox>
-                        <SelectUpdateDelete onclick={console.log("click")} />
-                        {/* <img
-                          src={FolderEdit}
-                          alt="폴더 수정"
-                          style={{
-                            width: "20px",
-                            height: "20px",
-                            paddingTop: "25px",
-                            paddingRight: "25px",
-                          }}
-                        /> */}
-                      </FolderBox>
+                      <FolderTop />
                     </Link>
-                    <Input key={folder.folderId}>{folder.folderName}</Input>
+                    <FolderBox>
+                      <SelectUpdateDelete />
+                    </FolderBox>
+
+                    <Input>{folder.folderName}</Input>
                   </div>
                 ))
               ) : (
-                <div>폴더가 없습니다.</div>
+                <div key="no-folder">폴더가 없습니다.</div>
               )}
             </FolderContainer>
           </Box>
