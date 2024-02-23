@@ -51,12 +51,13 @@ function FolderPage() {
   const [reloadPage, setReloadPage] = useState(false);
   const [selectedSong, setSelectedSong] = useState(null);
   const [showReadModal, setShowReadModal] = useState(false);
+  const [filteredSongData, setFilteredSongData] = useState([]);
+  const [searchMusicName, setSearchMusicName] = useState("");
 
   const groupId = localStorage.getItem("groupId");
   const path = `${month}-${content}`;
 
   useEffect(() => {
-    // navigate(`/monthPage/${month}/${content}`);
     fetchData();
   }, [groupId, path]);
 
@@ -67,6 +68,22 @@ function FolderPage() {
     }
   }, [reloadPage]);
 
+  useEffect(() => {
+    // 검색어가 변경될 때마다 해당하는 폴더만 필터링하여 filteredSongData 상태 업데이트
+    if (searchMusicName.trim() === "") {
+      setFilteredSongData(songData); // 검색어가 비어있으면 모든 폴더를 보여줌
+    } else {
+      const filtered = songData.filter(
+        (music) =>
+          music.musicName
+            .toLowerCase()
+            .includes(searchMusicName.toLowerCase()) ||
+          music.code.toLowerCase().includes(searchMusicName.toLowerCase())
+      );
+      setFilteredSongData(filtered);
+    }
+  }, [songData, searchMusicName]);
+
   const fetchData = async () => {
     try {
       const serverResponse = await axios.get(
@@ -75,7 +92,6 @@ function FolderPage() {
       );
       setSongData(serverResponse.data.musics);
       console.log("악보 불러오기 성공");
-      window.location.reload();
     } catch (error) {
       console.error("악보 불러오기 실패:", error);
       setSongData([]);
@@ -93,7 +109,7 @@ function FolderPage() {
 
   return (
     <>
-      <Header />
+      <Header setSearch={setSearchMusicName} />
       <BackgroundWrapper style={{ display: "flex" }}>
         <div>
           <Menu />
@@ -114,7 +130,7 @@ function FolderPage() {
           <Box>
             <FolderContainer style={{ paddingTop: "100px" }}>
               <UploadModal />
-              {songData.map((music) => (
+              {filteredSongData.map((music) => (
                 <FolderItem
                   key={music.musicId}
                   onClick={() => handleSongClick(music)}
@@ -125,7 +141,9 @@ function FolderPage() {
                       alt={"악보 이미지"}
                     />
                   </ImageContainer>
-                  <p>{music.musicName}</p>
+                  <p>
+                    {music.musicName} {music.code} Key
+                  </p>
                 </FolderItem>
               ))}
             </FolderContainer>

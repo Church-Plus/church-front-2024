@@ -119,13 +119,17 @@ function FirstMain({ searchMusicName }) {
   };
 
   useEffect(() => {
-    // 검색어가 입력되지 않은 경우에는 모든 악보 데이터를 보여줍니다.
+    // 검색어가 입력되지 않은 경우에는 모든 악보 데이터를 보여줌
     if (!searchMusicName) {
       setFilteredSongData(songData);
     } else {
-      // 검색어가 입력된 경우에는 검색어에 맞는 악보 데이터만 필터링하여 보여줍니다.
-      const filteredData = songData.filter((music) =>
-        music.musicName.toLowerCase().includes(searchMusicName.toLowerCase())
+      // 검색어가 입력된 경우에는 검색어에 맞는 악보 데이터만 필터링하여 보여줌
+      const filteredData = songData.filter(
+        (music) =>
+          music.musicName
+            .toLowerCase()
+            .includes(searchMusicName.toLowerCase()) ||
+          music.code.toLowerCase().includes(searchMusicName.toLowerCase())
       );
       setFilteredSongData(filteredData);
     }

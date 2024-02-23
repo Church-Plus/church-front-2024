@@ -21,7 +21,7 @@ function FirstMainPage() {
 
   return (
     <>
-      <Header setSearchMusicName={setSearchMusicName} />
+      <Header setSearch={setSearchMusicName} />
       <BackgroundWrapper style={{ display: "flex" }}>
         <div>
           <Menu />

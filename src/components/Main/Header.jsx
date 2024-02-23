@@ -84,14 +84,15 @@ const Icons = styled.div`
   }
 `;
 
-function Header({ setSearchMusicName }) {
+function Header({ setSearch }) {
   const navigate = useNavigate();
   const [searchInput, setSearchInput] = useState("");
 
   const handleInputChange = (e) => {
     const inputValue = e.target.value;
     setSearchInput(inputValue);
-    setSearchMusicName(inputValue); // 사용자가 입력할 때마다 실시간으로 악보 찾기
+    setSearch(inputValue);
+    // 사용자가 입력할 때마다 실시간으로 입력받기
   };
 
   const handleLogoClick = () => {
