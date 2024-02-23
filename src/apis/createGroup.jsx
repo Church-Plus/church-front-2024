@@ -4,7 +4,8 @@ import axios from "axios";
 const createGroup = async (groupName, memberId, position, nickname) => {
   try {
     const serverResponse = await axios.post(
-      "https://api.zionhann.shop/app/churchplus/church+/group/create",
+      // "https://api.zionhann.shop/app/churchplus/church+/group/create",
+      "http://localhost:8080/church+/group/create",
       {
         groupName,
         memberId,

@@ -43,7 +43,8 @@ function Menu() {
   const fetchData = async () => {
     try {
       const serverResponse = await axios.get(
-        `https://api.zionhann.shop/app/churchplus/church+/group/${groupId}/${memberId}`
+        // `https://api.zionhann.shop/app/churchplus/church+/group/${groupId}/${memberId}`
+        `http://localhost:8080/church+/group/${groupId}/${memberId}`
       );
       setUserData(serverResponse.data);
       console.log("유저 정보 불러오기 성공");

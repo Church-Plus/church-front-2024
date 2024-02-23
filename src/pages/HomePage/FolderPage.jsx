@@ -70,7 +70,8 @@ function FolderPage() {
   const fetchData = async () => {
     try {
       const serverResponse = await axios.get(
-        `https://api.zionhann.shop/app/churchplus/church+/music/list/${groupId}/${path}`
+        // `https://api.zionhann.shop/app/churchplus/church+/music/list/${groupId}/${path}`
+        `http://localhost:8080/church+/music/list/${groupId}/${path}`
       );
       setSongData(serverResponse.data.musics);
       console.log("악보 불러오기 성공");
