@@ -75,7 +75,7 @@ const Photo = styled.div`
   height: 35.5rem;
 
   //이미지 영역 확인용
-  border: 1px solid #c5bd;
+  border: 1px solid #c5bed3;
 
   img {
     width: 100%;
