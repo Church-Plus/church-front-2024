@@ -1,16 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import EditPencilIcons from "../../assets/Icons/editpencil.svg";
 import BinIcons from "../../assets/Icons/bin.svg";
+import FolderDeleteModal from "../Modal/FolderDeleteModal";
 
 const DropdownWrapper = styled.div`
   position: absolute;
-
   display: flex;
   flex-direction: column;
   width: 200px;
-
   box-shadow: 2px 2px 2px 2px grey;
+  z-index: 3;
 `;
 
 const Option = styled.div`
@@ -32,26 +32,45 @@ const Option = styled.div`
 `;
 
 function SelectUpdateDelete() {
-  //드롭다운 메뉴 초기상태 지정
   const [showDropdown, setShowDropdown] = useState(false);
+  const dropdownRef = useRef(null);
 
-  //상태반전
-  const toggleDropdown = () => {
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowDropdown(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const handleClick = (event) => {
+    event.preventDefault();
     setShowDropdown(!showDropdown);
+  };
+
+  const handleDropdownItemClick = () => {
+    setShowDropdown(false);
+  };
+
+  const handleModalClick = (event) => {
+    event.stopPropagation();
+    setShowDropdown(false); // FolderDeleteModal을 클릭했을 때도 드롭다운 메뉴 닫기
   };
 
   return (
     <div>
       <div>
-        <img onClick={toggleDropdown} src={EditPencilIcons} alt="수정 아이콘" />
+        <img onClick={handleClick} src={EditPencilIcons} alt="수정 아이콘" />
 
         {showDropdown && (
-          <DropdownWrapper>
-            <Option>
-              <img src={EditPencilIcons} alt="수정 아이콘" />
-              <div>수정하기</div>
-            </Option>
-            <Option>
+          <DropdownWrapper ref={dropdownRef}>
+            <FolderDeleteModal onClick={handleModalClick} />
+            <Option onClick={handleDropdownItemClick}>
               <img src={BinIcons} alt="휴지통 아이콘" />
               <div>삭제하기</div>
             </Option>

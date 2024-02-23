@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { AddBtn } from "../Common/Common";
-import addIcon from "../../assets/Icons/add.svg";
 import XButton from "../../assets/Icons/XButton.svg";
+import BinIcons from "../../assets/Icons/bin.svg";
 
 const modalStyles = `
   width: 100vw;
@@ -23,6 +22,25 @@ const Overlay = styled.div`
   ${modalStyles}
   background: rgba(166, 166, 170, 0.8);
 `;
+
+const ModalOpen = styled.div`
+  display: flex;
+  align-items: center;
+  height: 40px;
+  text-align: left;
+  cursor: pointer;
+  border: none;
+  background-color: white;
+
+  &:hover {
+    background-color: #dfdfdf;
+  }
+
+  img {
+    padding: 10px;
+  }
+`;
+
 const ModalContent = styled.div`
   position: absolute;
   top: 50%;
@@ -104,13 +122,11 @@ const CreateButton = styled.button`
   cursor: pointer;
 `;
 
-export default function CreateFolderModal({ handleAddFolder }) {
+export default function FolderDeleteModal() {
   const [createFolderModal, setCreateFolderModal] = useState(false);
-  const [folderName, setFolderName] = useState("");
 
   const toggleCreateFolderModal = () => {
     setCreateFolderModal((prevState) => !prevState);
-    setFolderName("");
   };
 
   useEffect(() => {
@@ -121,20 +137,16 @@ export default function CreateFolderModal({ handleAddFolder }) {
     }
   }, [createFolderModal]);
 
-  const handleInputChange = (e) => {
-    setFolderName(e.target.value);
-  };
-
   const handleSubmit = () => {
-    handleAddFolder(folderName);
     toggleCreateFolderModal();
   };
 
   return (
     <>
-      <AddBtn onClick={toggleCreateFolderModal}>
-        <img src={addIcon} alt="사진추가 아이콘" />
-      </AddBtn>
+      <ModalOpen onClick={toggleCreateFolderModal}>
+        <img src={BinIcons} alt="" />
+        <div>삭제하기</div>
+      </ModalOpen>
       {createFolderModal && (
         <Modal>
           <Overlay onClick={toggleCreateFolderModal} />
