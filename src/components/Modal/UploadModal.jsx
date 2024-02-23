@@ -94,6 +94,7 @@ const RightBody = styled.div`
 `;
 const SongTitle = styled.input`
   && {
+    font-family: "Pretendard";
     margin-top: 30px;
     font-size: 18px;
     margin-left: 38px;
@@ -121,6 +122,7 @@ const SongTitle = styled.input`
 `;
 const VideoLink = styled.input`
   && {
+    font-family: "Pretendard";
     font-size: 18px;
     margin-left: 38px;
     padding-left: 24px;
@@ -148,6 +150,7 @@ const VideoLink = styled.input`
 `;
 const Notice = styled.textarea`
   && {
+    font-family: "Pretendard";
     font-size: 18px;
     margin-left: 38px;
     padding-left: 20px;

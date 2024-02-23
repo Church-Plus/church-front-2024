@@ -25,10 +25,10 @@ const FolderItem = styled.div`
 `;
 
 const FolderImage = styled.img`
-  height: 12.6rem;
-  width: 19.3rem;
-  object-fit: cover;
-  border-radius: 30px;
+  width: 100%;
+  height: auto; /* 너비에 맞게 자동으로 높이 조절 */
+  object-fit: contain; /* 이미지가 완전히 보이도록 설정 */
+  background-position: top; /* 이미지의 상단부터 보이도록 설정 */
   cursor: pointer;
 
   filter: opacity(0.7) drop-shadow(0 0 0 #2c0770ce);
@@ -39,8 +39,10 @@ const FolderImage = styled.img`
 `;
 
 const ImageContainer = styled.div`
-  position: relative;
-  width: fit-content;
+  height: 12.6rem;
+  width: 19.3rem;
+  border-radius: 30px;
+  overflow: hidden;
 `;
 
 const FileNameEditButton = styled.div`
