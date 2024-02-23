@@ -56,7 +56,7 @@ function FolderPage() {
   const path = `${month}-${content}`;
 
   useEffect(() => {
-    navigate(`/monthPage/${month}/${content}`);
+    // navigate(`/monthPage/${month}/${content}`);
     fetchData();
   }, [groupId, path]);
 
@@ -75,6 +75,7 @@ function FolderPage() {
       );
       setSongData(serverResponse.data.musics);
       console.log("악보 불러오기 성공");
+      window.location.reload();
     } catch (error) {
       console.error("악보 불러오기 실패:", error);
       setSongData([]);

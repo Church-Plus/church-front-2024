@@ -94,9 +94,10 @@ const Option = styled.div`
   }
 `;
 
-function FirstMain() {
+function FirstMain({ searchMusicName }) {
   const groupId = localStorage.getItem("groupId");
   const [songData, setSongData] = useState([]);
+  const [filteredSongData, setFilteredSongData] = useState([]);
 
   useEffect(() => {
     fetchData();
@@ -111,10 +112,24 @@ function FirstMain() {
       setSongData(serverResponse.data.musics);
       console.log("악보 불러오기 성공");
     } catch (error) {
+      alert("불러올 악보가 없습니다. 악보를 생성해주세요");
       console.error("악보 불러오기 실패:", error);
       setSongData([]);
     }
   };
+
+  useEffect(() => {
+    // 검색어가 입력되지 않은 경우에는 모든 악보 데이터를 보여줍니다.
+    if (!searchMusicName) {
+      setFilteredSongData(songData);
+    } else {
+      // 검색어가 입력된 경우에는 검색어에 맞는 악보 데이터만 필터링하여 보여줍니다.
+      const filteredData = songData.filter((music) =>
+        music.musicName.toLowerCase().includes(searchMusicName.toLowerCase())
+      );
+      setFilteredSongData(filteredData);
+    }
+  }, [songData, searchMusicName]);
 
   const [readModal, setReadModal] = useState(false);
   const [selectedSongIndex, setSelectedSongIndex] = useState(null);
@@ -160,7 +175,7 @@ function FirstMain() {
   return (
     <Wrapper>
       <FolderContainer>
-        {songData.map((music, index) => (
+        {filteredSongData.map((music, index) => (
           <FolderItem key={index}>
             <ImageContainer onClick={() => toggleReadModal(index)}>
               <FolderImage src={music.musicImageUrl} alt={music.musicName} />
