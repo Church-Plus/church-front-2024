@@ -32,8 +32,8 @@ const ModalContent = styled.div`
   top: 54%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 738px;
-  height: 568px;
+  width: 834px;
+  height: 645px;
   background-color: #e8e8ef;
   border: none;
   border-radius: 40px;
@@ -71,8 +71,8 @@ const ModalBody = styled.div`
 `;
 
 const LeftBody = styled.div`
-  width: 278px;
-  height: 381px;
+  width: 309px;
+  height: 422px;
   border-radius: 40px;
   background-color: rgba(99, 93, 144, 0.3);
   display: flex;
@@ -94,8 +94,8 @@ const SongTitle = styled.input`
     padding-left: 24px;
     margin-bottom: 16px;
     background-color: #efeff0;
-    width: 277px;
-    height: 36px;
+    width: 339px;
+    height: 44px;
     border: 1px solid #c1c1c1;
     border-radius: 16px;
     &.MuiInput-underline {
@@ -120,8 +120,8 @@ const VideoLink = styled.input`
     margin-top: 8px;
     margin-bottom: 16px;
     background-color: #efeff0;
-    width: 277px;
-    height: 36px;
+    width: 339px;
+    height: 44px;
     border: 1px solid #c1c1c1;
     border-radius: 16px;
     &.MuiInput-underline {
@@ -139,14 +139,14 @@ const VideoLink = styled.input`
     }
   }
 `;
-const Notice = styled.input`
+const Notice = styled.textarea`
   && {
     font-size: 18px;
     padding-left: 20px;
     margin-bottom: 16px;
     background-color: #efeff0;
-    width: 280px;
-    height: 152px;
+    width: 339px;
+    height: 186px;
     border: 1px solid #c1c1c1;
     border-radius: 16px;
     &.MuiInput-underline {

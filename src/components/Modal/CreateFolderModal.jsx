@@ -41,7 +41,7 @@ const ModalContent = styled.div`
   align-items: center;
 `;
 
-const InputFolderName = styled.input`
+const InputFolderName = styled.text`
   margin-top: 23px;
   width: 300px;
   border: none;

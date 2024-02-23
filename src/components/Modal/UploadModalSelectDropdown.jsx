@@ -15,11 +15,11 @@ const Wrapper = styled.div`
 
 const KeyDropdown = styled.div`
   border: 1px solid #c1c1c1;
-  width: 270px;
+  width: 333px;
+  height: 35px;
   padding: 0.2rem;
-  padding-top: 0.3rem;
-  padding-bottom: 0.6rem;
-  padding-left: 30px;
+  padding-top: 0.5rem;
+  padding-left: 25px;
   border-radius: 16px;
   background-color: #efeff0;
   margin-bottom: 10px;
@@ -114,7 +114,7 @@ function UploadModalSelectDropdown({ value, onChange, name }) {
     <Wrapper>
       <div>
         <KeyDropdown onClick={() => setIsActive(!isActive)}>
-          {selected.label !== "" ? selected.label : ""} 곡 Key
+          {selected.label ? null : "곡"} {selected.label} Key
           <span>
             <img src={vectorIcons} alt="벡터 아이콘" />
           </span>
