@@ -47,19 +47,25 @@ const SearchBar = styled.div`
   padding-left: 75px;
 
   input {
+    padding-left: 25px;
+    font-family: "Pretendard";
     width: 43rem;
     height: 3rem;
     border: 0.9px solid black;
     border-radius: 3rem;
-    text-align: center;
     font-size: 20px;
+  }
+
+  input:focus {
+    outline: none;
   }
 `;
 
 const SearchBtn = styled.button`
   position: absolute;
 
-  right: 0.7rem;
+  right: 0.1px;
+  top: 0;
   border: none;
   background: transparent;
   cursor: pointer;

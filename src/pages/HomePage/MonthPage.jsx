@@ -109,7 +109,7 @@ function MonthPage() {
           <Box>
             <FolderContainer>
               <CreateFolderModal handleAddFolder={handleAddFolder} />
-              
+
               {filteredFolders.length > 0 ? (
                 filteredFolders.map((folder, index) => (
                   <div key={index}>
@@ -131,7 +131,7 @@ function MonthPage() {
                   </div>
                 ))
               ) : (
-                <div key="no-folder">폴더가 없습니다.</div>
+                <div key="no-folder"></div>
               )}
             </FolderContainer>
           </Box>
