@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import vectorIcons from "../../assets/Icons/Vector.svg";
 
@@ -88,6 +88,25 @@ const Span = styled.span`
 function SelectDropdown({ setSelectedKey }) {
   const [isActive, setIsActive] = useState(false);
   const [selected, setSelected] = useState({ label: "", value: "" });
+  const dropdownRef = useRef(null); // 드롭다운 요소에 대한 ref를 생성
+
+  useEffect(() => {
+    // document에 클릭 이벤트 리스너 추가
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      // 컴포넌트 언마운트시 이벤트 리스너 제거
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
+  const handleClickOutside = (event) => {
+    // 클릭한 요소가 드롭다운 외부에 있을 경우 드롭다운을 닫음
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setIsActive(false);
+    }
+  };
+
   const keyOptions1 = [
     { label: "Db", value: 1 },
     { label: "Eb", value: 2 },
@@ -115,7 +134,7 @@ function SelectDropdown({ setSelectedKey }) {
 
   return (
     <Wrapper>
-      <div>
+      <div ref={dropdownRef}>
         <KeyDropdown onClick={(e) => setIsActive(!isActive)}>
           {selected.label !== "" ? selected.label : ""} Key
           <span>
