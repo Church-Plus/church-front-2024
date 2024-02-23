@@ -5,6 +5,7 @@ import EditIcons from "../../assets/Icons/FolderEdit.svg";
 
 import EditPencilIcons from "../../assets/Icons/editpencil.svg";
 import BinIcons from "../../assets/Icons/bin.svg";
+import axios from "axios";
 
 const Wrapper = styled.div`
   display: flex;
@@ -93,48 +94,46 @@ const Option = styled.div`
   }
 `;
 
-function FirstMain() {
-  const songData = [
-    {
-      musicName: "하나님의 세계",
-      musicImageUrl:
-        "https://mblogthumb-phinf.pstatic.net/20160524_274/lordship46_1464073042426hr2zD_JPEG/%C7%CF%B3%AA%B4%D4%C0%C7_%BC%BC%B0%E8%28%C2%FC_%BE%C6%B8%A7%B4%D9%BF%EE_%B0%F7%C0%CC%B6%F3%29-001-001.jpg?type=w800",
-      link: "https://youtu.be/nUTvfKu7q3c?feature=shared",
-      description: "피아노는 솔로 준비 부탁합니다^^",
-      code: "G",
-    },
-    {
-      musicName: "온 맘 다해",
-      musicImageUrl:
-        "https://mblogthumb-phinf.pstatic.net/MjAyMjA1MDNfMTMg/MDAxNjUxNTgzMzg5OTA0.eNV7yEOlI8uZEtj4_9ubRvcqr_ukcAa-sHhevD0fkLEg.FlCPv_9Axi97w1QbxHxMMWo0XnAsbKZ_IcItez3SLkEg.PNG.joseph1040/%EC%98%A8%EB%A7%98%EB%8B%A4%ED%95%B4.png?type=w800",
-      link: "https://youtu.be/nUTvfKu7q3c?feature=shared",
-      description: "네에에",
-      code: "G",
-    },
-    {
-      musicName: "사망의 그늘에 앉아",
-      musicImageUrl: "https://t1.daumcdn.net/cfile/tistory/99713A485FDFE5A90E",
-      link: "https://youtu.be/nUTvfKu7q3c?feature=shared",
-      description: "하하",
-      code: "G",
-    },
-    {
-      musicName: "당신은 영광의 왕",
-      musicImageUrl:
-        "https://blog.kakaocdn.net/dn/kzqmh/btqzPmnYW2J/1dk0cT0dJtHii5Cez2p3GK/img.gif",
-      link: "https://youtu.be/nUTvfKu7q3c?feature=shared",
-      description: "하하",
-      code: "G",
-    },
-    {
-      musicName: "주는 존귀하신 분",
-      musicImageUrl:
-        "https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FPmxLv%2FbtscQmw9dI3%2F1Y2JOBuQctYgBowrmi10Z0%2Fimg.jpg",
-      link: "https://youtu.be/nUTvfKu7q3c?feature=shared",
-      description: "하하",
-      code: "G",
-    },
-  ];
+function FirstMain({ searchMusicName }) {
+  const groupId = localStorage.getItem("groupId");
+  const [songData, setSongData] = useState([]);
+  const [filteredSongData, setFilteredSongData] = useState([]);
+
+  useEffect(() => {
+    fetchData();
+  }, [groupId]);
+
+  const fetchData = async () => {
+    try {
+      const serverResponse = await axios.get(
+        // `https://api.zionhann.shop/app/churchplus/church+/music/list/${groupId}`
+        `http://localhost:8080/church+/music/list/${groupId}`
+      );
+      setSongData(serverResponse.data.musics);
+      console.log("악보 불러오기 성공");
+    } catch (error) {
+      alert("불러올 악보가 없습니다. 악보를 생성해주세요");
+      console.error("악보 불러오기 실패:", error);
+      setSongData([]);
+    }
+  };
+
+  useEffect(() => {
+    // 검색어가 입력되지 않은 경우에는 모든 악보 데이터를 보여줌
+    if (!searchMusicName) {
+      setFilteredSongData(songData);
+    } else {
+      // 검색어가 입력된 경우에는 검색어에 맞는 악보 데이터만 필터링하여 보여줌
+      const filteredData = songData.filter(
+        (music) =>
+          music.musicName
+            .toLowerCase()
+            .includes(searchMusicName.toLowerCase()) ||
+          music.code.toLowerCase().includes(searchMusicName.toLowerCase())
+      );
+      setFilteredSongData(filteredData);
+    }
+  }, [songData, searchMusicName]);
 
   const [readModal, setReadModal] = useState(false);
   const [selectedSongIndex, setSelectedSongIndex] = useState(null);
@@ -180,10 +179,10 @@ function FirstMain() {
   return (
     <Wrapper>
       <FolderContainer>
-        {songData.map((song, index) => (
+        {filteredSongData.map((music, index) => (
           <FolderItem key={index}>
             <ImageContainer onClick={() => toggleReadModal(index)}>
-              <FolderImage src={song.musicImageUrl} alt={song.musicName} />
+              <FolderImage src={music.musicImageUrl} alt={music.musicName} />
               <EditIcon
                 onClick={(e) => {
                   e.stopPropagation();
@@ -206,7 +205,7 @@ function FirstMain() {
               )}
             </ImageContainer>
             <Input>
-              {song.musicName} {song.code} Key
+              {music.musicName} {music.code} Key
             </Input>
           </FolderItem>
         ))}

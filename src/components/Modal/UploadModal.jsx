@@ -278,6 +278,7 @@ export default function UploadModal() {
       await createMusic(formDataToSend);
 
       toggleUploadModal();
+      window.location.reload();
     } catch (error) {
       // 에러 처리
       console.error("악보 추가 실패:", error);

@@ -1,5 +1,5 @@
 //예라
-import React from "react";
+import React, { useState } from "react";
 import Header from "../../components/Main/Header";
 import Menu from "../../components/Main/Menu";
 import DropdownMenu from "../../components/Main/DropdownMenu";
@@ -17,9 +17,11 @@ const ToggleLocation = styled.div`
 `;
 
 function FirstMainPage() {
+  const [searchMusicName, setSearchMusicName] = useState("");
+
   return (
     <>
-      <Header />
+      <Header setSearch={setSearchMusicName} />
       <BackgroundWrapper style={{ display: "flex" }}>
         <div>
           <Menu />
@@ -27,7 +29,7 @@ function FirstMainPage() {
         </div>
         <div>
           <SelectDropdown />
-          <FirstMain />
+          <FirstMain searchMusicName={searchMusicName} />
         </div>
         <ToggleLocation>
           <SwitchToggle initialToggled={true} />

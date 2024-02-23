@@ -27,6 +27,8 @@ function MonthPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newFolderName, setNewFolderName] = useState("");
   const [reloadPage, setReloadPage] = useState(false); // 상태 추가
+  const [searchFolderName, setSearchFolderName] = useState("");
+  const [filteredFolders, setFilteredFolders] = useState([]);
 
   useEffect(() => {
     navigate(`/monthPage/${month}`);
@@ -39,6 +41,18 @@ function MonthPage() {
       setReloadPage(false);
     }
   }, [reloadPage]);
+
+  useEffect(() => {
+    // 검색어가 변경될 때마다 해당하는 폴더만 필터링하여 filteredFolders 상태 업데이트
+    if (searchFolderName.trim() === "") {
+      setFilteredFolders(folders); // 검색어가 비어있으면 모든 폴더를 보여줌
+    } else {
+      const filtered = folders.filter((folder) =>
+        folder.folderName.toLowerCase().includes(searchFolderName.toLowerCase())
+      );
+      setFilteredFolders(filtered);
+    }
+  }, [searchFolderName, folders]);
 
   const fetchData = async () => {
     try {
@@ -62,7 +76,7 @@ function MonthPage() {
 
   return (
     <>
-      <Header />
+      <Header setSearch={setSearchFolderName} />
       <BackgroundWrapper style={{ display: "flex" }}>
         <div>
           <Menu />
@@ -99,8 +113,8 @@ function MonthPage() {
                 </FolderBox>
                 <Input>폴더 이름</Input>
               </div>
-              {folders.length > 0 ? (
-                folders.map((folder, index) => (
+              {filteredFolders.length > 0 ? (
+                filteredFolders.map((folder, index) => (
                   <div key={index}>
                     <Link
                       to={`/monthPage/${month}/${folder.folderName}`}
