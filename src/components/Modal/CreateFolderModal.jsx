@@ -29,11 +29,11 @@ const ModalContent = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 400px;
-  width: 540px;
+  height: 447px;
+  width: 600px;
   background-color: #e8e8ef;
   border: none;
-  border-radius: 60px;
+  border-radius: 67px;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   display: flex;
@@ -47,53 +47,58 @@ const InputFolderName = styled.input`
   border: none;
   outline: none;
   background-color: #e8e8ef;
-  text-align: center;
-  font-size: 20px;
+  /* text-align: center; */
+  font-size: 24px;
+  font-family: "Pretendard";
   &::placeholder {
+    text-align: center;
     color: #bbbbbb;
   }
 `;
 
 const Smallbox = styled.div`
-  margin-top: 25px;
+  margin-top: 40px;
   margin-right: auto;
-  margin-left: 120px;
+  margin-left: 148px;
   background-color: #c4c4d8;
   height: 20px;
   width: 100px;
-  border-radius: 35px 35px 0px 0px;
+  border-radius: 30px 30px 0px 0px;
 `;
 
 const Box = styled.div`
-  height: 200px;
-  width: 300px;
-  border-radius: 0px 40px 40px 40px;
+  height: 201px;
+  width: 305px;
+  border-radius: 0px 30px 30px 30px;
   background-color: #c4c4d8;
 `;
 
 const ButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  margin-top: 40px;
+  margin-top: 60px;
   width: 250px;
 `;
 const CancelButton = styled.button`
-  width: 100px;
-  height: 50px;
+  width: 90px;
+  height: 45px;
   border-radius: 40px;
-  font-size: 20px;
+  font-size: 22px;
+  border: 0.9px solid black;
+  font-family: "Pretendard";
 
   cursor: pointer;
 `;
 const CreateButton = styled.button`
-  width: 100px;
-  height: 50px;
+  margin-left: 48px;
+  width: 90px;
+  height: 45px;
   border-radius: 40px;
   background-color: #9f9ebc;
   color: white;
-  font-size: 20px;
+  font-size: 22px;
   border: none;
+  font-family: "Pretendard";
 
   cursor: pointer;
 `;
@@ -164,7 +169,7 @@ export default function CreateFolderModal({ handleAddFolder }) {
               <CancelButton onClick={toggleCreateFolderModal}>
                 취소
               </CancelButton>
-              <CreateButton onClick={handleSubmit}>생성</CreateButton>
+              <CreateButton onClick={handleSubmit}>확인</CreateButton>
             </ButtonContainer>
           </ModalContent>
         </Modal>

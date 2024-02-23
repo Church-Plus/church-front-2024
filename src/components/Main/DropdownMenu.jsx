@@ -10,21 +10,22 @@ const Wrapper = styled.div`
   flex-direction: column;
   border-top: none;
   border-bottom: none;
-  width: 350px;
+  width: 326px;
   height: 100vh;
-  font-size: 25px;
+  font-size: 24px;
   border-right: 2px solid rgba(198, 196, 216, 0.1);
 `;
 
 const Dropdown = styled.div`
-  width: 18.8rem;
+  width: 300px;
 `;
 
 const DropdownBtn = styled.div`
+  height: 25px;
   border-top: 1px solid black;
   border-bottom: ${(props) => (props.$isActive ? "none" : "1px solid black")};
-  padding-top: 1.3rem;
-  padding-left: 0.7rem;
+  padding-top: 15px;
+  padding-left: 3.5px;
   height: ${(props) => (props.$isActive ? "2rem" : "3rem")};
   cursor: pointer;
 

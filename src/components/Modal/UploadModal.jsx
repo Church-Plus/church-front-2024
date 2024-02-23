@@ -28,12 +28,13 @@ const Overlay = styled.div`
   background: rgba(166, 166, 170, 0.8);
 `;
 const ModalContent = styled.div`
+  border: 1px solid red;
   position: absolute;
   top: 54%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 738px;
-  height: 568px;
+  width: 834px;
+  height: 645px;
   background-color: #e8e8ef;
   border: none;
   border-radius: 40px;
@@ -63,16 +64,16 @@ const ModalHeader = styled.div`
 `;
 
 const ModalBody = styled.div`
-  width: 639px;
-  height: 370px;
+  width: 704px;
+  height: 500px;
   display: flex;
-  justify-content: space-between;
   margin-top: 16px;
 `;
 
 const LeftBody = styled.div`
-  width: 278px;
-  height: 381px;
+  margin-top: 30px;
+  width: 309px;
+  height: 422px;
   border-radius: 40px;
   background-color: rgba(99, 93, 144, 0.3);
   display: flex;
@@ -80,22 +81,28 @@ const LeftBody = styled.div`
   align-items: center;
   overflow: hidden;
   cursor: pointer;
+
+  img {
+    height: 68px;
+  }
 `;
 
 const RightBody = styled.div`
-  width: 305px;
-  height: 352px;
+  width: 400px;
+  height: 450px;
   border-radius: 33px;
-  /* border: 1px solid red; */
 `;
 const SongTitle = styled.input`
   && {
+    font-family: "Pretendard";
+    margin-top: 30px;
     font-size: 18px;
+    margin-left: 38px;
     padding-left: 24px;
     margin-bottom: 16px;
     background-color: #efeff0;
-    width: 277px;
-    height: 36px;
+    width: 339px;
+    height: 44px;
     border: 1px solid #c1c1c1;
     border-radius: 16px;
     &.MuiInput-underline {
@@ -115,13 +122,15 @@ const SongTitle = styled.input`
 `;
 const VideoLink = styled.input`
   && {
+    font-family: "Pretendard";
     font-size: 18px;
+    margin-left: 38px;
     padding-left: 24px;
     margin-top: 8px;
     margin-bottom: 16px;
     background-color: #efeff0;
-    width: 277px;
-    height: 36px;
+    width: 339px;
+    height: 44px;
     border: 1px solid #c1c1c1;
     border-radius: 16px;
     &.MuiInput-underline {
@@ -139,14 +148,17 @@ const VideoLink = styled.input`
     }
   }
 `;
-const Notice = styled.input`
+const Notice = styled.textarea`
   && {
+    font-family: "Pretendard";
     font-size: 18px;
+    margin-left: 38px;
     padding-left: 20px;
+    padding-top: 13px;
     margin-bottom: 16px;
     background-color: #efeff0;
-    width: 280px;
-    height: 152px;
+    width: 339px;
+    height: 186px;
     border: 1px solid #c1c1c1;
     border-radius: 16px;
     &.MuiInput-underline {
@@ -169,7 +181,7 @@ const SubmitButton = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 46px;
+    margin-top: 20px;
     border: 1px solid #8248f2;
     border-radius: 40px;
     width: 78px;
@@ -334,7 +346,7 @@ export default function UploadModal() {
               </LeftBody>
               <RightBody>
                 <SongTitle
-                  placeholder="곡제목"
+                  placeholder="곡 제목"
                   value={formData.musicName}
                   onChange={handleInputChange}
                   name="musicName"
@@ -346,7 +358,7 @@ export default function UploadModal() {
                   name="code"
                 />
                 <VideoLink
-                  placeholder="영상링크"
+                  placeholder="영상 링크"
                   value={formData.link}
                   onChange={handleInputChange}
                   name="link"
