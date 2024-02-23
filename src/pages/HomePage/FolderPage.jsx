@@ -155,6 +155,11 @@ function FolderPage() {
                     <FileEditDropdown
                       musicId={music.musicId}
                       musicName={music.musicName}
+                      folderId={music.folderId}
+                      code={music.code}
+                      description={music.description}
+                      link={music.link}
+                      musicImageUrl={music.musicImageUrl}
                     />
                   </FileNameEditButton>
                 </div>

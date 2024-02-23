@@ -109,7 +109,7 @@ function MonthPage() {
           <Box>
             <FolderContainer>
               <CreateFolderModal handleAddFolder={handleAddFolder} />
-              
+
               {filteredFolders.length > 0 ? (
                 filteredFolders.map((folder, index) => (
                   <div key={index}>
@@ -123,6 +123,7 @@ function MonthPage() {
                     <FolderNameUpdateDelete>
                       <Input>{folder.folderName}</Input>
                       <SelectUpdateDelete
+                        month={month}
                         folderId={folder.folderId}
                         folderName={folder.folderName}
                         style={{ marginTop: "18px" }}

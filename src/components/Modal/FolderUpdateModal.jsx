@@ -3,6 +3,7 @@ import styled from "styled-components";
 import XButton from "../../assets/Icons/XButton.svg";
 import EditPencilIcons from "../../assets/Icons/editpencil.svg";
 import axios from "axios";
+import { useParams } from "react-router";
 
 const modalStyles = `
   width: 100vw;
@@ -126,6 +127,8 @@ const CreateButton = styled.button`
 export default function FolderUpdateModal({ folderId, folderName }) {
   const [createFolderModal, setCreateFolderModal] = useState(false);
   const [inputValue, setInputValue] = useState(folderName);
+  const params = useParams();
+  const month = Number(params.month);
 
   const toggleCreateFolderModal = () => {
     setCreateFolderModal((prevState) => !prevState);
@@ -148,7 +151,8 @@ export default function FolderUpdateModal({ folderId, folderName }) {
       await axios.patch(
         `${process.env.REACT_APP_HOST_URL}/church+/folder/${folderId}`,
         {
-          folderName: inputValue, // 수정된 폴더 이름을 사용
+          folderName: inputValue,
+          path: month, // 수정된 폴더 이름을 사용
         }
       );
       console.log("폴더가 성공적으로 수정되었습니다.");
