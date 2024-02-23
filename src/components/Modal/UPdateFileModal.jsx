@@ -5,6 +5,7 @@ import EditPencilIcons from "../../assets/Icons/editpencil.svg";
 import axios from "axios";
 import addMusicSheet from "../../assets/Icons/addMusicSheet.svg";
 import UploadModalSelectDropdown from "./UploadModalSelectDropdown";
+import UpdateMusic from "../../apis/updateMusic";
 
 const modalStyles = `
   width: 100vw;
@@ -211,26 +212,29 @@ const SubmitButton = styled.button`
   }
 `;
 
-export default function FolderUpdateModal({
+export default function UPdateFileModal({
   musicId,
   musicName,
   code,
   link,
   description,
   folderId,
+  musicImageUrl,
 }) {
   const [createFolderModal, setCreateFolderModal] = useState(false);
   const [inputValue, setInputValue] = useState(musicName);
   const [previewUrl, setPreviewUrl] = useState(null);
   const [formData, setFormData] = useState({
-    musicName: "",
-    code: "",
-    link: "",
-    description: "",
+    musicName: musicName,
+    code: code,
+    link: link,
+    description: description,
+    folderId: folderId,
   });
-  const fileInputRef = useRef(null);
+  const fileInputRef = useRef(musicImageUrl);
   const toggleCreateFolderModal = () => {
     setCreateFolderModal((prevState) => !prevState);
+    console.log(musicName, code, link, description);
   };
 
   useEffect(() => {
@@ -271,19 +275,30 @@ export default function FolderUpdateModal({
   };
 
   const handleSubmit = async () => {
+    console.log(formData);
+
     try {
-      await axios.patch(
-        `${process.env.REACT_APP_HOST_URL}/church+/music/${musicId}`,
-        {
-          folderName: inputValue, // 수정된 폴더 이름을 사용
-        }
-      );
-      console.log("파일이  성공적으로 수정되었습니다.");
+      const { musicName, code, link, description } = formData;
+      const path = musicId;
+      const FolderId = folderId;
+
+      const formDataToSend = new FormData();
+      formDataToSend.append("musicName", musicName);
+      formDataToSend.append("code", code);
+      formDataToSend.append("link", link);
+      formDataToSend.append("description", description);
+      formDataToSend.append("folderId", FolderId);
+
+      if (fileInputRef.current.files.length > 0) {
+        formDataToSend.append("image", fileInputRef.current.files[0]);
+      }
+      await UpdateMusic(formDataToSend, path);
+
       toggleCreateFolderModal();
       window.location.reload();
     } catch (error) {
       console.error("파일 수정에 실패했습니다.:", error);
-      console.log("folderName:", inputValue); // 수정된 폴더 이름 출력
+      console.log("formdata:", formData); // 수정된 폴더 이름 출력
     }
   };
 
@@ -293,7 +308,7 @@ export default function FolderUpdateModal({
         <img src={EditPencilIcons} alt="" />
         <div>수정하기</div>
       </ModalOpen>
-      {FolderUpdateModal && (
+      {createFolderModal && (
         <Modal>
           <Overlay onClick={toggleCreateFolderModal} />
           <ModalContent>
@@ -320,10 +335,14 @@ export default function FolderUpdateModal({
                   />
                 ) : (
                   <img
-                    src={addMusicSheet}
-                    alt="악보추가 이미지"
-                    border="0"
-                  ></img>
+                    src={musicImageUrl}
+                    alt="기본 이미지"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
                 )}
                 <input
                   type="file"

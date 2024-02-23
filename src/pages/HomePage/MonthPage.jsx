@@ -123,6 +123,7 @@ function MonthPage() {
                     <FolderNameUpdateDelete>
                       <Input>{folder.folderName}</Input>
                       <SelectUpdateDelete
+                        month={month}
                         folderId={folder.folderId}
                         folderName={folder.folderName}
                         style={{ marginTop: "18px" }}

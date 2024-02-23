@@ -3,6 +3,7 @@ import styled from "styled-components";
 import EditPencilIcons from "../../assets/Icons/editpencil.svg";
 import BinIcons from "../../assets/Icons/bin.svg";
 import DeleteFileModal from "../Modal/DeleteFileModal";
+import UPdateFileModal from "../Modal/UPdateFileModal";
 
 const DropdownWrapper = styled.div`
   position: absolute;
@@ -13,7 +14,15 @@ const DropdownWrapper = styled.div`
   z-index: 3;
 `;
 
-function FileNameEditButton({ musicId, musicName }) {
+function FileNameEditButton({
+  musicId,
+  musicName,
+  folderId,
+  code,
+  description,
+  link,
+  musicImageUrl,
+}) {
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -53,7 +62,15 @@ function FileNameEditButton({ musicId, musicName }) {
         {showDropdown && (
           <DropdownWrapper ref={dropdownRef}>
             <DeleteFileModal musicId={musicId} />
-            <DeleteFileModal onClick={handleModalClick} musicId={musicId} />
+            <UPdateFileModal
+              musicId={musicId}
+              folderId={folderId}
+              musicName={musicName}
+              code={code}
+              description={description}
+              link={link}
+              musicImageUrl={musicImageUrl}
+            />
           </DropdownWrapper>
         )}
       </div>
