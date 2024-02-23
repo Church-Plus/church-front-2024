@@ -133,7 +133,7 @@ export default function CreateFolderModal({ handleAddFolder }) {
     }
 
     try {
-      await createFolder(folderName, path, memberId, groupId);
+      await createFolder(folderName, path, groupId);
       handleAddFolder(folderName);
       toggleCreateFolderModal();
     } catch (error) {
