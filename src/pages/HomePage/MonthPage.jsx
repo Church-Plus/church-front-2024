@@ -14,10 +14,15 @@ import {
 } from "../../components/Common/Common";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import CreateFolderModal from "../../components/Modal/CreateFolderModal";
-import FolderEdit from "../../assets/Icons/FolderEdit.svg";
 import SwitchToggle from "../../components/Common/SwitchToggle";
 import axios from "axios";
 import SelectUpdateDelete from "../../components/Common/SelectUpdateDelete";
+import styled from "styled-components";
+
+const FolderNameUpdateDelete = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 
 function MonthPage() {
   const params = useParams();
@@ -27,6 +32,9 @@ function MonthPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newFolderName, setNewFolderName] = useState("");
   const [reloadPage, setReloadPage] = useState(false); // 상태 추가
+  const groupId = localStorage.getItem("groupId");
+  // const path = `${groupId}/${month}`;
+  const path = `${month}`;
   const [searchFolderName, setSearchFolderName] = useState("");
   const [filteredFolders, setFilteredFolders] = useState([]);
 
@@ -57,14 +65,18 @@ function MonthPage() {
   const fetchData = async () => {
     try {
       const serverResponse = await axios.get(
-        // `https://api.zionhann.shop/app/churchplus/church+/folder/list/${month}`
-        `http://localhost:8080/church+/folder/list/${month}`
+        // `${process.env.REACT_APP_HOST_URL}/church+/folder/list/${month}`
+        `${process.env.REACT_APP_HOST_URL}/church+/folder/list/${groupId}/${path}`
       );
       setFolders(serverResponse.data.folders);
       console.log("serverResponse:", serverResponse);
+      console.log("path: ", path);
+      console.log("month: ", month);
+      console.log("groupId: ", groupId);
     } catch (error) {
       console.error("폴더 불러오기 실패:", error);
       setFolders([]);
+      console.log("path:", path);
     }
   };
 
@@ -97,22 +109,7 @@ function MonthPage() {
           <Box>
             <FolderContainer>
               <CreateFolderModal handleAddFolder={handleAddFolder} />
-              <div>
-                <FolderTop />
-                <FolderBox>
-                  <img
-                    src={FolderEdit}
-                    alt="폴더 수정"
-                    style={{
-                      width: "20px",
-                      height: "20px",
-                      paddingTop: "25px",
-                      paddingRight: "25px",
-                    }}
-                  />
-                </FolderBox>
-                <Input>폴더 이름</Input>
-              </div>
+              
               {filteredFolders.length > 0 ? (
                 filteredFolders.map((folder, index) => (
                   <div key={index}>
@@ -121,12 +118,16 @@ function MonthPage() {
                       style={{ textDecoration: "none", color: "black" }}
                     >
                       <FolderTop />
+                      <FolderBox></FolderBox>
                     </Link>
-                    <FolderBox>
-                      <SelectUpdateDelete folderId={folder.folderId} />
-                    </FolderBox>
-
-                    <Input>{folder.folderName}</Input>
+                    <FolderNameUpdateDelete>
+                      <Input>{folder.folderName}</Input>
+                      <SelectUpdateDelete
+                        folderId={folder.folderId}
+                        folderName={folder.folderName}
+                        style={{ marginTop: "18px" }}
+                      />
+                    </FolderNameUpdateDelete>
                   </div>
                 ))
               ) : (
