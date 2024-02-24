@@ -8,6 +8,7 @@ import {
   Box,
   FolderContainer,
   BackgroundWrapper,
+  Input,
 } from "../../components/Common/Common";
 import { useNavigate, useParams } from "react-router-dom";
 import UploadModal from "../../components/Modal/UploadModal";
@@ -21,7 +22,6 @@ const FolderItem = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 3rem;
 `;
 
 const FolderImage = styled.img`
@@ -47,7 +47,10 @@ const ImageContainer = styled.div`
 
 const FileNameEditButton = styled.div`
   display: flex;
+  padding-bottom: 65px;
   justify-content: center;
+  align-items: center;
+  vertical-align: baseline;
 `;
 
 function FolderPage() {
@@ -161,7 +164,9 @@ function FolderPage() {
                     </ImageContainer>
                   </FolderItem>
                   <FileNameEditButton>
-                    {music.musicName} {music.code} Key
+                    <Input>
+                      {music.musicName} {music.code} Key
+                    </Input>
                     <FileEditDropdown
                       musicId={music.musicId}
                       musicName={music.musicName}
