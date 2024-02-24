@@ -114,8 +114,8 @@ function FirstMain({ searchMusicName, selectedKeyCode }) {
   const fetchData = async () => {
     try {
       const serverResponse = await axios.get(
-        `https://api.zionhann.shop/app/churchplus/church+/music/list/${groupId}`
-        // `http://localhost:8080/church+/music/list/${groupId}`
+        `${process.env.REACT_APP_HOST_URL}/church+/music/list/${groupId}`
+        // `${process.env.REACT_APP_HOST_URL}/music/list/${groupId}`
       );
       setSongData(serverResponse.data.musics);
       console.log("악보 불러오기 성공");

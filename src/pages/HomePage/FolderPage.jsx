@@ -47,7 +47,7 @@ const ImageContainer = styled.div`
 
 const FileNameEditButton = styled.div`
   display: flex;
-  padding-bottom: 65px;
+  padding-bottom: 50px;
   justify-content: center;
   align-items: center;
   vertical-align: baseline;
