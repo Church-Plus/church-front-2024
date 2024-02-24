@@ -58,7 +58,7 @@ export const AddBtn = styled.button`
   }
 
   &:hover {
-    background-color: #9f92bc;
+    background-color: #8f85a6;
   }
 `;
 
@@ -86,7 +86,7 @@ export const FolderBox = styled.div`
   cursor: pointer;
 
   &:hover {
-    background-color: #9f92bc;
+    background-color: #8f85a6;
   }
 `;
 

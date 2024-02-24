@@ -31,10 +31,10 @@ const FolderImage = styled.img`
   background-position: top; /* 이미지의 상단부터 보이도록 설정 */
   cursor: pointer;
 
-  filter: opacity(0.7) drop-shadow(0 0 0 #2c0770ce);
+  filter: opacity(0.7) drop-shadow(0 0 0 #2e0b70);
 
   &:hover {
-    filter: opacity(0.8) drop-shadow(0 0 0 #37215f);
+    filter: opacity(0.8) drop-shadow(0 0 0 #2e0084);
   }
 `;
 
