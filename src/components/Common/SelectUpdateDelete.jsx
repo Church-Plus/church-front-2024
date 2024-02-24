@@ -16,7 +16,7 @@ const DropdownWrapper = styled.div`
 `;
 
 const DropdownImg = styled.img`
-  margin-top: 20px;
+  margin-top: 18.5px;
 `;
 
 const modalStyles = `
