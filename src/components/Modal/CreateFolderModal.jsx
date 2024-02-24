@@ -47,11 +47,11 @@ const InputFolderName = styled.input`
   border: none;
   outline: none;
   background-color: #e8e8ef;
-  /* text-align: center; */
+  text-align: center;
   font-size: 24px;
   font-family: "Pretendard";
   &::placeholder {
-    text-align: center;
+    align-items: center;
     color: #bbbbbb;
   }
 `;
