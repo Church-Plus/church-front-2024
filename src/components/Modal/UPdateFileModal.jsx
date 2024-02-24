@@ -368,7 +368,7 @@ export default function UPdateFileModal({
                 />
                 <UploadModalSelectDropdown
                   placeholder={"시작 코드"}
-                  value={formData.code}
+                  codeSelected={formData.code} // formData에서 코드 값 전달
                   onChange={handleInputChange}
                   name="code"
                 />
