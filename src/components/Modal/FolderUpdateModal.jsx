@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import XButton from "../../assets/Icons/XButton.svg";
-import EditPencilIcons from "../../assets/Icons/editpencil.svg";
+import EditblackPencilIcons from "../../assets/Icons/editBlackPencil.svg";
 import axios from "axios";
 import { useParams } from "react-router";
 
@@ -167,7 +167,7 @@ export default function FolderUpdateModal({ folderId, folderName }) {
   return (
     <>
       <ModalOpen onClick={toggleCreateFolderModal}>
-        <img src={EditPencilIcons} alt="" />
+        <img src={EditblackPencilIcons} alt="" />
         <div>수정하기</div>
       </ModalOpen>
       {createFolderModal && (

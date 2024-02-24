@@ -15,6 +15,10 @@ const DropdownWrapper = styled.div`
   z-index: 3;
 `;
 
+const DropdownImg = styled.img`
+  margin-top: 20px;
+`;
+
 const modalStyles = `
   width: 100vw;
   height: 100vh;
@@ -233,7 +237,11 @@ function SelectUpdateDelete({ folderId, folderName }) {
   return (
     <div>
       <div>
-        <img onClick={handleClick} src={EditPencilIcons} alt="수정 아이콘" />
+        <DropdownImg
+          onClick={handleClick}
+          src={EditPencilIcons}
+          alt="수정 아이콘"
+        />
 
         {showDropdown && (
           <DropdownWrapper ref={dropdownRef}>
