@@ -159,7 +159,7 @@ function SelectPosition() {
     try {
       await createGroup(groupName, memberId, position, nickname);
       // alert(`그룹이 정상적으로 추가되었습니다.`);
-      navigate("/main");
+      navigate("/SelectTeam");
     } catch (error) {
       console.error("그룹 추가 실패:", error);
     }

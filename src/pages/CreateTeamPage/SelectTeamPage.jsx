@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import FirstTeam from "../../assets/groupImg/1.svg";
 import CreateTeam from "../../assets/commonStyle/CreateTeam.svg";
 import CreateTeamHover from "../../assets/commonStyle/CreateTeamHover.svg";
 import starting from "../../assets/commonStyle/Starting.svg";
@@ -9,6 +10,7 @@ import alreadyHaveTeamHover from "../../assets/commonStyle/AlreadyHaveTeamHover.
 import SelectTeamCLogo from "../../assets/Logos/SelectTeamC+_Logo.svg";
 import ChoseYourTeam from "../../assets/Logos/ChoseYourTeam..svg";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const TeamPageContainer = styled.div`
   display: flex;
@@ -41,6 +43,16 @@ const SelectTeamContainer = styled.div`
   margin-top: 64px;
 `;
 
+const TeamContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const Teams = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 const CreateTeamIcon = styled.img`
   width: 210px;
   height: 244px;
@@ -53,6 +65,19 @@ const CreateTeamText = styled.div`
   font-size: 29px;
   text-align: center;
   font-weight: 600;
+`;
+
+const YourTeam = styled.img`
+  width: 210px;
+  height: 244px;
+  margin-right: 145px;
+  cursor: pointer;
+`;
+const YourTeamText = styled.div`
+  font-size: 29px;
+  text-align: center;
+  font-weight: 600;
+  margin-right: 145px;
 `;
 
 const Buttons = styled.div`
@@ -81,6 +106,34 @@ const AlreadyHaveTeam = styled.img`
 `;
 
 function SelectTeamPage() {
+  const [groups, setgroups] = useState([]);
+  const memberId = localStorage.getItem("memberId");
+  const [selecteGroup, setSelecteGroup] = useState();
+  const fetchData = async () => {
+    try {
+      const serverResponse = await axios.get(
+        // `${process.env.REACT_APP_HOST_URL}/church+/folder/list/${month}`
+        `${process.env.REACT_APP_HOST_URL}/church+/group/list/${memberId}`
+      );
+      setgroups(serverResponse.data.groups);
+      console.log(groups);
+      console.log("serverResponse:", serverResponse);
+    } catch (error) {
+      console.error("그룹 불러오기 실패:", error);
+      setgroups([]);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [memberId]);
+
+  const handleTeamClick = (group) => {
+    setSelecteGroup(group.groupId);
+    alert(`${group.groupName}팀을 선택하셨습니다.`);
+    localStorage.setItem("groupId", group.groupId);
+  };
+
   return (
     <TeamPageContainer>
       <LogoContainer>
@@ -88,16 +141,32 @@ function SelectTeamPage() {
         <ChoseTeam src={ChoseYourTeam} alt="팀을 선택하세요." />
       </LogoContainer>
       <SelectTeamContainer>
-        <div>
-          <Link to={"/CreateTeam"}>
-            <CreateTeamIcon src={CreateTeam} alt="팀 생성" />
-          </Link>
+        <TeamContainer>
+          {groups.map((group, index) => (
+            <div key={index}>
+              <Teams>
+                <YourTeam
+                  src={FirstTeam}
+                  alt=" 첫번째 팀"
+                  onClick={() => handleTeamClick(group)}
+                />
+                <YourTeamText>{group.groupName}</YourTeamText>
+              </Teams>
+            </div>
+          ))}
 
-          <CreateTeamText>팀 생성</CreateTeamText>
-        </div>
+          <Teams>
+            <Link to={"/CreateTeam"}>
+              <CreateTeamIcon src={CreateTeam} alt="팀 생성" />
+            </Link>
+            <CreateTeamText>팀 생성</CreateTeamText>
+          </Teams>
+        </TeamContainer>
       </SelectTeamContainer>
       <Buttons>
-        <Starting src={starting} alt="시작하기" />
+        <Link to={`/main`}>
+          <Starting src={starting} alt="시작하기" />
+        </Link>
         <AlreadyHaveTeam src={alreadyHaveTeam} alt="이미 팀이 있으신가요?" />
       </Buttons>
     </TeamPageContainer>
