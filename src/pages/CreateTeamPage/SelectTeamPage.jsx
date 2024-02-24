@@ -130,7 +130,7 @@ function SelectTeamPage() {
 
   const handleTeamClick = (group) => {
     setSelecteGroup(group.groupId);
-    alert(`${group.groupName}팀을 선택하셨습니다.`);
+    // alert(`${group.groupName}팀을 선택하셨습니다.`);
     localStorage.setItem("groupId", group.groupId);
   };
 
@@ -145,11 +145,13 @@ function SelectTeamPage() {
           {groups.map((group, index) => (
             <div key={index}>
               <Teams>
+                <Link to={"/main"}>
                 <YourTeam
                   src={FirstTeam}
                   alt=" 첫번째 팀"
                   onClick={() => handleTeamClick(group)}
                 />
+                </Link>
                 <YourTeamText>{group.groupName}</YourTeamText>
               </Teams>
             </div>
