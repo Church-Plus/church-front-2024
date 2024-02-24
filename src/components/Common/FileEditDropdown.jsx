@@ -14,6 +14,10 @@ const DropdownWrapper = styled.div`
   z-index: 3;
 `;
 
+const EditDropdown = styled.img`
+  margin-top: 25px;
+`;
+
 function FileNameEditButton({
   musicId,
   musicName,
@@ -57,7 +61,11 @@ function FileNameEditButton({
   return (
     <div>
       <div>
-        <img onClick={handleClick} src={EditPencilIcons} alt="수정 아이콘" />
+        <EditDropdown
+          onClick={handleClick}
+          src={EditPencilIcons}
+          alt="수정 아이콘"
+        />
 
         {showDropdown && (
           <DropdownWrapper ref={dropdownRef}>
