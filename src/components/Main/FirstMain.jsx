@@ -114,8 +114,8 @@ function FirstMain({ searchMusicName, selectedKeyCode }) {
   const fetchData = async () => {
     try {
       const serverResponse = await axios.get(
-        // `https://api.zionhann.shop/app/churchplus/church+/music/list/${groupId}`
-        `http://localhost:8080/church+/music/list/${groupId}`
+        `${process.env.REACT_APP_HOST_URL}/church+/music/list/${groupId}`
+        // `${process.env.REACT_APP_HOST_URL}/music/list/${groupId}`
       );
       setSongData(serverResponse.data.musics);
       console.log("악보 불러오기 성공");
@@ -198,15 +198,15 @@ function FirstMain({ searchMusicName, selectedKeyCode }) {
           <FolderItem key={index}>
             <ImageContainer onClick={() => toggleReadModal(index)}>
               <FolderImage src={music.musicImageUrl} alt={music.musicName} />
-              <EditIcon
+              {/* <EditIcon
                 onClick={(e) => {
                   e.stopPropagation();
                   toggleDropdown(index);
                 }}
                 src={EditIcons}
                 alt="파일 수정"
-              />
-              {showDropdown[index] && (
+              /> */}
+              {/* {showDropdown[index] && (
                 <DropdownWrapper show={showDropdown[index]} ref={dropdownRef}>
                   <Option onClick={handleOptionClick}>
                     <img src={EditPencilIcons} alt="수정 아이콘" />
@@ -217,7 +217,7 @@ function FirstMain({ searchMusicName, selectedKeyCode }) {
                     <div>삭제하기</div>
                   </Option>
                 </DropdownWrapper>
-              )}
+              )} */}
             </ImageContainer>
             <Input>
               {music.musicName} {music.code} Key

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import vectorIcons from "../../assets/Icons/Vector.svg";
 
@@ -86,7 +86,7 @@ const Span = styled.span`
   border: 1px solid #281a47;
 `;
 
-function UploadModalSelectDropdown({ value, onChange, name }) {
+const UploadModalSelectDropdown = ({ value, onChange, name, codeSelected }) => {
   const [isActive, setIsActive] = useState(false);
   const [selected, setSelected] = useState({ label: "", value: "" });
   const keyOptions1 = [
@@ -106,6 +106,19 @@ function UploadModalSelectDropdown({ value, onChange, name }) {
     { label: "A", value: 11 },
     { label: "B", value: 12 },
   ];
+
+  useEffect(() => {
+    // 코드 값에 따라 초기 선택값 설정
+    console.log(codeSelected);
+    if (codeSelected) {
+      const selectedKey =
+        keyOptions1.find((option) => option.label === codeSelected) ||
+        keyOptions2.find((option) => option.label === codeSelected);
+      if (selectedKey) {
+        setSelected(selectedKey);
+      }
+    }
+  }, [codeSelected]);
 
   const handleItemClick = (keyOption) => {
     setSelected(keyOption);
@@ -151,6 +164,5 @@ function UploadModalSelectDropdown({ value, onChange, name }) {
       </div>
     </Wrapper>
   );
-}
-
+};
 export default UploadModalSelectDropdown;
