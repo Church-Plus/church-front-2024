@@ -15,7 +15,7 @@
 
 <br>
 
-### Church+ 팀원 구성
+### Church+ 팀원 구성
 |  기획자   |    디자이너     | 프론트엔드 개발자   | 프론트엔드 개발자     | 백엔드 개발자     | 백엔드 개발자     | 
 | :------: |  :------: | :------: |  :------: | :------: |  :------: | 
 |   김현우  |  박지희    | 최예라    | 임종현    | 장유진    | 이정명    | 
@@ -24,11 +24,9 @@
 
 ## 프론트엔드 개발자들의 개인 깃허브 
 
-<div align="center">
-
 | **최예라** | **임종현** | 
 | :------: |  :------: | 
-| [<img src="https://github.com/Church-Plus/church-front-2024/assets/130584299/6d107e34-9a32-48ca-bfaf-bb9c6f5e7105" height=150 width=150> <br/> @YearaChoi](https://github.com/YearaChoi) | [<img src="https://github.com/Church-Plus/church-front-2024/assets/130584299/d8ec3e93-3b24-4808-b27c-1252c8ca0364" height=150 width=150> <br/> @dkrehd0519](https://github.com/dkrehd0519) | 
+| [<img src="https://github.com/Church-Plus/church-front-2024/assets/130584299/6d107e34-9a32-48ca-bfaf-bb9c6f5e7105" height=160 width=160> <br/> @YearaChoi](https://github.com/YearaChoi) | [<img src="https://github.com/Church-Plus/church-front-2024/assets/130584299/d8ec3e93-3b24-4808-b27c-1252c8ca0364" height=160 width=160> <br/> @dkrehd0519](https://github.com/dkrehd0519) | 
 
 </div>
 
@@ -45,7 +43,7 @@
 
 ## 2. 개발 가이드라인 
 
-## 이슈 작성
+### 이슈 작성
 
 ✹ **Git Issue**
 
@@ -56,7 +54,7 @@
 - 설명란에는 어떤 작업을 할 예정인지, 관련된 이슈번호가 있는지 참고한 내용이 있는지 등 필요한 내용을 적습니다.
 <br />
 
-## 브랜치 생성
+### 브랜치 생성
 
 ✹  **Git Branch**
 
@@ -64,13 +62,7 @@
 - 브랜치 이름 구조는 <**/#이슈번호/본인파트/-본인이름**> 입니다. (ex. #1/MainPage-Yeara)
 <br />
 
-## 작업
-
-- 테스크 단위로 커밋합니다
-- pull request를 통해 본인이 작업한 branch를 develop branch에 merge합니다.
-- 코드를 리뷰한 후 머지합니다.
-
-✹  Commit 메시지 작성법
+### Commit 메시지 작성법
 
 |  |  |  |
 | --- | --- | --- |
@@ -205,7 +197,7 @@ src
 
 ### 작업 관리
 
-- Notion과 Issues를 사용하여 진행 상황을 공유했습니다.
+- Notion과 Issues를 사용하여 진행 상황을 공유했습니다.
 - 매일 전체 회의를 진행하며 작업의 방향성과 소통 내용을 노션에 정리하였습니다.
 
 <br />
@@ -217,6 +209,7 @@ src
 ## 6. 프로젝트 후기
 
 ### 👩‍💻 최예라
+
 ### 🧑‍💻 임종현
 
 <br/>
