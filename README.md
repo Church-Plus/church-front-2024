@@ -1,6 +1,6 @@
 # 🎶 찬양팀을 위한 협업 웹 서비스 Church+
 
-![ChurchPlusProject](https://github.com/Church-Plus/church-front-2024/assets/130584299/7eac537d-3b1b-471b-b309-04d393a9c39a)
+![ChurchPlus](https://github.com/Church-Plus/church-front-2024/assets/130584299/3e383f26-62f3-455c-8161-30db0cfd08b9)
 
 - 배포 URL : .netlify.app
 
@@ -16,8 +16,8 @@
 <br>
 
 ### Church+ 팀원 구성
-|  기획자   |    디자이너     | 프론트엔드 개발자     | 프론트엔드 개발자     | 백엔드 개발자     | 백엔드 개발자     | 
-|    :————:    | :————:    | :————:    | :————:    | :————:    | :————:    |
+|  기획자   |    디자이너     | 프론트엔드 개발자   | 프론트엔드 개발자     | 백엔드 개발자     | 백엔드 개발자     | 
+| :------: |  :------: | :------: |  :------: | :------: |  :------: | 
 |   김현우  |  박지희    | 최예라    | 임종현    | 장유진    | 이정명    | 
 
 <br />
@@ -28,7 +28,7 @@
 
 | **최예라** | **임종현** | 
 | :------: |  :------: | 
-| [<img src="https://github.com/Church-Plus/church-front-2024/assets/130584299/c1b4d236-b16b-45bc-8d45-ce63c565e448" height=150 width=150> <br/> @YearaChoi](https://github.com/YearaChoi) | [<img src="https://github.com/Church-Plus/church-front-2024/assets/130584299/d8ec3e93-3b24-4808-b27c-1252c8ca0364" height=150 width=150> <br/> @dkrehd0519](https://github.com/dkrehd0519) | 
+| [<img src="https://github.com/Church-Plus/church-front-2024/assets/130584299/6d107e34-9a32-48ca-bfaf-bb9c6f5e7105" height=150 width=150> <br/> @YearaChoi](https://github.com/YearaChoi) | [<img src="https://github.com/Church-Plus/church-front-2024/assets/130584299/d8ec3e93-3b24-4808-b27c-1252c8ca0364" height=150 width=150> <br/> @dkrehd0519](https://github.com/dkrehd0519) | 
 
 </div>
 
@@ -47,48 +47,30 @@
 
 ## 이슈 작성
 
-✹ **Git Issue 사용법**
+✹ **Git Issue**
 
 - 작업할 기능에 대한 issue를 작성합니다.
 - issue 제목은 **[타입] - 설명**으로 통일합니다. (ex. [Style] - 텍스트 스타일 추가)
 - Assignees에는 작업을 맡은 사람을 태그합니다.
 - Labels에는 해당 작업과 맞는 유형을 태그합니다.
 - 설명란에는 어떤 작업을 할 예정인지, 관련된 이슈번호가 있는지 참고한 내용이 있는지 등 필요한 내용을 적습니다.
-- 이렇게 issue를 생성하게 되면 #N의 이슈 번호가 생깁니다.
-<br />
 <br />
 
 ## 브랜치 생성
 
-✹  **Git Branch 사용법**
+✹  **Git Branch**
 
 - 각자 생성한 브랜치에서만 작업합니다.
 - 브랜치 이름 구조는 <**/#이슈번호/본인파트/-본인이름**> 입니다. (ex. #1/MainPage-Yeara)
 <br />
-<br />
-
-## checkout 해서 브랜치 변경
-
-```bash
-git checkout haeun_feat/#1
-```
-<br />
-<br />
 
 ## 작업
 
-- 작업합니다
 - 테스크 단위로 커밋합니다
 - pull request를 통해 본인이 작업한 branch를 develop branch에 merge합니다.
-- 코드 리뷰한 후 머지하기 
+- 코드를 리뷰한 후 머지합니다.
 
 ✹  Commit 메시지 작성법
-
-```bash
-타입 : 짧은 내용(한글로)
-feat : 로그인
-ex)style : 텍스트 디자인시스템 구축
-```
 
 |  |  |  |
 | --- | --- | --- |
