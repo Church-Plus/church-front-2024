@@ -1,8 +1,51 @@
-#  Church-Plus 
+# 🎶 찬양팀을 위한 협업 웹 서비스 Church+
 
-church-plus project 개발 가이드라인 
+![ChurchPlusProject](https://github.com/Church-Plus/church-front-2024/assets/130584299/7eac537d-3b1b-471b-b309-04d393a9c39a)
 
-## 1. 이슈 작성
+- 배포 URL : .netlify.app
+
+<br>
+
+## 프로젝트 소개
+
+- Church+는 교회 찬양팀을 위한 협업 플랫폼으로 악보 관리와 콘티 제작에 도움을 주는 서비스입니다.
+- 소속되어있는 찬양팀을 생성하고 과거 사용했던 악보들을 주차별로 업로드하여 저장할 수 있습니다.
+- 콘티에서 전달받는 많은 정보를 사용자가 보기 쉽도록 배치하고, 관련 링크를 제공합니다. 
+- 악보 맞춤형 검색 기능을 통해 원하는 악보를 빠르고 쉽게 찾을 수 있습니다.
+
+<br>
+
+### Church+ 팀원 구성
+|  기획자   |    디자이너     | 프론트엔드 개발자     | 프론트엔드 개발자     | 백엔드 개발자     | 백엔드 개발자     | 
+|    :————:    | :————:    | :————:    | :————:    | :————:    | :————:    |
+|   김현우  |  박지희    | 최예라    | 임종현    | 장유진    | 이정명    | 
+
+<br />
+
+## 프론트엔드 개발자들의 개인 깃허브 
+
+<div align="center">
+
+| **최예라** | **임종현** | 
+| :------: |  :------: | 
+| [<img src="https://github.com/Church-Plus/church-front-2024/assets/130584299/c1b4d236-b16b-45bc-8d45-ce63c565e448" height=150 width=150> <br/> @YearaChoi](https://github.com/YearaChoi) | [<img src="https://github.com/Church-Plus/church-front-2024/assets/130584299/d8ec3e93-3b24-4808-b27c-1252c8ca0364" height=150 width=150> <br/> @dkrehd0519](https://github.com/dkrehd0519) | 
+
+</div>
+
+<br>
+
+## 1. 개발 환경
+
+- Front : HTML, React, styled-components, prettier
+- 버전 및 이슈관리 : Github, Github Issues
+- 협업 툴 : Discord, Notion
+- 서비스 배포 환경 : Netlify
+
+<br>
+
+## 2. 개발 가이드라인 
+
+## 이슈 작성
 
 ✹ **Git Issue 사용법**
 
@@ -15,7 +58,7 @@ church-plus project 개발 가이드라인
 <br />
 <br />
 
-## 2. 브랜치 만들기
+## 브랜치 생성
 
 ✹  **Git Branch 사용법**
 
@@ -24,7 +67,7 @@ church-plus project 개발 가이드라인
 <br />
 <br />
 
-## 3. checkout 해서 브랜치 변경
+## checkout 해서 브랜치 변경
 
 ```bash
 git checkout haeun_feat/#1
@@ -32,7 +75,7 @@ git checkout haeun_feat/#1
 <br />
 <br />
 
-## 4. 작업
+## 작업
 
 - 작업합니다
 - 테스크 단위로 커밋합니다
@@ -66,3 +109,133 @@ ex)style : 텍스트 디자인시스템 구축
 | 빌드관련 |  |  |  
 | build | 재빌드 | build: 동일버전 재빌드(x.xx) |
 | version | 버전 업 | version : 버전(2.0.0) 업데이트 |
+
+<br />
+
+## 3. 프로젝트 구조
+
+```
+src
+ ┣ apis
+ ┃ ┣ createFolder.jsx
+ ┃ ┣ createGroup.jsx
+ ┃ ┣ createMusic.jsx
+ ┃ ┣ sendAccessTokenToBackend.jsx
+ ┃ ┗ updateMusic.jsx
+ ┣ assets
+ ┃ ┣ Icons
+ ┃ ┃ ┣ FolderEdit.svg
+ ┃ ┃ ┣ GoogleLogin.svg
+ ┃ ┃ ┣ Vector.svg
+ ┃ ┃ .
+ ┃ ┃ .
+ ┃ ┃ .
+ ┃ ┣ Logos
+ ┃ ┃ ┣ C+_Logo.svg
+ ┃ ┃ ┣ ChoseYourTeam..svg
+ ┃ ┃ ┗ SelectTeamC+_Logo.svg
+ ┃ ┣ bgImg
+ ┃ ┃ ┣ LoginBackground1.svg
+ ┃ ┃ ┣ LoginBackground2.svg
+ ┃ ┃ ┣ LoginBackground3.svg
+ ┃ ┃ ┣ LoginBackground4.svg
+ ┃ ┃ ┗ LoginBackground5.svg
+ ┃ ┣ colors
+ ┃ ┃ ┗ palette.jsx
+ ┃ ┣ commonStyle
+ ┃ ┃ ┣ AlreadyHaveTeam.svg
+ ┃ ┃ ┣ AlreadyHaveTeamHover.svg
+ ┃ ┃ ┣ CompleteButton.svg
+ ┃ ┃ .
+ ┃ ┃ .
+ ┃ ┃ .
+ ┃ ┣ fonts
+ ┃ ┃ ┣ GlobalStyle.jsx
+ ┃ ┃ ┣ Pretendard-Thin.ttf
+ ┃ ┃ ┣ Pretendard-Thin.woff
+ ┃ ┃ ┗ Pretendard-Thin.woff2
+ ┃ ┣ groupImg
+ ┃ ┃ ┣ 1.svg
+ ┃ ┃ ┣ groupImg2.svg
+ ┃ ┃ ┗ groupImg3.svg
+ ┃ ┣ pages
+ ┃ ┃ ┗ SelectTeamPage.svg
+ ┃ ┗ positionImg
+ ┃ ┃ ┣ 10_Pastor.svg
+ ┃ ┃ ┣ 1_Leader.svg
+ ┃ ┃ ┣ 2_MainCindy.svg
+ ┃ ┃ .
+ ┃ ┃ .
+ ┃ ┃ .
+ ┣ components
+ ┃ ┣ Common
+ ┃ ┃ ┣ Common.jsx
+ ┃ ┃ ┣ FileEditDropdown.jsx
+ ┃ ┃ ┣ SelectUpdateDelete.jsx
+ ┃ ┃ ┗ SwitchToggle.jsx
+ ┃ ┣ Main
+ ┃ ┃ ┣ DropdownMenu.jsx
+ ┃ ┃ ┣ FirstMain.jsx
+ ┃ ┃ ┣ Header.jsx
+ ┃ ┃ ┣ Menu.jsx
+ ┃ ┃ ┗ SelectDropdown.jsx
+ ┃ ┗ Modal
+ ┃ ┃ ┣ CreateFolderModal.jsx
+ ┃ ┃ ┣ DeleteFileModal.jsx
+ ┃ ┃ ┣ FolderDeleteModal.jsx
+ ┃ ┃ ┣ FolderUpdateModal.jsx
+ ┃ ┃ ┣ MuiModal.jsx
+ ┃ ┃ ┣ ReadModal.jsx
+ ┃ ┃ ┣ UPdateFileModal.jsx
+ ┃ ┃ ┣ UploadModal.jsx
+ ┃ ┃ ┗ UploadModalSelectDropdown.jsx
+ ┣ pages
+ ┃ ┣ CreateTeamPage
+ ┃ ┃ ┣ InputName.jsx
+ ┃ ┃ ┣ InputTeamName.jsx
+ ┃ ┃ ┣ SelectPosition.jsx
+ ┃ ┃ ┗ SelectTeamPage.jsx
+ ┃ ┣ HomePage
+ ┃ ┃ ┣ FirstMainPage.jsx
+ ┃ ┃ ┣ FolderPage.jsx
+ ┃ ┃ ┗ MonthPage.jsx
+ ┃ ┗ LoginPage
+ ┃ ┃ ┣ GoogleLogin.jsx
+ ┃ ┃ ┗ Loading.jsx
+ ┣ App.css
+ ┣ App.js
+ ┣ index.css
+ ┗ index.js
+
+```
+
+<br>
+
+## 4. 개발 기간 및 작업 관리
+
+### 개발 기간
+
+- 전체 개발 기간 : 2022-02-05 ~ 2022-02-24
+- UI, 기능 구현 : 2022-02-10 ~ 2022-02-22
+- API 연결 : 2022-02-21 ~ 2022-02-24
+
+<br>
+
+### 작업 관리
+
+- Notion과 Issues를 사용하여 진행 상황을 공유했습니다.
+- 매일 전체 회의를 진행하며 작업의 방향성과 소통 내용을 노션에 정리하였습니다.
+
+<br />
+
+## 5. 개선 목표
+
+<br/>
+
+## 6. 프로젝트 후기
+
+### 👩‍💻 최예라
+### 🧑‍💻 임종현
+
+<br/>
+
