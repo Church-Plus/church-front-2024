@@ -205,8 +205,8 @@ function FirstMain({ searchMusicName, selectedKeyCode }) {
                 }}
                 src={EditIcons}
                 alt="파일 수정"
-              /> */}
-              {/* {showDropdown[index] && (
+              />
+              {showDropdown[index] && (
                 <DropdownWrapper show={showDropdown[index]} ref={dropdownRef}>
                   <Option onClick={handleOptionClick}>
                     <img src={EditPencilIcons} alt="수정 아이콘" />
@@ -225,10 +225,10 @@ function FirstMain({ searchMusicName, selectedKeyCode }) {
           </FolderItem>
         ))}
       </FolderContainer>
-      {readModal && (
+      {readModal && selectedSongIndex !== null && (
         <ReadModal
           toggleReadModal={() => toggleReadModal(null)}
-          selectedSong={songData[selectedSongIndex]}
+          selectedSong={filteredSongData[selectedSongIndex]} // 모달을 열 때, 필더링된 악보의 데이터를 보여줄 수 있도록 prop에 전달되는 데이터 변경
         />
       )}
     </Wrapper>
