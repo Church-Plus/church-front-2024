@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import FirstTeam from "../../assets/groupImg/1.svg";
+import SecondTeam from "../../assets/groupImg/groupImg2.svg";
+import ThirdTeam from "../../assets/groupImg/groupImg3.svg";
+
 import CreateTeam from "../../assets/commonStyle/CreateTeam.svg";
 import CreateTeamHover from "../../assets/commonStyle/CreateTeamHover.svg";
 import starting from "../../assets/commonStyle/Starting.svg";
@@ -134,6 +137,19 @@ function SelectTeamPage() {
     localStorage.setItem("groupId", group.groupId);
   };
 
+  const getTeamImage = (index) => {
+    switch (index) {
+      case 0:
+        return FirstTeam;
+      case 1:
+        return SecondTeam;
+      case 2:
+        return ThirdTeam;
+      default:
+        return null;
+    }
+  };
+
   return (
     <TeamPageContainer>
       <LogoContainer>
@@ -146,11 +162,11 @@ function SelectTeamPage() {
             <div key={index}>
               <Teams>
                 <Link to={"/main"}>
-                <YourTeam
-                  src={FirstTeam}
-                  alt=" 첫번째 팀"
-                  onClick={() => handleTeamClick(group)}
-                />
+                  <YourTeam
+                    src={getTeamImage(index)}
+                    alt=" 첫번째 팀"
+                    onClick={() => handleTeamClick(group)}
+                  />
                 </Link>
                 <YourTeamText>{group.groupName}</YourTeamText>
               </Teams>
