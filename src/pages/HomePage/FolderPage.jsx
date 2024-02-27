@@ -10,7 +10,7 @@ import {
   BackgroundWrapper,
   Input,
 } from "../../components/Common/Common";
-import useParams from "react-router-dom";
+import { useParams } from "react-router-dom";
 import UploadModal from "../../components/Modal/UploadModal";
 import SwitchToggle from "../../components/Common/SwitchToggle";
 import styled from "styled-components";
