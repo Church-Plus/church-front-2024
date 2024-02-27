@@ -2,7 +2,7 @@
 
 ![ChurchPlus](https://github.com/Church-Plus/church-front-2024/assets/130584299/3e383f26-62f3-455c-8161-30db0cfd08b9)
 
-- 배포 URL : .netlify.app
+- 배포 URL : https://church-plus.netlify.app
 
 <br>
 
