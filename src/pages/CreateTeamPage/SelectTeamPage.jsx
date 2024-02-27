@@ -111,7 +111,7 @@ const AlreadyHaveTeam = styled.img`
 function SelectTeamPage() {
   const [groups, setgroups] = useState([]);
   const memberId = localStorage.getItem("memberId");
-  const [selecteGroup, setSelecteGroup] = useState();
+  // const [selecteGroup, setSelecteGroup] = useState();
   const fetchData = async () => {
     try {
       const serverResponse = await axios.get(
@@ -129,10 +129,10 @@ function SelectTeamPage() {
 
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [memberId]);
 
   const handleTeamClick = (group) => {
-    setSelecteGroup(group.groupId);
     // alert(`${group.groupName}팀을 선택하셨습니다.`);
     localStorage.setItem("groupId", group.groupId);
   };

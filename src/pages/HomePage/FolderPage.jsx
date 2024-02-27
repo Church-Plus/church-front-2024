@@ -10,7 +10,7 @@ import {
   BackgroundWrapper,
   Input,
 } from "../../components/Common/Common";
-import { useNavigate, useParams } from "react-router-dom";
+import useParams from "react-router-dom";
 import UploadModal from "../../components/Modal/UploadModal";
 import SwitchToggle from "../../components/Common/SwitchToggle";
 import styled from "styled-components";
@@ -57,7 +57,6 @@ function FolderPage() {
   const params = useParams();
   const { month, content } = params;
   const folderName = content;
-  const navigate = useNavigate();
   const [songData, setSongData] = useState([]);
   const [reloadPage, setReloadPage] = useState(false);
   const [selectedSong, setSelectedSong] = useState(null);
@@ -70,6 +69,7 @@ function FolderPage() {
 
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [groupId, path]);
 
   useEffect(() => {
@@ -77,6 +77,7 @@ function FolderPage() {
       fetchData();
       setReloadPage(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reloadPage]);
 
   useEffect(() => {

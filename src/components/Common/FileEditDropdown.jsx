@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import EditPencilIcons from "../../assets/Icons/editpencil.svg";
-import BinIcons from "../../assets/Icons/bin.svg";
 import DeleteFileModal from "../Modal/DeleteFileModal";
 import UPdateFileModal from "../Modal/UPdateFileModal";
 
@@ -47,15 +46,6 @@ function FileNameEditButton({
     event.preventDefault();
     setShowDropdown(!showDropdown);
     console.log("musicId:", musicId);
-  };
-
-  const handleDropdownItemClick = () => {
-    setShowDropdown(false);
-  };
-
-  const handleModalClick = (event) => {
-    event.stopPropagation();
-    setShowDropdown(false); // FolderDeleteModal을 클릭했을 때도 드롭다운 메뉴 닫기
   };
 
   return (

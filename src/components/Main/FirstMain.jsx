@@ -1,10 +1,6 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import ReadModal from "../Modal/ReadModal";
-import EditIcons from "../../assets/Icons/FolderEdit.svg";
-
-import EditPencilIcons from "../../assets/Icons/editpencil.svg";
-import BinIcons from "../../assets/Icons/bin.svg";
 import axios from "axios";
 
 const Wrapper = styled.div`
@@ -19,16 +15,6 @@ const ImageContainer = styled.div`
   width: 19.3rem;
   border-radius: 30px;
   overflow: hidden;
-`;
-
-const EditIcon = styled.img`
-  position: absolute;
-  padding: 1.5rem;
-  right: 0.4rem;
-  z-index: 0.1;
-  height: 1.2rem;
-
-  cursor: pointer;
 `;
 
 const FolderContainer = styled.div`
@@ -65,35 +51,6 @@ const Input = styled.div`
   text-align: center;
 `;
 
-const DropdownWrapper = styled.div`
-  position: absolute;
-  top: 55px;
-  left: 250px;
-  z-index: 1;
-  display: ${({ show }) => (show ? "flex" : "none")};
-  flex-direction: column;
-  width: 200px;
-  box-shadow: 2px 2px 2px 2px grey;
-`;
-
-const Option = styled.div`
-  display: flex;
-  align-items: center;
-  height: 40px;
-  text-align: left;
-  cursor: pointer;
-  border: none;
-  background-color: white;
-
-  &:hover {
-    background-color: #dfdfdf;
-  }
-
-  img {
-    padding: 10px;
-  }
-`;
-
 function FirstMain({ searchMusicName, selectedKeyCode }) {
   const groupId = localStorage.getItem("groupId");
   const [songData, setSongData] = useState([]);
@@ -105,6 +62,7 @@ function FirstMain({ searchMusicName, selectedKeyCode }) {
 
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [groupId]);
 
   useEffect(() => {
@@ -152,10 +110,10 @@ function FirstMain({ searchMusicName, selectedKeyCode }) {
 
   const [readModal, setReadModal] = useState(false);
   const [selectedSongIndex, setSelectedSongIndex] = useState(null);
-  const [showDropdown, setShowDropdown] = useState(
-    Array(songData.length).fill(false)
-  );
-  const dropdownRef = useRef(null);
+  // const [showDropdown, setShowDropdown] = useState(
+  //   Array(songData.length).fill(false)
+  // );
+  // const dropdownRef = useRef(null);
 
   const toggleReadModal = (index) => {
     setSelectedSongIndex(index);
@@ -163,33 +121,25 @@ function FirstMain({ searchMusicName, selectedKeyCode }) {
     document.body.style.overflow = readModal ? "auto" : "hidden";
   };
 
-  const toggleDropdown = (index) => {
-    const updatedDropdownStates = showDropdown.map((state, i) =>
-      i === index ? !state : false
-    );
-    setShowDropdown(updatedDropdownStates);
-  };
+  // const closeDropdown = useCallback(() => {
+  //   setShowDropdown(Array(songData.length).fill(false));
+  // }, [songData]);
 
-  const closeDropdown = () => {
-    setShowDropdown(Array(songData.length).fill(false));
-  };
+  // const handleClickOutside = useCallback(
+  //   (event) => {
+  //     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+  //       closeDropdown();
+  //     }
+  //   },
+  //   [closeDropdown, dropdownRef]
+  // );
 
-  const handleClickOutside = (event) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-      closeDropdown();
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
-  const handleOptionClick = () => {
-    closeDropdown();
-  };
+  // useEffect(() => {
+  //   document.addEventListener("mousedown", handleClickOutside);
+  //   return () => {
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //   };
+  // }, [handleClickOutside]);
 
   return (
     <Wrapper>

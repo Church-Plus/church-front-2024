@@ -38,6 +38,7 @@ function Menu() {
 
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [groupId, memberId]);
 
   const fetchData = async () => {

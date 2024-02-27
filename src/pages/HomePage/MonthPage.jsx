@@ -29,8 +29,8 @@ function MonthPage() {
   const navigate = useNavigate();
   const month = Number(params.month);
   const [folders, setFolders] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [newFolderName, setNewFolderName] = useState("");
+  // const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [newFolderName, setNewFolderName] = useState("");
   const [reloadPage, setReloadPage] = useState(false); // 상태 추가
   const groupId = localStorage.getItem("groupId");
   // const path = `${groupId}/${month}`;
@@ -41,6 +41,7 @@ function MonthPage() {
   useEffect(() => {
     navigate(`/monthPage/${month}`);
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [month, navigate]);
 
   useEffect(() => {
@@ -48,6 +49,7 @@ function MonthPage() {
       fetchData();
       setReloadPage(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reloadPage]);
 
   useEffect(() => {
@@ -80,9 +82,9 @@ function MonthPage() {
     }
   };
 
-  const handleAddFolder = (folders) => {
-    setIsModalOpen(false);
-    setNewFolderName(folders.folderName);
+  const handleAddFolder = () => {
+    // setIsModalOpen(false);
+    // setNewFolderName(folders.folderName);
     setReloadPage(true);
   };
 

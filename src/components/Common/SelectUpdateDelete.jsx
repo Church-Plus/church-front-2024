@@ -226,10 +226,6 @@ function SelectUpdateDelete({ folderId, folderName }) {
     console.log("folderId:", folderId);
   };
 
-  const handleDropdownItemClick = () => {
-    setShowDropdown(false);
-  };
-
   const handleModalClick = (event) => {
     event.stopPropagation();
     setShowDropdown(false); // FolderDeleteModal을 클릭했을 때도 드롭다운 메뉴 닫기

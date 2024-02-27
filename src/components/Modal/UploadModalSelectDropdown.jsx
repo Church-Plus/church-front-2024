@@ -118,6 +118,7 @@ const UploadModalSelectDropdown = ({ value, onChange, name, codeSelected }) => {
         setSelected(selectedKey);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [codeSelected]);
 
   const handleItemClick = (keyOption) => {

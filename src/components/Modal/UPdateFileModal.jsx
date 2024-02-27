@@ -2,8 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import XButton from "../../assets/Icons/XButton.svg";
 import EditblackPencilIcons from "../../assets/Icons/editBlackPencil.svg";
-import axios from "axios";
-import addMusicSheet from "../../assets/Icons/addMusicSheet.svg";
 import UploadModalSelectDropdown from "./UploadModalSelectDropdown";
 import UpdateMusic from "../../apis/updateMusic";
 
@@ -230,7 +228,7 @@ export default function UPdateFileModal({
   musicImageUrl,
 }) {
   const [createFolderModal, setCreateFolderModal] = useState(false);
-  const [inputValue, setInputValue] = useState(musicName);
+  // const [inputValue, setInputValue] = useState(musicName);
   const [previewUrl, setPreviewUrl] = useState(null);
   const [formData, setFormData] = useState({
     musicName: musicName,
@@ -252,10 +250,6 @@ export default function UPdateFileModal({
       document.body.style.overflow = "auto";
     }
   }, [createFolderModal]);
-
-  const handleChange = (event) => {
-    setInputValue(event.target.value); // 입력값을 상태에 업데이트
-  };
 
   const handleLeftBodyClick = () => {
     fileInputRef.current.click();
