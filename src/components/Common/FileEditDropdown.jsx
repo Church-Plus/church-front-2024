@@ -59,7 +59,6 @@ function FileNameEditButton({
 
         {showDropdown && (
           <DropdownWrapper ref={dropdownRef}>
-            <DeleteFileModal musicId={musicId} />
             <UPdateFileModal
               musicId={musicId}
               folderId={folderId}
@@ -69,6 +68,7 @@ function FileNameEditButton({
               link={link}
               musicImageUrl={musicImageUrl}
             />
+            <DeleteFileModal musicId={musicId} />
           </DropdownWrapper>
         )}
       </div>
